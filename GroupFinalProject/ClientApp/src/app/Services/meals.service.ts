@@ -9,14 +9,15 @@ import { Secret } from '../Models/secret';
 })
 export class MealsService {
 
+  
 
   // url2:string=`https://api.spoonacular.com/recipes/complexSearch?apiKey=${this.apiKey}`
-  url:string=`https://api.spoonacular.com/recipes/search?apiKey=${Secret.apiKey}&includeNutrition=true`;
+  url:string=`https://api.spoonacular.com/recipes/search?apiKey=${Secret.apiKey}&includeNutrition=true&query=`;
   
   constructor(private http: HttpClient) { }
 
-  getMeals():Observable<MealsResult>{
-    return this.http.get<MealsResult>(this.url);
+  getMeals(Input:string):Observable<MealsResult>{
+    return this.http.get<MealsResult>(`${this.url}${Input}/.json`);
   }
 
 }

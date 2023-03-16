@@ -12,13 +12,26 @@ export class MealsComponent implements OnInit {
   constructor(private mealService:MealsService) { }
 
   result:MealsResult = {} as MealsResult;
-
+  search:string="aww";
+  status:string="";
 
   ngOnInit() {
-    this.mealService.getMeals().subscribe((response:MealsResult)=>{
+    this.searchInput();
+    }
+    
+    searchInput(){
+    this.mealService.getMeals(this.search).subscribe((response:MealsResult)=>{
       console.log(response);
       this.result = response;
-    })
-  };
+
+    },
+    (error)=>{
+      console.log(error)
+      this.status= `${this.search} not a valid input`
+    }
+    );
+
+    }
+  
 
 }
