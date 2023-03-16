@@ -1,0 +1,10 @@
+<h1>Testing Site</h1>
+
+<div *ngFor="let m of result.results; i of index">
+    <p>{{m.title}}</p>
+    <p>Minutes to cook: {{m.readyInMinutes}}</p>
+    <img src="{{m.image}}" height="300px"/>
+    <p>Servings: {{m.servings}}</p>
+    <p>{{m.glutenFree}}</p>
+    <p>{{m.healthScore}}</p>
+</div>

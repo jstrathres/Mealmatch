@@ -1,3 +1,12 @@
+export interface MealsResult {
+    baseUri:string;
+    expires:number;
+    isStale:boolean;
+    number:number;
+    offset:number;
+    processingTimeMs:number;
+    results:MealsModel[];
+}
 export interface MealsModel {
     vegetarian:               boolean;
     vegan:                    boolean;
