@@ -21,13 +21,13 @@ namespace GroupFinalProject.Controllers
         }
 
         [HttpGet("{userid}")]
-        public List<Recipe> getRecipeByUserId(int userid)
+        public List<Recipe> getRecipeByUserId(string userid)
         {
             return context.Recipes.Where(r => r.UserId == userid).ToList();
         }
 
         [HttpPost]
-        public Recipe AddRecipe(int recipeid, int userid)
+        public Recipe AddRecipe(int recipeid, string userid)
         {
             Recipe newRecipe = new Recipe()
             {
