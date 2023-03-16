@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -26,6 +27,7 @@ import { MealsComponent } from './Components/meals/meals.component';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    SocialLoginModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
@@ -33,7 +35,23 @@ import { MealsComponent } from './Components/meals/meals.component';
       { path: 'meals', component: MealsComponent}
     ])
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+      	autoLogin: false,
+      	providers: [
+      	  {
+      	    id: GoogleLoginProvider.PROVIDER_ID,
+      	    provider: new GoogleLoginProvider(
+      	      '311521076002-5cg2nuht56tpvl0eh36sv8aru36hp3uo'
+      	    )
+      	  }
+      	]
+      } as SocialAuthServiceConfig,
+    }
+      
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
