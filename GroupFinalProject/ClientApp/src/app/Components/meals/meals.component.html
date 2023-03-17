@@ -1,7 +1,22 @@
+<<<<<<< HEAD
+=======
+<h1>Testing Site</h1>
+<!-- 
+<div *ngFor="let m of result.results; i of index">
+    <p>{{m.title}}</p>
+    <p>Minutes to cook: {{m.readyInMinutes}}</p>
+    <img src="{{m.image}}" height="300px"/>
+    <p>Servings: {{m.servings}}</p>
+    <p>{{m.glutenFree}}</p>
+    <p>{{m.healthScore}}</p> -->
+<!-- </div> -->
+
+>>>>>>> 813e17b6ca2584290637ea6ec463623db0a09f10
 <div (keydown.enter)="searchInput()">
     
     <input type="text" [(ngModel)]="search" />
     <button (click)="searchInput()">Search Meals</button>
+<<<<<<< HEAD
 
     <div *ngFor="let p of result.results; index as i">
         <p>{{p.title}}</p>
@@ -16,3 +31,15 @@
     
 </div>
 
+=======
+    <div *ngFor="let p of result.results">
+        <p>{{p.title}}</p>
+        <p>Minutes to cook: {{p.readyInMinutes}}</p>
+        <img src="{{result.baseUri+p.image}}" height="300px"/>
+        <p>Servings: {{p.servings}}</p>
+        <p>{{p.glutenFree}}</p>
+        <p>{{p.healthScore}}</p>
+    </div>
+    
+</div>
+>>>>>>> 813e17b6ca2584290637ea6ec463623db0a09f10
