@@ -1,3 +1,4 @@
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,6 +7,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav-menu.component.css']
 })
 export class NavMenuComponent {
+  constructor(private authService: SocialAuthService){}
+
+  user: SocialUser = {} as SocialUser;
+  loggedIn: boolean = false;
+
+  ngOnInit(): void {
+
+    this.authService.authState.subscribe((user) => {
+  	  this.user = user;
+  	  this.loggedIn = (user != null);
+      //add favorties.getfavorites to only show favorites when logged in
+    });
+  }
+
   isExpanded = false;
 
   collapse() {
@@ -14,5 +29,9 @@ export class NavMenuComponent {
 
   toggle() {
     this.isExpanded = !this.isExpanded;
+  }
+
+  signOut():void {
+    this.authService.signOut();
   }
 }
