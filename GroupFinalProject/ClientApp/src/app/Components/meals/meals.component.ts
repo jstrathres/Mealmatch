@@ -16,16 +16,11 @@ export class MealsComponent implements OnInit {
 
   // result:MealsModel[] = [];
   result:MealsResult = {} as MealsResult;
-<<<<<<< HEAD
   search:string="";
   status:string="";
   detail:NutritionDetail = {} as NutritionDetail;
   display:boolean[]=[];
   id:number=0;
-=======
-  search:string="aww";
-  status:string="";
->>>>>>> 813e17b6ca2584290637ea6ec463623db0a09f10
 
   ngOnInit() {
     this.searchInput();
@@ -37,20 +32,7 @@ export class MealsComponent implements OnInit {
       console.log(this.search);
       // this.result = response.results;
       this.result = response;
-<<<<<<< HEAD
       this.display=new Array(response.results.length);
-=======
-
-    },
-    (error)=>{
-      console.log(error)
-      this.status= `${this.search} not a valid input`
-    }
-    );
-
-    }
-  
->>>>>>> 813e17b6ca2584290637ea6ec463623db0a09f10
 
     },
     (error)=>{
