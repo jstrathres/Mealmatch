@@ -27,12 +27,12 @@
           >
             <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="loggedIn">
             <a class="nav-link text-dark" [routerLink]="['/counter']"
               >Counter</a
             >
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="loggedIn">
             <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
               >Fetch data</a
             >
@@ -46,11 +46,14 @@
               <asl-google-signin-button *ngIf="!loggedIn" type='icon' size='medium'></asl-google-signin-button>
               <button class="btn btn-outline-dark" *ngIf="loggedIn"  (click)="signOut()">Sign Out
               </button>
-              
+          </li> 
               <!--user name/photo display when logged in-->
-              <p>{{ user.name }}</p>
-              <img src="{{ user.photoUrl }}"/>
-          </li>
+              <div *ngIf="loggedIn">
+                <p>{{ user.name }}</p>
+                <img src="{{ user.photoUrl }}"/>
+              </div>
+             
+          
         </ul>
       </div>
     </div>

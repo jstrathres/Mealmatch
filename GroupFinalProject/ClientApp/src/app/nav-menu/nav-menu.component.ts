@@ -17,7 +17,9 @@ export class NavMenuComponent {
     this.authService.authState.subscribe((user) => {
   	  this.user = user;
   	  this.loggedIn = (user != null);
+      console.log(this.user);
       //add favorties.getfavorites to only show favorites when logged in
+      //set userId to nvarcahr(max) in DB to account for long usernames
     });
   }
 
@@ -33,5 +35,6 @@ export class NavMenuComponent {
 
   signOut():void {
     this.authService.signOut();
+    this.loggedIn = false;
   }
 }

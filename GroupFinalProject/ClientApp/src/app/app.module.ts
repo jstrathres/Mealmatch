@@ -13,6 +13,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { RecipesComponent } from './Components/recipes/recipes.component';
 import { MealsComponent } from './Components/meals/meals.component';
 import { NutritiondetailComponent } from './Components/nutritiondetail/nutritiondetail.component';
+import { Secret } from './Models/secret';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { NutritiondetailComponent } from './Components/nutritiondetail/nutrition
       	  {
       	    id: GoogleLoginProvider.PROVIDER_ID,
       	    provider: new GoogleLoginProvider(
-      	      '311521076002-5cg2nuht56tpvl0eh36sv8aru36hp3uo'
+      	      Secret.clientId
       	    )
       	  }
       	]
