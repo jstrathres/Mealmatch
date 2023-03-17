@@ -11,6 +11,7 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { RecipesComponent } from './Components/recipes/recipes.component';
 import { MealsComponent } from './Components/meals/meals.component';
+import { NutritiondetailComponent } from './Components/nutritiondetail/nutritiondetail.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MealsComponent } from './Components/meals/meals.component';
     CounterComponent,
     FetchDataComponent,
     RecipesComponent,
-    MealsComponent
+    MealsComponent,
+    NutritiondetailComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -30,7 +32,8 @@ import { MealsComponent } from './Components/meals/meals.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'meals', component: MealsComponent}
+      { path: 'meals', component: MealsComponent},
+      { path: 'meals/:id', component: MealsComponent}
     ])
   ],
   providers: [],

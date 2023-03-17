@@ -1,10 +1,18 @@
-<h1>Testing Site</h1>
+<div (keydown.enter)="searchInput()">
+    
+    <input type="text" [(ngModel)]="search" />
+    <button (click)="searchInput()">Search Meals</button>
 
-<div *ngFor="let m of result.results; i of index">
-    <p>{{m.title}}</p>
-    <p>Minutes to cook: {{m.readyInMinutes}}</p>
-    <img src="{{m.image}}" height="300px"/>
-    <p>Servings: {{m.servings}}</p>
-    <p>{{m.glutenFree}}</p>
-    <p>{{m.healthScore}}</p>
+    <div *ngFor="let p of result.results; index as i">
+        <p>{{p.title}}</p>
+        <p>Minutes to cook: {{p.readyInMinutes}}</p>
+        <img src="https://spoonacular.com/recipeImages/{{p.id}}-312x150.jpg"/>       
+        <p>Servings: {{p.servings}}</p>
+        <p>{{p.glutenFree}}</p>
+        <p>{{p.healthScore}}</p>        
+        <button (click)="toggleDisplay(i)" (click)="getDetails(p.id)">clicky </button>
+        <app-nutritiondetail *ngIf="display[i]"[Nutrients]="p.id"></app-nutritiondetail>
+    </div>
+    
 </div>
+
