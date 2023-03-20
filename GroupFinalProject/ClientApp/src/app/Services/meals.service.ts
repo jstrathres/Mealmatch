@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MealsModel, MealsResult } from '../Models/Meals';
-import { NutritionDetail } from '../Models/nutrition-detail';
+import { NutritionDetail } from '../Models/nutrition.details';
 import { Secret } from '../Models/secret';
 
 @Injectable({
@@ -18,7 +18,7 @@ export class MealsService {
  constructor(private http: HttpClient) { }
 
  getMeals(Input:string):Observable<MealsResult>{
-   return this.http.get<MealsResult>(`${this.url}${Input}&number=3`);
+   return this.http.get<MealsResult>(`${this.url}${Input}&number=10`);
  }
 
 

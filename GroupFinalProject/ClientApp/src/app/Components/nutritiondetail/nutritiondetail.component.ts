@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NutritionDetail } from '../../Models/nutrition-detail';
+import { NutritionDetail } from '../../Models/nutrition.details';
 import { MealsService } from '../../Services/meals.service';
 
 @Component({

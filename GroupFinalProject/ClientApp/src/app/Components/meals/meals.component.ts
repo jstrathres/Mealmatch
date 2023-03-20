@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MealsModel, MealsResult } from 'src/app/Models/Meals';
 import { MealsService } from 'src/app/Services/meals.service';
-import { NutritionDetail } from '../../Models/nutrition-detail';
+import { NutritionDetail } from '../../Models/nutrition.details';
 
 
 @Component({
