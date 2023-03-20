@@ -27,12 +27,17 @@ namespace GroupFinalProject.Controllers
         }
 
         [HttpPost]
-        public Recipe AddRecipe(int recipeid, string userid)
+        public Recipe AddRecipe(int recipeid, string userid, string recipeTitle, string img, string sourceUrl, int readyInMinutes, int servings)
         {
             Recipe newRecipe = new Recipe()
             {
                 RecipeId = recipeid,
-                UserId = userid
+                UserId = userid,
+                RecipeTitle= recipeTitle,
+                Image= img,
+                SourceUrl=sourceUrl,
+                ReadyInMinutes=readyInMinutes,
+                Servings= servings
             };
             context.Recipes.Add(newRecipe);
             context.SaveChanges();
@@ -61,6 +66,8 @@ namespace GroupFinalProject.Controllers
             context.SaveChanges();
             return newFavorite;
         }
+
+
 
         [HttpDelete("deleteFavorite")]
         public void deleteFavorite(int recipeId,string userid)
