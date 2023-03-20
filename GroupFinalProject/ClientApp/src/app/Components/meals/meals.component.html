@@ -2,6 +2,7 @@
     
     <input type="text" [(ngModel)]="search" />
     <button (click)="searchInput()">Search Meals</button>
+    <!-- <button  (click)="addRecipe(result.results)">Add to Favorites</button> -->
 
     <div *ngFor="let p of result.results; index as i">
         <h4 style="color:blueviolet; font-weight:bold;">{{p.title}}</h4>
@@ -10,7 +11,7 @@
         <p>Servings: {{p.servings}}</p>  
         <button (click)="toggleDisplay(i)" (click)="getDetails(p.id)">Nutrition Details</button>
         <app-nutritiondetail *ngIf="display[i]"[Nutrients]="p.id"></app-nutritiondetail>
-        <button (click)="addFavorite(p.id)" (click)="addRecipe(p.id, p.title, p.readyInMinutes, p.servings, p.sourceUrl, p.image)">Add to Favorites</button>
+        <button  (click)="addFavorite(p.id)">👍Add to Favorites</button>
     </div>
     
 </div>

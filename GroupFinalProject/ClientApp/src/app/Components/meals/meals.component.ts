@@ -75,7 +75,7 @@ export class MealsComponent implements OnInit {
 
     addRecipe(recipeId:number, recipeTitle:string, readyInMinutes:number, servings:number, sourceUrl:string, image:string):void{
 
-      this.recipeService.addRecipe(recipeId, this.user.id, recipeTitle, readyInMinutes, servings, sourceUrl, image).subscribe((response:Recipe)=>{
+      this.recipeService.addRecipe(recipeId,recipeTitle, readyInMinutes, servings, sourceUrl, image).subscribe((response:Recipe)=>{
         console.log(response);
       })
     }

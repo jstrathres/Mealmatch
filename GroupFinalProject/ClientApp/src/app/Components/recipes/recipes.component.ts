@@ -28,7 +28,7 @@ export class RecipesComponent implements OnInit {
       })
     }
     getFavorite():void{
-      this.recipeService.getFavorite(this.userId).subscribe((response:Recipe[])=>{
+      this.recipeService.getFavorite(this.userId).subscribe((response:Favorite[])=>{
         console.log(response);
         this.favorite = response;
       })

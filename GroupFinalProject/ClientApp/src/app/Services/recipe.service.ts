@@ -19,15 +19,15 @@ deleteFavorite(recipeId:number, userId:string):Observable<Favorite>{
   return this.http.delete<Favorite>(`${this.baseUrl}api/Recipe/deleteFavorite?RecipeId=${recipeId}&UserId=${userId}`,{})
 }
 
-getFavorite(userId:string):Observable<Recipe[]>{
-  return this.http.get<Recipe[]>(`${this.baseUrl}api/Recipe/getFavorite?UserId=${userId}`);
+getFavorite(userId:string):Observable<Favorite[]>{
+  return this.http.get<Favorite[]>(`${this.baseUrl}api/Recipe/getFavorite?UserId=${userId}`);
 }
 
 getRecipe():Observable<Recipe[]>{
   return this.http.get<Recipe[]>(`${this.baseUrl}api/Recipe/getRecipes`);
 }
-addRecipe(recipeId:number,userId:string,recipeTitle:string,readyInMinutes:number,servings:number,sourceUrl:string,image:string):Observable<Recipe>{
-  return this.http.post<Recipe>(`${this.baseUrl}api/Recipe/AddRecipe?RecipeId=${recipeId}&UserId=${userId}&RecipeTitle=${recipeTitle}&Image=${image}
+addRecipe(recipeId:number,recipeTitle:string,readyInMinutes:number,servings:number,sourceUrl:string,image:string):Observable<Recipe>{
+  return this.http.post<Recipe>(`${this.baseUrl}api/Recipe/AddRecipe?RecipeId=${recipeId}&RecipeTitle=${recipeTitle}&Image=${image}
   &SourceUrl=${sourceUrl}&ReadyInMinutes=${readyInMinutes}&Servings=${servings}`,{})
 }
 getRecipeByuserid(userId:string):Observable<Recipe[]>{
