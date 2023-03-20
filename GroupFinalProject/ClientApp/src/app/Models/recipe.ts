@@ -1,6 +1,11 @@
 
 export interface Recipe {
     id:number;
-    userId:string;
     recipeId:number;
+    userId:string;
+    recipeTitle:string;
+    readyInMinutes:number;
+    servings:number;
+    sourceUrl:string;
+    image:string;
 }

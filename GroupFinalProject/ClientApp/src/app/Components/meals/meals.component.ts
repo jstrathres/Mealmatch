@@ -1,3 +1,4 @@
+import { SocialUser } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Favorite } from 'src/app/Models/favorite';
@@ -25,7 +26,13 @@ export class MealsComponent implements OnInit {
   detail:NutritionDetail = {} as NutritionDetail;
   display:boolean[]=[];
   id:number=0;
-  userId:string="";
+  recipeTitle:string="";
+  readyInMinutes:number=0;
+  servings:number=0;
+  sourceUrl:string="";
+  image:string="";
+  user: SocialUser = {} as SocialUser;
+  userid:string = this.user.id;
   
 
   ngOnInit() {
@@ -61,12 +68,17 @@ export class MealsComponent implements OnInit {
     }
     addFavorite(recipeId:number):void{
 
-      this.recipeService.addFavorite(recipeId, this.userId).subscribe((response:Favorite)=>{
+      this.recipeService.addFavorite(recipeId, this.user.id).subscribe((response:Favorite)=>{
         console.log(response);
       })
     }
 
-  
+    addRecipe(recipeId:number, recipeTitle:string, readyInMinutes:number, servings:number, sourceUrl:string, image:string):void{
+
+      this.recipeService.addRecipe(recipeId, this.user.id, recipeTitle, readyInMinutes, servings, sourceUrl, image).subscribe((response:Recipe)=>{
+        console.log(response);
+      })
+    }
 
 
 }

@@ -36,7 +36,8 @@ import { Secret } from './Models/secret';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'meals', component: MealsComponent},
-      { path: 'meals/:id', component: MealsComponent}
+      { path: 'meals/:id', component: MealsComponent},
+      {path: 'favorites', component:RecipesComponent}
     ])
   ],
   providers: [

@@ -26,8 +26,9 @@ getFavorite(userId:string):Observable<Recipe[]>{
 getRecipe():Observable<Recipe[]>{
   return this.http.get<Recipe[]>(`${this.baseUrl}api/Recipe/getRecipes`);
 }
-addRecipe(recipeId:number,userId:string):Observable<Recipe>{
-  return this.http.post<Recipe>(`${this.baseUrl}api/Recipe/AddRecipe?RecipeId=${recipeId}&UserId=${userId}`,{})
+addRecipe(recipeId:number,userId:string,recipeTitle:string,readyInMinutes:number,servings:number,sourceUrl:string,image:string):Observable<Recipe>{
+  return this.http.post<Recipe>(`${this.baseUrl}api/Recipe/AddRecipe?RecipeId=${recipeId}&UserId=${userId}&RecipeTitle=${recipeTitle}&Image=${image}
+  &SourceUrl=${sourceUrl}&ReadyInMinutes=${readyInMinutes}&Servings=${servings}`,{})
 }
 getRecipeByuserid(userId:string):Observable<Recipe[]>{
   return this.http.get<Recipe[]>(`${this.baseUrl}api/Recipe/getRecipeByUserId/UserId=${userId}`,{})
