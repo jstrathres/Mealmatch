@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Favorite } from 'src/app/Models/favorite';
 import { MealsResult } from 'src/app/Models/Meals';
+import { Recipe } from 'src/app/Models/recipe';
 import { MealsService } from 'src/app/Services/meals.service';
 import { NutritionDetail } from '../../Models/nutrition.details';
 
@@ -12,6 +14,7 @@ import { NutritionDetail } from '../../Models/nutrition.details';
 })
 export class MealsComponent implements OnInit {
 
+  Recipes:Recipe[]=[];
   constructor(private mealService:MealsService, private route:ActivatedRoute) { }
 
   // result:MealsModel[] = [];
@@ -21,6 +24,7 @@ export class MealsComponent implements OnInit {
   detail:NutritionDetail = {} as NutritionDetail;
   display:boolean[]=[];
   id:number=0;
+  recipeId:number =0;
 
   ngOnInit() {
     this.searchInput();
@@ -52,7 +56,11 @@ export class MealsComponent implements OnInit {
         this.detail=response;
     })
 
-    
+    addFavorite(recipeId:number):void{
+      this.recipeService.addFavorite(recipeId, this.userId).subscribe((response:Favorite)=>{
+        console.log(response);
+      })
+    }
 
   }
 
