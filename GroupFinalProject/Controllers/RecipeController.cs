@@ -21,9 +21,9 @@ namespace GroupFinalProject.Controllers
         }
 
         [HttpGet("{userid}")]
-        public List<Recipe> getRecipeByUserId(string userid)
+        public List<Favorite> getRecipeByUserId(string userid)
         {
-            return context.Recipes.Where(r => r.UserId == userid).ToList();
+            return context.Favorites.Where(r => r.UserId == userid).ToList();
         }
 
         [HttpPost]
@@ -31,8 +31,7 @@ namespace GroupFinalProject.Controllers
         {
             Recipe newRecipe = new Recipe()
             {
-                RecipeId = recipeid,
-                UserId = userid,
+                RecipeId = recipeid,               
                 RecipeTitle= recipeTitle,
                 Image= img,
                 SourceUrl=sourceUrl,
