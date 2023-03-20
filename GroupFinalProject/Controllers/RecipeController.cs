@@ -42,11 +42,50 @@ namespace GroupFinalProject.Controllers
         [HttpDelete]
         public Recipe DeleteRecipe(int id)
         {
+
             Recipe recipe = context.Recipes.FirstOrDefault(r => r.Id == id);
             context.Recipes.Remove(recipe);
             context.SaveChanges();
             return recipe;
         }
+
+        [HttpPost("addFavorite")]
+        public Favorite addFavorite(int recipeId,string userid)
+        {
+            Favorite newFavorite = new Favorite()
+            {
+                RecipeId = recipeId,
+                UserId = userid
+            };
+            context.Favorites.Add(newFavorite);
+            context.SaveChanges();
+            return newFavorite;
+        }
+
+        [HttpDelete("deleteFavorite")]
+        public void deleteFavorite(int recipeId,string userid)
+        {
+            Favorite f = context.Favorites.FirstOrDefault(q=>q.RecipeId== recipeId && q.UserId == userid);
+            context.Favorites.Remove(f);
+            context.SaveChanges();
+            
+        }
+
+        [HttpGet("getFavorite")]
+        public List<Recipe> getFavorites(string userid)
+        {
+            List<Favorite> favList = new List<Favorite>();
+            favList = context.Favorites.Where(f => f.UserId== userid).ToList();
+            bool idExist = favList.Any();
+            List<Recipe> newRs = new List<Recipe>();
+            foreach(Favorite f in favList)
+            {
+                newRs.Add(context.Recipes.FirstOrDefault(r => r.RecipeId== f.RecipeId));
+            }
+            return newRs;
+        }
+
+
     }
 }
 

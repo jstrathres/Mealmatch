@@ -51,5 +51,8 @@ export class MealsComponent implements OnInit {
       this.mealService.getDetails(id).subscribe((response:NutritionDetail)=>{
         this.detail=response;
     })
+
+    
+
   }
 }
