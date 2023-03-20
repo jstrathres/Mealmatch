@@ -7,9 +7,7 @@
         <h4 style="color:blueviolet; font-weight:bold;">{{p.title}}</h4>
         <img src="https://spoonacular.com/recipeImages/{{p.id}}-312x150.jpg"/>       
         <p>Minutes to cook: {{p.readyInMinutes}}</p>
-        <p>Servings: {{p.servings}}</p>
-        <p>{{p.glutenFree}}</p>
-        <p>{{p.healthScore}}</p>        
+        <p>Servings: {{p.servings}}</p>  
         <button (click)="toggleDisplay(i)" (click)="getDetails(p.id)">Nutrition Details</button>
         <app-nutritiondetail *ngIf="display[i]"[Nutrients]="p.id"></app-nutritiondetail>
     </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MealsModel, MealsResult } from 'src/app/Models/Meals';
+import { MealsResult } from 'src/app/Models/Meals';
 import { MealsService } from 'src/app/Services/meals.service';
 import { NutritionDetail } from '../../Models/nutrition.details';
 
@@ -55,4 +55,5 @@ export class MealsComponent implements OnInit {
     
 
   }
+
 }
