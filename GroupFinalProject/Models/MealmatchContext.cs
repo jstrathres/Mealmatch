@@ -15,6 +15,8 @@ public partial class MealmatchContext : DbContext
     {
     }
 
+    public virtual DbSet<Favorite> Favorites { get; set; }
+
     public virtual DbSet<Recipe> Recipes { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -23,6 +25,17 @@ public partial class MealmatchContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Favorite>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Favorite__3214EC07425EDFDB");
+
+            entity.Property(e => e.UserId).HasMaxLength(255);
+
+            entity.HasOne(d => d.Recipe).WithMany(p => p.Favorites)
+                .HasForeignKey(d => d.RecipeId)
+                .HasConstraintName("FK__Favorites__Recip__5EBF139D");
+        });
+
         modelBuilder.Entity<Recipe>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Recipe__3214EC07137EE07C");
