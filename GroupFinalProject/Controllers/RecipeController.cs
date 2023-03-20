@@ -27,7 +27,7 @@ namespace GroupFinalProject.Controllers
         }
 
         [HttpPost]
-        public Recipe AddRecipe(int recipeid, string userid, string recipeTitle, string img, string sourceUrl, int readyInMinutes, int servings)
+        public Recipe AddRecipe(int recipeid, string recipeTitle, string img, string sourceUrl, int readyInMinutes, int servings)
         {
             Recipe newRecipe = new Recipe()
             {

@@ -12,7 +12,7 @@ export class RecipeService {
   constructor(@Inject('BASE_URL') private baseUrl: string, private http:HttpClient) { }
 
 addFavorite(recipeId: number, userId:string):Observable<Favorite>{
-  return this.http.post<Favorite>(`${this.baseUrl}api/Recipe/addFavorite?RecipeId=${recipeId}$UserId=${userId}`,{})
+  return this.http.post<Favorite>(`${this.baseUrl}api/Recipe/addFavorite?RecipeId=${recipeId}&UserId=${userId}`,{})
 }
 
 deleteFavorite(recipeId:number, userId:string):Observable<Favorite>{
@@ -26,7 +26,7 @@ getFavorite(userId:string):Observable<Favorite[]>{
 getRecipe():Observable<Recipe[]>{
   return this.http.get<Recipe[]>(`${this.baseUrl}api/Recipe/getRecipes`);
 }
-addRecipe(recipeId:number,recipeTitle:string,readyInMinutes:number,servings:number,sourceUrl:string,image:string):Observable<Recipe>{
+addRecipe(recipeId:number,recipeTitle:string,image:string, sourceUrl:string, readyInMinutes:number,servings:number):Observable<Recipe>{
   return this.http.post<Recipe>(`${this.baseUrl}api/Recipe/AddRecipe?RecipeId=${recipeId}&RecipeTitle=${recipeTitle}&Image=${image}
   &SourceUrl=${sourceUrl}&ReadyInMinutes=${readyInMinutes}&Servings=${servings}`,{})
 }

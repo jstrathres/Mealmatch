@@ -11,7 +11,8 @@
         <p>Servings: {{p.servings}}</p>  
         <button (click)="toggleDisplay(i)" (click)="getDetails(p.id)">Nutrition Details</button>
         <app-nutritiondetail *ngIf="display[i]"[Nutrients]="p.id"></app-nutritiondetail>
-        <button  (click)="addFavorite(p.id)">👍Add to Favorites</button>
+        <div *ngIf="user!=null">
+        <button (click)="addFavorite(p.id, user.id)" (click)="addRecipe(p.id, p.title, p.image, p.sourceUrl, p.readyInMinutes, p.servings)">👍Add to Favorites</button>
+        </div>
     </div>
-    
 </div>

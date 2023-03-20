@@ -33,6 +33,7 @@ export class MealsComponent implements OnInit {
   image:string="";
   user: SocialUser = {} as SocialUser;
   userid:string = this.user.id;
+
   
 
   ngOnInit() {
@@ -66,19 +67,20 @@ export class MealsComponent implements OnInit {
     })       
          
     }
-    addFavorite(recipeId:number):void{
+    addFavorite(recipeId:number, userid:string):void{
 
-      this.recipeService.addFavorite(recipeId, this.user.id).subscribe((response:Favorite)=>{
+      this.recipeService.addFavorite(recipeId, userid).subscribe((response:Favorite)=>{
         console.log(response);
+        console.log(this.userid);
+        console.log(this.user.id)
       })
     }
 
-    addRecipe(recipeId:number, recipeTitle:string, readyInMinutes:number, servings:number, sourceUrl:string, image:string):void{
+    addRecipe(recipeId:number, recipeTitle:string, image:string, sourceUrl:string, readyInMinutes:number, servings:number):void{
 
-      this.recipeService.addRecipe(recipeId,recipeTitle, readyInMinutes, servings, sourceUrl, image).subscribe((response:Recipe)=>{
+      this.recipeService.addRecipe(recipeId,recipeTitle, image, sourceUrl, readyInMinutes, servings).subscribe((response:Recipe)=>{
         console.log(response);
       })
     }
-
 
 }
