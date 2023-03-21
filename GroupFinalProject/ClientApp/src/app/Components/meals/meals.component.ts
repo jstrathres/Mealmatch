@@ -81,6 +81,12 @@ export class MealsComponent implements OnInit {
       this.addRecipe(targetRecipe.id, targetRecipe.title, targetRecipe.image, targetRecipe.sourceUrl, targetRecipe.readyInMinutes, targetRecipe.servings);
     }
 
+    deleteFavorite(recipeId:number):void{
+      this.recipeService.deleteFavorite(recipeId,this.user.id).subscribe((response:Favorite)=>{
+        console.log(response);
+      })
+    }
+
     addRecipe(recipeId:number, recipeTitle:string, image:string, sourceUrl:string, readyInMinutes:number, servings:number):void{
 
       this.recipeService.addRecipe(recipeId,recipeTitle, image, sourceUrl, readyInMinutes, servings).subscribe((response:Recipe)=>{

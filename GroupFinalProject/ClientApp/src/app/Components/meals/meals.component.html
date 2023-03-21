@@ -16,7 +16,8 @@
         </div>
         <div *ngIf="isFavorited[i]">
             <h3 >{{user.firstName}} added {{p.title}} to Favorites! 👍</h3>
+            <!--delete Favorite will not work.  Needs to call the Recipe Model -->
+            <button (click)="deleteFavorite(p.id)" (click)="toggleFavorite(i)">Delete From Favorites</button>
         </div>   
-
     </div>
 </div>
