@@ -31,7 +31,7 @@ export class RecipesComponent implements OnInit {
     }
 
     deleteFavorite(recipeId:number):void{
-      this.recipeService.deleteFavorite(recipeId,this.userId).subscribe((response:Favorite)=>{
+      this.recipeService.deleteFavorite(recipeId,this.user.id).subscribe((response:Favorite)=>{
         console.log(response);
         this.getFavorite()
       })

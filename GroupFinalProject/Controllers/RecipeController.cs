@@ -50,15 +50,21 @@ namespace GroupFinalProject.Controllers
             }
         }
 
-        [HttpDelete]
-        public Recipe DeleteRecipe(int id)
-        {
+        //[HttpDelete]
+        //public List <Favorite> DeleteRecipe(int recipeId, string userId)
+        //{
 
-            Recipe recipe = context.Recipes.FirstOrDefault(r => r.Id == id);
-            context.Recipes.Remove(recipe);
-            context.SaveChanges();
-            return recipe;
-        }
+        //    List <Favorite> recipes = context.Favorites.Where(r=> r.UserId == userId).ToList();
+        //    foreach (Favorite R in recipes)
+        //    {
+        //        if(R.RecipeId == recipeId)
+        //        {
+        //            context.Favorites.Remove(R);
+        //            context.SaveChanges();
+        //        }
+        //    }
+        //    return recipes;
+        //}
 
         [HttpPost("addFavorite")]
         public Favorite addFavorite(int recipeId,string userid)
@@ -74,14 +80,19 @@ namespace GroupFinalProject.Controllers
         }
 
 
-
         [HttpDelete("deleteFavorite")]
-        public void deleteFavorite(int recipeId,string userid)
+        public List<Favorite> deleteFavorite(int recipeId,string userid)
         {
-            Favorite f = context.Favorites.FirstOrDefault(q=>q.RecipeId== recipeId && q.UserId == userid);
-            context.Favorites.Remove(f);
-            context.SaveChanges();
-            
+            List<Favorite> recipes = context.Favorites.Where(r => r.UserId == userid).ToList();
+            foreach (Favorite R in recipes)
+            {
+                if (R.RecipeId == recipeId)
+                {
+                    context.Favorites.Remove(R);
+                    context.SaveChanges();
+                }
+            }
+            return recipes;
         }
 
         [HttpGet("getFavorite")]

@@ -16,7 +16,7 @@ addFavorite(recipeId: number, userId:string):Observable<Favorite>{
 }
 
 deleteFavorite(recipeId:number, userId:string):Observable<Favorite>{
-  return this.http.delete<Favorite>(`${this.baseUrl}api/Recipe/deleteFavorite?RecipeId=${recipeId}&UserId=${userId}`,{})
+  return this.http.delete<Favorite>(`${this.baseUrl}api/Recipe/deleteFavorite?recipeId=${recipeId}&userid=${userId}`,{})
 }
 
 getFavorite(userId:string):Observable<Recipe[]>{
@@ -35,8 +35,8 @@ addRecipe(recipeId:number,recipeTitle:string,image:string, sourceUrl:string,
 getRecipeByuserid(userId:string):Observable<Recipe[]>{
   return this.http.get<Recipe[]>(`${this.baseUrl}api/Recipe/getRecipeByUserId/UserId=${userId}`,{})
 }
-deleteRecipe(id:number):Observable<Recipe>{
-  return this.http.delete<Recipe>(`${this.baseUrl}api/Recipe/DeleteRecipe?Id=${id}`,{})
+deleteRecipe(recipeId:number, userId:string):Observable<Favorite>{
+  return this.http.delete<Favorite>(`${this.baseUrl}api/Recipe/DeleteRecipe?recipeId=${recipeId}&userId=${userId}`,{})
 }
 
 }

@@ -4,4 +4,5 @@
     <img src="https://spoonacular.com/recipeImages/{{r.recipeId}}-312x150.jpg"/>
     <p>Ready in Minutes: {{r.readyInMinutes}}</p>
     <p>Servings: {{r.servings}}</p>
+    <button (click)="deleteFavorite(r.id)">Remove from Favorites</button>
 </div>
