@@ -1,3 +1,4 @@
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { Favorite } from 'src/app/Models/favorite';
 import { Recipe } from 'src/app/Models/recipe';
@@ -13,12 +14,20 @@ export class RecipesComponent implements OnInit {
   Recipes:Recipe[]=[];
   favorite:Favorite[]=[];
   
-  constructor(private recipeService:RecipeService) { }
+  constructor(private recipeService:RecipeService,private authService: SocialAuthService) { }
 
   userId:string="";
+  loggedIn:boolean = false;
+  user: SocialUser = {} as SocialUser;
 
   ngOnInit():void {
+    this.authService.authState.subscribe((user) => {
+  	  this.user = user;
+  	  this.loggedIn = (user != null);
+      console.log(this.user);
+    this.getFavorite();
 
+    });
     }
 
     deleteFavorite(recipeId:number):void{
@@ -28,9 +37,9 @@ export class RecipesComponent implements OnInit {
       })
     }
     getFavorite():void{
-      this.recipeService.getFavorite(this.userId).subscribe((response:Favorite[])=>{
+      this.recipeService.getFavorite(this.user.id).subscribe((response:Recipe[])=>{
         console.log(response);
-        this.favorite = response;
+        this.Recipes = response;
       })
     }
     getRecipe():void{

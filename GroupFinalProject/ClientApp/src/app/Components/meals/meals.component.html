@@ -2,7 +2,7 @@
     
     <input type="text" [(ngModel)]="search" />
     <button (click)="searchInput()">Search Meals</button>
-    <!-- <button  (click)="addRecipe(result.results)">Add to Favorites</button> -->
+    
 
     <div *ngFor="let p of result.results; index as i">
         <h4 style="color:blueviolet; font-weight:bold;">{{p.title}}</h4>

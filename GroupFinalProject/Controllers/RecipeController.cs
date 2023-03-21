@@ -87,13 +87,14 @@ namespace GroupFinalProject.Controllers
         [HttpGet("getFavorite")]
         public List<Recipe> getFavorites(string userid)
         {
+            
             List<Favorite> favList = new List<Favorite>();
             favList = context.Favorites.Where(f => f.UserId== userid).ToList();
             bool idExist = favList.Any();
             List<Recipe> newRs = new List<Recipe>();
             foreach(Favorite f in favList)
             {
-                newRs.Add(context.Recipes.FirstOrDefault(r => r.RecipeId== f.RecipeId));
+                newRs.Add(context.Recipes.FirstOrDefault(r => r.Id== f.RecipeId));
             }
             return newRs;
         }
