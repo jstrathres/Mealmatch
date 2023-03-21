@@ -96,7 +96,7 @@ namespace GroupFinalProject.Controllers
             {
                 newRs.Add(context.Recipes.FirstOrDefault(r => r.Id== f.RecipeId));
             }
-            return newRs;
+            return newRs.DistinctBy(r=>r.RecipeId).ToList();
         }
 
 
