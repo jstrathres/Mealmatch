@@ -1,6 +1,5 @@
 import { SocialUser, SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Favorite } from 'src/app/Models/favorite';
 import { MealsResult, Result } from 'src/app/Models/Meals';
 import { Recipe } from 'src/app/Models/recipe';
@@ -34,6 +33,7 @@ export class MealsComponent implements OnInit {
   user: SocialUser = {} as SocialUser;
   userid:string = this.user.id;
   loggedIn:boolean = false;
+  isFavorited:boolean[]=[];
 
   
 
@@ -66,6 +66,10 @@ export class MealsComponent implements OnInit {
     toggleDisplay(index:number):void {
       this.display[index]=!this.display[index];
     }
+
+    toggleFavorite(index:number):void {
+    this.isFavorited[index]=!this.isFavorited[index];
+  }
 
     getDetails(id:number):void {
       this.mealService.getDetails(id).subscribe((response:NutritionDetail)=>{
