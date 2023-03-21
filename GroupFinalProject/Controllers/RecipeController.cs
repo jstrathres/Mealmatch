@@ -29,18 +29,25 @@ namespace GroupFinalProject.Controllers
         [HttpPost]
         public Recipe AddRecipe(int recipeid, string recipeTitle, string img, string sourceUrl, int readyInMinutes, int servings)
         {
-            Recipe newRecipe = new Recipe()
+            if (context.Recipes.Count(r => r.RecipeId == recipeid) == 0)
             {
-                RecipeId = recipeid,               
-                RecipeTitle= recipeTitle,
-                Image= img,
-                SourceUrl=sourceUrl,
-                ReadyInMinutes=readyInMinutes,
-                Servings= servings
-            };
-            context.Recipes.Add(newRecipe);
-            context.SaveChanges();
-            return newRecipe;
+                Recipe newRecipe = new Recipe()
+                {
+                    RecipeId = recipeid,
+                    RecipeTitle = recipeTitle,
+                    Image = img,
+                    SourceUrl = sourceUrl,
+                    ReadyInMinutes = readyInMinutes,
+                    Servings = servings
+                };
+                context.Recipes.Add(newRecipe);
+                context.SaveChanges();
+                return newRecipe;
+            }
+            else
+            {
+                return context.Recipes.FirstOrDefault(r => r.RecipeId == recipeid);
+            }
         }
 
         [HttpDelete]
