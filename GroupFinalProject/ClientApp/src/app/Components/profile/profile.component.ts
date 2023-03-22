@@ -15,13 +15,11 @@ export class ProfileComponent implements OnInit {
   constructor(private profileService:RecipeService, private authService:SocialAuthService,) { }
 
   user: SocialUser = {} as SocialUser;
-  userid:string = this.user.id;
   loggedIn:boolean = false;
   weight:number=0;
   height:number=0;
   goal:string="";
   confirmation:boolean=false;
-  // goaloptions:string[] = ["lose weight", "maintain weight","gain weight"];
 
   ngOnInit() {
     this.authService.authState.subscribe((user) => {
@@ -29,17 +27,18 @@ export class ProfileComponent implements OnInit {
   	  this.loggedIn = (user != null);
       console.log(this.user);
     });
+    this.getProfile(this.user.id);
   }
 
-getProfile():void{
-  this.profileService.getProfile(this.userid).subscribe((
+getProfile(userid:string):void{
+  this.profileService.getProfile(this.user.id).subscribe((
     response:Profile)=>{
       this.userProfile=response;
     })
 }
 
   addProfile(): void {
-    this.userProfile.userid=this.user.id;
+    this.userProfile.userId=this.user.id;
     this.profileService.addProfile(this.userProfile).subscribe((
       response:Profile)=>{
         this.userProfile=response;
@@ -47,7 +46,7 @@ getProfile():void{
         console.log(this.userProfile.height);
         console.log(this.userProfile.goal);
         console.log(this.user.id);
-        this.getProfile();
+        this.getProfile(this.userProfile.userId);
       })
   }
 toggleAddedUser():void{
