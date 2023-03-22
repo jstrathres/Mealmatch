@@ -1,20 +1,26 @@
 
-<p>UserId: {{userProfile.userId}} </p>
-<p>Height: {{ userProfile.height/12 }} feet</p>
-<p>Weight: {{userProfile.weight}} lbs</p>
-<p>Goal: {{userProfile.goal}}</p>
+<div *ngIf="profile">
+    <p>UserId: {{userProfile.userId}} </p>
+    <p>Height: {{ heightMath() }}</p>
+    <p>Weight: {{userProfile.weight}} lbs</p>
+    <p>Goal: {{userProfile.goal}}</p>
+</div>
+
 
 <!--form-->
-<p>Enter Weight (in pounds)</p>
-<input type="number" [(ngModel)]="userProfile.weight" id="weight">
-<p>Enter Height (in inches)</p>
-<input type="number" [(ngModel)]="userProfile.height" id="height">
-<p>Enter Goal (lose weight, gain weight, maintain weight)</p>
-<input type="text" [(ngModel)]="userProfile.goal" id="goal">
-<button (click)="addProfile()" (click)="toggleAddedUser()">Add Profile</button>
-<div *ngIf="confirmation">
-<h1>{{user.firstName}}'s Profile was added!</h1>
+<div *ngIf="!profile">
+    <p>Enter Weight (in pounds)</p>
+    <input type="number" [(ngModel)]="userProfile.weight" id="weight">
+    <p>Enter Height (in inches)</p>
+    <input type="number" [(ngModel)]="userProfile.height" id="height">
+    <p>Enter Goal (lose weight, gain weight, maintain weight)</p>
+    <input type="text" [(ngModel)]="userProfile.goal" id="goal">
+    <button (click)="addProfile()" (click)="toggleAddedUser()">Add Profile</button>
+    <div *ngIf="confirmation">
+    <h1>{{user.firstName}}'s Profile was added!</h1>
+    </div>
 </div>
+
 <!-- <input list="goaloptions" name="goaloptions" [(ngModel)]="userProfile.goal" id="goal" (click)="userProfile.goal">
 <option *ngFor="let goal of goaloptions" [value]="userProfile.goal"></option>
 <input type="text" [(ngModel)]="userProfile.userid"> -->

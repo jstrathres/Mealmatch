@@ -110,11 +110,11 @@ namespace GroupFinalProject.Controllers
             return newRs.DistinctBy(r=>r.RecipeId).ToList();
         }
         [HttpPost("addProfile")]      
-        public Profile addProfile(string userid,decimal height,decimal weight,string goal)
+        public Profile addProfile(string userId,decimal height,decimal weight,string goal)
         {
             Profile newProfile = new Profile()
             {
-                UserId = userid,
+                UserId = userId,
                 Height = height,
                 Weight = weight,
                 Goal = goal
