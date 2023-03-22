@@ -16,6 +16,7 @@ export class NutritiondetailComponent implements OnInit {
 
   result:NutritionDetail = {} as NutritionDetail;
   display:boolean = false;
+  // cal:number = Number(this.result.calories.substring(0, this.result.calories.length - 1));
 
   ngOnInit(): void {
     
@@ -24,11 +25,22 @@ export class NutritiondetailComponent implements OnInit {
     // console.log(id);
 
     this.nutritionService.getDetails(this.Nutrients).subscribe((response:NutritionDetail)=>{
+      
       this.result=response;
+
+      console.log(Number(this.result.calories.substring(0, this.result.calories.length - 1)));
+      let cal:number = Number(this.result.calories.substring(0, this.result.calories.length - 1));
+      return cal;
     })
     }
     toggleDisplay():void{
       this.display = !this.display;
      }
 
+     newGoal() {
+      let cal:number = Number(this.result.calories.substring(0, this.result.calories.length - 1));
+      let newcal = cal/100;
+      console.log(newcal);
+      return `Your Goal for Today, Please Walk ${newcal} Miles, Are You Serious`;
+     }
 }
