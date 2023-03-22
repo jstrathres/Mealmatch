@@ -44,6 +44,7 @@ export class MealsComponent implements OnInit {
       console.log(this.user);
     });
     this.searchInput();
+    this.getFavorite();
     };
     
     searchInput(){
@@ -81,9 +82,21 @@ export class MealsComponent implements OnInit {
       this.addRecipe(targetRecipe.id, targetRecipe.title, targetRecipe.image, targetRecipe.sourceUrl, targetRecipe.readyInMinutes, targetRecipe.servings);
     }
 
-    deleteFavorite(recipeId:number):void{
-      this.recipeService.deleteFavorite(recipeId,this.user.id).subscribe((response:Favorite)=>{
+    deleteFavorite(recipeid:number):void{
+      this.getFavorite();
+      let index = this.Recipes.findIndex(x => x.recipeId === recipeid);
+      console.log(recipeid)
+      console.log(this.Recipes)
+      console.log(index);
+      this.recipeService.deleteFavorite(this.Recipes[index].id,this.user.id).subscribe((response:Favorite)=>{
         console.log(response);
+      })
+    }
+
+    getFavorite():void{
+      this.recipeService.getFavorite(this.user.id).subscribe((response:Recipe[])=>{
+        console.log(response);
+        this.Recipes = response;
       })
     }
 
