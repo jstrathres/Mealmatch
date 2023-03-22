@@ -14,6 +14,7 @@ import { RecipesComponent } from './Components/recipes/recipes.component';
 import { MealsComponent } from './Components/meals/meals.component';
 import { NutritiondetailComponent } from './Components/nutritiondetail/nutritiondetail.component';
 import { Secret } from './Models/secret';
+import { ProfileComponent } from './Components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { Secret } from './Models/secret';
     FetchDataComponent,
     RecipesComponent,
     MealsComponent,
-    NutritiondetailComponent
+    NutritiondetailComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -37,7 +39,8 @@ import { Secret } from './Models/secret';
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'meals', component: MealsComponent},
       { path: 'meals/:id', component: MealsComponent},
-      {path: 'favorites', component:RecipesComponent}
+      {path: 'favorites', component:RecipesComponent},
+      {path: 'profile', component:ProfileComponent}
     ])
   ],
   providers: [

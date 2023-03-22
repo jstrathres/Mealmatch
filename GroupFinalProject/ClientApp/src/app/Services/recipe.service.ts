@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Favorite } from '../Models/favorite';
 import { Recipe } from '../Models/recipe';
+import { Profile } from 'oidc-client';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,26 @@ getRecipeByuserid(userId:string):Observable<Recipe[]>{
 }
 deleteRecipe(recipeId:number, userId:string):Observable<Favorite>{
   return this.http.delete<Favorite>(`${this.baseUrl}api/Recipe/DeleteRecipe?recipeId=${recipeId}&userId=${userId}`,{})
+}
+
+addProfile(UserId:string,Height:number,Weight:number,Goal:string): 
+  Observable<Profile>{
+  return this.http.post<Profile>(`${this.baseUrl}api/Recipe/addProfile?userid=${UserId}
+  &height=${Height}&weight=${Weight}&goal=${Goal}`,{})
+  }
+
+updateProfile(UserId:string,Weight:number,Goal:string): 
+Observable<Profile>{
+return this.http.put<Profile>(`${this.baseUrl}api/Recipe/updateProfile?userid=${UserId}
+&weight=${Weight}&goal=${Goal}`,{})
+}
+
+getProfile(userId:string):Observable<Profile>{
+  return this.http.get<Profile>(`${this.baseUrl}api/Recipe/getProfile?userid=${userId}`,{});
+}
+
+deleteProfile(userId:string):Observable<Profile>{
+  return this.http.delete<Profile>(`${this.baseUrl}api/Recipe/deleteProfile?userid=${userId}`,{})
 }
 
 }

@@ -42,7 +42,7 @@
               >Meals</a
             >
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="loggedIn">
             <a class="nav-link text-dark" [routerLink]="['/favorites']"
               >Favorites</a
             >
@@ -52,6 +52,11 @@
               <button class="btn btn-outline-dark" *ngIf="loggedIn"  (click)="signOut()">Sign Out
               </button>
           </li> 
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="loggedIn">
+            <a class="nav-link text-dark" [routerLink]="['/profile']"
+              >Profile</a
+            >
+          </li>
               <!--user name/photo display when logged in-->
               <div *ngIf="loggedIn">
                 <p>{{ user.name }}</p>
