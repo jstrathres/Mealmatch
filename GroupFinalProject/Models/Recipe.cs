@@ -18,6 +18,6 @@ public partial class Recipe
     public string? SourceUrl { get; set; }
 
     public string? Image { get; set; }
-
+    [System.Text.Json.Serialization.JsonIgnore]
     public virtual ICollection<Favorite> Favorites { get; } = new List<Favorite>();
 }

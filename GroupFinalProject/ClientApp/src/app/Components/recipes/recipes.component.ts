@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Favorite } from 'src/app/Models/favorite';
 import { Recipe } from 'src/app/Models/recipe';
 import { RecipeService } from 'src/app/Services/recipe.service';
+import { NutritionDetail } from '../../Models/nutrition.details';
+import { MealsService } from '../../Services/meals.service';
 
 @Component({
   selector: 'app-recipes',
@@ -14,11 +16,13 @@ export class RecipesComponent implements OnInit {
   Recipes:Recipe[]=[];
   favorite:Favorite[]=[];
   
-  constructor(private recipeService:RecipeService,private authService: SocialAuthService) { }
+  constructor(private recipeService:RecipeService,private authService: SocialAuthService, private mealService:MealsService) { }
 
   userId:string="";
   loggedIn:boolean = false;
   user: SocialUser = {} as SocialUser;
+  detail:NutritionDetail = {} as NutritionDetail;
+  display: boolean[]=[];
 
   ngOnInit():void {
     this.authService.authState.subscribe((user) => {
@@ -48,7 +52,16 @@ export class RecipesComponent implements OnInit {
         this.Recipes = response;
       })
     }
+
     
-
+    getDetails(id:number):void {
+      this.mealService.getDetails(id).subscribe((response:NutritionDetail)=>{
+        this.detail=response;
+    })  
   }
+    toggleDisplay(index:number):void {
+      this.display[index]=!this.display[index];
+    }
 
+  
+  }
