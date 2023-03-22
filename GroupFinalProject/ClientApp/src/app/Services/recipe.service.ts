@@ -40,10 +40,10 @@ deleteRecipe(recipeId:number, userId:string):Observable<Favorite>{
   return this.http.delete<Favorite>(`${this.baseUrl}api/Recipe/DeleteRecipe?recipeId=${recipeId}&userId=${userId}`,{})
 }
 
-addProfile(UserId:string,Height:number,Weight:number,Goal:string): 
+addProfile(newProfile:Profile): 
   Observable<Profile>{
-  return this.http.post<Profile>(`${this.baseUrl}api/Recipe/addProfile?userid=${UserId}
-  &height=${Height}&weight=${Weight}&goal=${Goal}`,{})
+  return this.http.post<Profile>(`${this.baseUrl}api/Recipe/addProfile?userid=${newProfile.userid}
+  &height=${newProfile.height}&weight=${newProfile.weight}&goal=${newProfile.goal}`,{})
   }
 
 updateProfile(UserId:string,Weight:number,Goal:string): 
