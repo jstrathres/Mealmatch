@@ -109,6 +109,50 @@ namespace GroupFinalProject.Controllers
             }
             return newRs.DistinctBy(r=>r.RecipeId).ToList();
         }
+        [HttpPost("addProfile")]      
+        public Profile addProfile(string userid,decimal height,decimal weight,string goal)
+        {
+            Profile newProfile = new Profile()
+            {
+                UserId = userid,
+                Height = height,
+                Weight = weight,
+                Goal = goal
+            };
+            context.Profiles.Add(newProfile);
+            context.SaveChanges();
+            return newProfile;
+        }
+
+        [HttpGet("getProfile")]
+        public Profile getProfile(string userid)
+        {
+            Profile profile = context.Profiles.FirstOrDefault(u => u.UserId== userid);
+            return profile;
+        }
+
+        [HttpPut("updateProfile")]
+
+        public Profile updateProfile(string userid, decimal weight,string goal)
+        {
+            Profile profile = context.Profiles.FirstOrDefault(u => u.UserId == userid);
+            profile.Weight = weight;
+            profile.Goal = goal;
+
+            context.Profiles.Update(profile);
+            context.SaveChanges();
+            return profile;
+        }
+
+        [HttpDelete("deleteProfile")]
+        public Profile deleteProfile(string userid)
+        {
+            Profile profile = context.Profiles.FirstOrDefault(d => d.UserId == userid);
+
+            context.Profiles.Remove(profile);
+            context.SaveChanges();
+            return profile;
+        }
 
 
     }
