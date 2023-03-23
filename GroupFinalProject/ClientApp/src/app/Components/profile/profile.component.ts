@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
       console.log(this.user);
       console.log(this.user.id);
       console.log(this.userProfile.userId);
-      // this.getProfile();
+      this.getProfile();
       console.log(this.userProfile);
     });
 
@@ -42,7 +42,10 @@ export class ProfileComponent implements OnInit {
 getProfile():void{
   this.profileService.getProfile(this.user.id).subscribe((
     response:Profile)=>{
-        this.userProfile=response;
+        console.log(response);
+        if(response){
+          this.userProfile=response;
+        }
       this.profileExists();
     })
 }
@@ -64,8 +67,9 @@ deleteProfile():void{
   this.userProfile.userId=this.user.id;
   this.profileService.deleteProfile(this.userProfile.userId).subscribe((
     response:Profile)=>{
-      this.userProfile=response;
-      this.getProfile();
+      this.userProfile={} as Profile;
+      this.profile=false;
+      this.confirmation=false;
     }
   )
 }
@@ -81,10 +85,7 @@ heightMath(){
 }
 
 profileExists():void{
-  // console.log(this.userProfile);
-  // console.log(this.userProfile.height);
-  // console.log(this.userProfile.weight);
-if(!this.userProfile)
+if(!this.userProfile.goal)
 {
   this.profile=false;
 }

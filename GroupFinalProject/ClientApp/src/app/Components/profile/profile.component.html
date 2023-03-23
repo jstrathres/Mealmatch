@@ -13,8 +13,7 @@
     <input type="number" [(ngModel)]="userProfile.weight" id="weight" name="weight">
     <p>Enter Goal (lose weight, gain weight, maintain weight)</p>
     <input type="text" [(ngModel)]="userProfile.goal" id="goal" name="goal">
-    <button (click)="updateProfile()">update Profile</button>
-    
+    <button (click)="updateProfile()" (click)="update=false">update Profile</button>
 </div>
 
 <!--form-->
