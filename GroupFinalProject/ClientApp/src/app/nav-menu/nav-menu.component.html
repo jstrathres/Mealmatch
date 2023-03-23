@@ -29,13 +29,13 @@
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="loggedIn">
             <a class="nav-link text-dark" [routerLink]="['/counter']"
-              >Counter</a
+              >Donate</a
             >
-          </li>
+          <!-- </li>
           <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="loggedIn">
             <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
               >Fetch data</a
-            >
+            > -->
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/meals']"
@@ -47,21 +47,22 @@
               >Favorites</a
             >
           </li>
-            <li class="nav-item">
-              <asl-google-signin-button *ngIf="!loggedIn" type='icon' size='medium'></asl-google-signin-button>
-              <button class="btn btn-outline-dark" *ngIf="loggedIn"  (click)="signOut()">Sign Out
-              </button>
-          </li> 
           <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="loggedIn">
             <a class="nav-link text-dark" [routerLink]="['/profile']"
-              >Profile</a
+              ><img src="{{ user.photoUrl }}"/></a
             >
           </li>
               <!--user name/photo display when logged in-->
-              <div *ngIf="loggedIn">
+              <!-- <div *ngIf="loggedIn">
                 <p>{{ user.name }}</p>
                 <img src="{{ user.photoUrl }}"/>
-              </div>
+              </div> -->
+              <li class="nav-item">
+                <asl-google-signin-button *ngIf="!loggedIn" type='icon' size='medium'></asl-google-signin-button>
+                <p>{{ user.name }}</p>
+                <button class="btn btn-outline-dark" *ngIf="loggedIn"  (click)="signOut()">Sign Out
+                </button>
+            </li> 
              
           
         </ul>

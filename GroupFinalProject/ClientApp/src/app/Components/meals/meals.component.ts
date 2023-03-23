@@ -34,6 +34,7 @@ export class MealsComponent implements OnInit {
   userid:string = this.user.id;
   loggedIn:boolean = false;
   isFavorited:boolean[]=[];
+  results:boolean=false;
 
   
 

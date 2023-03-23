@@ -1,23 +1,25 @@
-<div (keydown.enter)="searchInput()">
+<div (keydown.enter)="searchInput()" (keydown.enter)="results=true">
     
     <input type="text" [(ngModel)]="search" />
-    <button (click)="searchInput()">Search Meals</button>
-    
-
-    <div *ngFor="let p of result.results; index as i">
-        <h4 style="color:black; font-weight:bold;">{{p.title}}</h4>
-        <img src="https://spoonacular.com/recipeImages/{{p.id}}-312x150.jpg"/>       
-        <p>Minutes to cook: {{p.readyInMinutes}}</p>
-        <p>Servings: {{p.servings}}</p>  
-        <button (click)="toggleDisplay(i)" (click)="getDetails(p.id)">Nutrition Details</button>
-        <app-nutritiondetail *ngIf="display[i]"[Nutrients]="p.id"></app-nutritiondetail>
-        <div *ngIf="user!=null && !isFavorited[i]">
-        <button (click)="addRecipe(p.id, p.title, p.image, p.sourceUrl, p.readyInMinutes, p.servings)" (click)="toggleFavorite(i)">👍Add to Favorites</button>
+    <button (click)="searchInput()" (click)="results=true">Search Meals</button>
+    <div *ngIf="results">
+        <div *ngFor="let p of result.results; index as i">
+            <h4 style="color:black; font-weight:bold;">{{p.title}}</h4>
+            <img src="https://spoonacular.com/recipeImages/{{p.id}}-312x150.jpg"/>       
+            <p>Minutes to cook: {{p.readyInMinutes}}</p>
+            <p>Servings: {{p.servings}}</p>  
+            <button (click)="toggleDisplay(i)" (click)="getDetails(p.id)">Nutrition Details</button>
+            <app-nutritiondetail *ngIf="display[i]"[Nutrients]="p.id"></app-nutritiondetail>
+            <div *ngIf="user!=null && !isFavorited[i]">
+            <button class="btn btn-outline-info" (click)="addRecipe(p.id, p.title, p.image, p.sourceUrl, p.readyInMinutes, p.servings)" (click)="toggleFavorite(i)">👍Add to Favorites</button>
+            </div>
+            <div *ngIf="isFavorited[i]">
+                <h3 >{{user.firstName}} added {{p.title}} to Favorites! 👍</h3>
+                <!--delete Favorite will not work.  Needs to call the Recipe Model -->
+                <button class="border border-danger" (click)="deleteFavorite(p.id)" (click)="toggleFavorite(i)">Delete From Favorites</button>
+                <!-- <span class="border border-danger" (click)="deleteFavorite(p.id)" (click)="toggleFavorite(i)">Delete From Favorites</span> -->
+                <!-- <button type="button" class="btn btn-danger" (click)="deleteFavorite(p.id)" (click)="toggleFavorite(i)">taste terrible!</button> -->
+            </div>   
         </div>
-        <div *ngIf="isFavorited[i]">
-            <h3 >{{user.firstName}} added {{p.title}} to Favorites! 👍</h3>
-            <!--delete Favorite will not work.  Needs to call the Recipe Model -->
-            <button (click)="deleteFavorite(p.id)" (click)="toggleFavorite(i)">Delete From Favorites</button>
-        </div>   
     </div>
-</div>
+    </div>
