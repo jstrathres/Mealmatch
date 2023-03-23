@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
       console.log(this.user);
       console.log(this.user.id);
       console.log(this.userProfile.userId);
-      this.getProfile(this.user.id);
+      // this.getProfile();
       console.log(this.userProfile);
     });
 
@@ -39,8 +39,8 @@ export class ProfileComponent implements OnInit {
     
   }
 
-getProfile(userid:string):void{
-  this.profileService.getProfile(userid).subscribe((
+getProfile():void{
+  this.profileService.getProfile(this.user.id).subscribe((
     response:Profile)=>{
         this.userProfile=response;
       this.profileExists();
@@ -55,7 +55,7 @@ getProfile(userid:string):void{
         this.userProfile=response;
         console.log(this.userProfile);
         console.log(this.user.id);
-        this.getProfile(this.user.id);
+        this.getProfile();
       })
 
   }
@@ -65,7 +65,7 @@ deleteProfile():void{
   this.profileService.deleteProfile(this.userProfile.userId).subscribe((
     response:Profile)=>{
       this.userProfile=response;
-      this.getProfile(this.user.id);
+      this.getProfile();
     }
   )
 }
@@ -91,6 +91,22 @@ if(!this.userProfile)
 else{
   this.profile=true;
 }
+}
+
+updateProfile():void{
+  this.userProfile.userId=this.user.id;
+  this.profileService.updateProfile(this.userProfile.userId,this.userProfile.weight,this.userProfile.goal).subscribe((
+    response:Profile)=>{
+      this.userProfile=response;
+      console.log(this.userProfile);
+      console.log(this.user.id);
+      this.getProfile();
+    })
+}
+update:boolean=false
+
+toggleUpdate(){
+  this.update = !this.update;
 }
 
 }

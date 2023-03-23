@@ -4,9 +4,18 @@
     <p>Height: {{ heightMath() }}</p>
     <p>Weight: {{userProfile.weight}} lbs</p>
     <p>Goal: {{userProfile.goal}}</p>
-    <button (click)="deleteProfile()">Delete Profile</button>
+    <button (click)="toggleUpdate()">Update Profile</button>
+    <button (click)="deleteProfile()">Delete Profile</button>    
 </div>
 
+<div *ngIf="update">
+    <p>Enter Weight (in pounds)</p>
+    <input type="number" [(ngModel)]="userProfile.weight" id="weight" name="weight">
+    <p>Enter Goal (lose weight, gain weight, maintain weight)</p>
+    <input type="text" [(ngModel)]="userProfile.goal" id="goal" name="goal">
+    <button (click)="updateProfile()">update Profile</button>
+    
+</div>
 
 <!--form-->
 <div *ngIf="!profile">
