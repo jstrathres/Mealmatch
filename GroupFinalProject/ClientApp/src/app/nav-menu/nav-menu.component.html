@@ -59,7 +59,7 @@
               </div> -->
               <li class="nav-item">
                 <asl-google-signin-button *ngIf="!loggedIn" type='icon' size='medium'></asl-google-signin-button>
-                <p>{{ user.name }}</p>
+                <p *ngIf="loggedIn">{{ user.name }}</p>
                 <button class="btn btn-outline-dark" *ngIf="loggedIn"  (click)="signOut()">Sign Out
                 </button>
             </li> 
