@@ -1,11 +1,12 @@
 <div (keydown.enter)="searchInput()" (keydown.enter)="results=true">
-    
+
     <input type="text" [(ngModel)]="search" />
     <button (click)="searchInput()" (click)="results=true">Search Meals</button>
-    <div *ngIf="results" class="row">
+
+    <div class="row" *ngIf="results" >
         <div *ngFor="let p of result.results; index as i" class="col-sm-4 mb-4">
             <h4 style="color:black; font-weight:bold;">{{p.title}}</h4>
-            <img src="https://spoonacular.com/recipeImages/{{p.id}}-312x150.jpg"/>       
+            <img src="https://spoonacular.com/recipeImages/{{p.id}}-312x150.jpg" />
             <p>Minutes to cook: {{p.readyInMinutes}}</p>
             <p>Servings: {{p.servings}}</p>  
             <div *ngIf="loggedIn">
@@ -23,5 +24,6 @@
                 </div>  
             </div>
         </div>
+
     </div>
-    </div>
+</div>
