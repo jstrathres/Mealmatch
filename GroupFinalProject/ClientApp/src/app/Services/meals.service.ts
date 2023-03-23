@@ -18,7 +18,7 @@ export class MealsService {
  constructor(private http: HttpClient) { }
 
  getMeals(Input:string):Observable<MealsResult>{
-   return this.http.get<MealsResult>(`${this.url}${Input}&number=10`);
+   return this.http.get<MealsResult>(`${this.url}${Input}&number=21`);
  }
 
 
