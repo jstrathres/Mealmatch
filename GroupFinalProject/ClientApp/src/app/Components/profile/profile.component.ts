@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
   height:number=0;
   goal:string="";
   confirmation:boolean=false;
+  // userId:string=""
   profile:boolean=false;
 
   ngOnInit() {
@@ -27,30 +28,48 @@ export class ProfileComponent implements OnInit {
   	  this.user = user;
   	  this.loggedIn = (user != null);
       console.log(this.user);
+      console.log(this.user.id);
+      console.log(this.userProfile.userId);
       this.getProfile(this.user.id);
+      console.log(this.userProfile);
     });
+
+
+
+    
   }
 
 getProfile(userid:string):void{
-  this.profileService.getProfile(this.user.id).subscribe((
+  this.profileService.getProfile(userid).subscribe((
     response:Profile)=>{
-      this.userProfile=response;
+        this.userProfile=response;
       this.profileExists();
     })
 }
 
+
   addProfile(): void {
     this.userProfile.userId=this.user.id;
-    console.log(this.user.id);
-    console.log(this.userProfile.userId);
     this.profileService.addProfile(this.userProfile).subscribe((
       response:Profile)=>{
         this.userProfile=response;
         console.log(this.userProfile);
         console.log(this.user.id);
-        this.getProfile(this.userProfile.userId);
+        this.getProfile(this.user.id);
       })
+
   }
+
+deleteProfile():void{
+  this.userProfile.userId=this.user.id;
+  this.profileService.deleteProfile(this.userProfile.userId).subscribe((
+    response:Profile)=>{
+      this.userProfile=response;
+      this.getProfile(this.user.id);
+    }
+  )
+}
+
 toggleAddedUser():void{
   this.confirmation=!this.confirmation;
 }
@@ -62,15 +81,15 @@ heightMath(){
 }
 
 profileExists():void{
-  console.log(this.userProfile);
-  console.log(this.userProfile.height);
-  console.log(this.userProfile.weight);
-if(this.userProfile)
+  // console.log(this.userProfile);
+  // console.log(this.userProfile.height);
+  // console.log(this.userProfile.weight);
+if(!this.userProfile)
 {
-  this.profile=true;
+  this.profile=false;
 }
 else{
-  this.profile=false;
+  this.profile=true;
 }
 }
 

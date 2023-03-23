@@ -1,20 +1,21 @@
 
 <div *ngIf="profile">
-    <p>UserId: {{userProfile.userId}} </p>
+    <p>User: {{user.firstName}} {{user.lastName}}</p>
     <p>Height: {{ heightMath() }}</p>
     <p>Weight: {{userProfile.weight}} lbs</p>
     <p>Goal: {{userProfile.goal}}</p>
+    <button (click)="deleteProfile()">Delete Profile</button>
 </div>
 
 
 <!--form-->
 <div *ngIf="!profile">
-    <p>Enter Weight (in pounds)</p>
-    <input type="number" [(ngModel)]="userProfile.weight" id="weight">
     <p>Enter Height (in inches)</p>
-    <input type="number" [(ngModel)]="userProfile.height" id="height">
+    <input type="number" [(ngModel)]="userProfile.height" id="height" name="height">
+    <p>Enter Weight (in pounds)</p>
+    <input type="number" [(ngModel)]="userProfile.weight" id="weight" name="weight">
     <p>Enter Goal (lose weight, gain weight, maintain weight)</p>
-    <input type="text" [(ngModel)]="userProfile.goal" id="goal">
+    <input type="text" [(ngModel)]="userProfile.goal" id="goal" name="goal">
     <button (click)="addProfile()" (click)="toggleAddedUser()">Add Profile</button>
     <div *ngIf="confirmation">
     <h1>{{user.firstName}}'s Profile was added!</h1>
