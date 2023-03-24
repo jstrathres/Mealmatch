@@ -8,10 +8,10 @@ import { UserService } from '../../Services/user.service';
 
 @Component({
   selector: 'app-recipes',
-  templateUrl: './recipes.component.html',
-  styleUrls: ['./recipes.component.css']
+  templateUrl: './favorites.component.html',
+  styleUrls: ['./favorites.component.css']
 })
-export class RecipesComponent implements OnInit {
+export class FavoritesComponent implements OnInit {
 
   Recipes:Recipe[]=[];
   favorite:Favorite[]=[];

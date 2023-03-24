@@ -9,7 +9,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { RecipesComponent } from './Components/recipes/recipes.component';
+import { FavoritesComponent } from './Components/favorites/favorites.component';
 import { MealsComponent } from './Components/meals/meals.component';
 import { NutritiondetailComponent } from './Components/nutritiondetail/nutritiondetail.component';
 import { Secret } from './Models/secret';
@@ -22,7 +22,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    RecipesComponent,
+    FavoritesComponent,
     MealsComponent,
     NutritiondetailComponent,
     ProfileComponent
@@ -38,7 +38,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'meals', component: MealsComponent},
       { path: 'meals/:id', component: MealsComponent},
-      {path: 'favorites', component:RecipesComponent},
+      {path: 'favorites', component:FavoritesComponent},
       {path: 'profile', component:ProfileComponent}
     ])
   ],
