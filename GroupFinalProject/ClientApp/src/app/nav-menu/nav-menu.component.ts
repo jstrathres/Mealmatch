@@ -18,7 +18,7 @@ export class NavMenuComponent {
   	  this.user = user;
   	  this.loggedIn = (user != null);
       console.log(this.user);
-      //add favorties.getfavorites to only show favorites when logged in
+      //add favorites.getfavorites to only show favorites when logged in
       //set userId to nvarcahr(max) in DB to account for long usernames
     });
   }

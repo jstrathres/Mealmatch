@@ -1,13 +1,17 @@
 
+<!-- profile detail if exists -->
 <div *ngIf="profile">
     <p>User: {{user.firstName}} {{user.lastName}}</p>
     <p>Height: {{ heightMath() }}</p>
     <p>Weight: {{userProfile.weight}} lbs</p>
     <p>Goal: {{userProfile.goal}}</p>
+
+<!-- update and delete profile buttons -->
     <button (click)="toggleUpdate()">Update Profile</button>
     <button (click)="deleteProfile()">Delete Profile</button>    
 </div>
 
+<!-- update profile form -->
 <div *ngIf="update">
     <p>Enter Weight (in pounds)</p>
     <input type="number" [(ngModel)]="userProfile.weight" id="weight" name="weight">
@@ -16,7 +20,7 @@
     <button (click)="updateProfile()" (click)="update=false">update Profile</button>
 </div>
 
-<!--form-->
+<!-- new profile form-->
 <div *ngIf="!profile">
     <p>Enter Height (in inches)</p>
     <input type="number" [(ngModel)]="userProfile.height" id="height" name="height">
@@ -25,12 +29,11 @@
     <p>Enter Goal (lose weight, gain weight, maintain weight)</p>
     <input type="text" [(ngModel)]="userProfile.goal" id="goal" name="goal">
     <button (click)="addProfile()" (click)="toggleAddedUser()">Add Profile</button>
+
+<!-- profile creation feedback -->
     <div *ngIf="confirmation">
     <h1>{{user.firstName}}'s Profile was added!</h1>
     </div>
 </div>
 
-<!-- <input list="goaloptions" name="goaloptions" [(ngModel)]="userProfile.goal" id="goal" (click)="userProfile.goal">
-<option *ngFor="let goal of goaloptions" [value]="userProfile.goal"></option>
-<input type="text" [(ngModel)]="userProfile.userid"> -->
 

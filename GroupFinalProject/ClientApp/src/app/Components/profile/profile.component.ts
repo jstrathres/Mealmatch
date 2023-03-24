@@ -10,31 +10,28 @@ import { UserService } from '../../Services/user.service';
 })
 export class ProfileComponent implements OnInit {
 
-  userProfile:Profile = {} as Profile;
-
   constructor(private userService:UserService, private authService:SocialAuthService,) { }
 
+  // Object variables
+  userProfile:Profile = {} as Profile;
   user: SocialUser = {} as SocialUser;
-  loggedIn:boolean = false;
-  weight:number=0;
-  height:number=0;
-  goal:string="";
-  confirmation:boolean=false;
-  // userId:string=""
-  profile:boolean=false;
 
+  // Toggle booleans
+  loggedIn:boolean = false;
+  confirmation:boolean=false;
+  profile:boolean=false;
+  update:boolean=false
+
+  //On init method
   ngOnInit() {
     this.authService.authState.subscribe((user) => {
   	  this.user = user;
   	  this.loggedIn = (user != null);
-      console.log(this.user);
-      console.log(this.user.id);
-      console.log(this.userProfile.userId);
       this.getProfile();
-      console.log(this.userProfile);
     });
   }
 
+  // Profile methods
   getProfile():void{
   this.userService.getProfile(this.user.id).subscribe((
   response:Profile)=>{
@@ -46,14 +43,12 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-
   addProfile(): void {
     this.userProfile.userId=this.user.id;
     this.userService.addProfile(this.userProfile).subscribe((
       response:Profile)=>{
         this.userProfile=response;
         console.log(this.userProfile);
-        console.log(this.user.id);
         this.getProfile();
       })
   }
@@ -66,16 +61,6 @@ export class ProfileComponent implements OnInit {
         this.profile=false;
         this.confirmation=false;
       })
-  }
-
-  toggleAddedUser():void{
-    this.confirmation=!this.confirmation;
-  }
-
-  heightMath(){
-    let feet:number = Number(Math.floor(this.userProfile.height/12));
-    let inches:number = Number(this.userProfile.height - (feet*12)); 
-    return `${feet}' ${inches}"`
   }
 
   profileExists():void{
@@ -98,10 +83,21 @@ export class ProfileComponent implements OnInit {
         this.getProfile();
       })
   }
-  update:boolean=false
+
+  // Toggle methods
+  toggleAddedUser():void{
+    this.confirmation=!this.confirmation;
+  }
 
   toggleUpdate(){
     this.update = !this.update;
+  }
+
+  // Math methods
+  heightMath(){
+    let feet:number = Number(Math.floor(this.userProfile.height/12));
+    let inches:number = Number(this.userProfile.height - (feet*12)); 
+    return `${feet}' ${inches}"`
   }
 
 }

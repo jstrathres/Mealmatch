@@ -27,36 +27,31 @@
           >
             <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
           </li>
+          <!-- Donation parody -->
           <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="loggedIn">
             <a class="nav-link text-dark" [routerLink]="['/counter']"
               >Donate</a
             >
-          <!-- </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="loggedIn">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
-              >Fetch data</a
-            > -->
           </li>
+          <!-- Meals link -->
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/meals']"
               >Meals</a
             >
           </li>
+          <!-- Favorites link -->
           <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="loggedIn">
             <a class="nav-link text-dark" [routerLink]="['/favorites']"
               >Favorites</a
             >
           </li>
+          <!-- User icon link to profile page -->
           <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="loggedIn">
             <a class="nav-link text-dark" [routerLink]="['/profile']"
               ><img src="{{ user.photoUrl }}"/></a
             >
           </li>
-              <!--user name/photo display when logged in-->
-              <!-- <div *ngIf="loggedIn">
-                <p>{{ user.name }}</p>
-                <img src="{{ user.photoUrl }}"/>
-              </div> -->
+          <!-- Google sign out -->
               <li class="nav-item">
                 <asl-google-signin-button *ngIf="!loggedIn" type='icon' size='medium'></asl-google-signin-button>
                 <p *ngIf="loggedIn">{{ user.name }}</p>

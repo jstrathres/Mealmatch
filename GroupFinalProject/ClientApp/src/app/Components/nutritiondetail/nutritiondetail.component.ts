@@ -13,33 +13,31 @@ export class NutritiondetailComponent implements OnInit {
 
   constructor(private route:ActivatedRoute, private nutritionService:MealsService) { }
 
+// Object variable
   result:NutritionDetail = {} as NutritionDetail;
+// Toggle boolean
   display:boolean = false;
 
   ngOnInit(): void {
-    
-    //   const routeParams = this.route.snapshot.paramMap;
-    // let id:number = Number(routeParams.get("id"));
-    // console.log(id);
 
     this.nutritionService.getDetails(this.Nutrients).subscribe((response:NutritionDetail)=>{
-      
       this.result=response;
-
-      console.log(Number(this.result.calories.substring(0, this.result.calories.length - 1)));
-      let cal:number = Number(this.result.calories.substring(0, this.result.calories.length - 1));
-      return cal;
     })
   }
 
+// toggle methods
     toggleDisplay():void{
       this.display = !this.display;
      }
 
+//  Goal based on calorie methods
      newGoal() {
+      // calorie number conversion
       let cal:number = Number(this.result.calories.substring(0, this.result.calories.length - 1));
+      // math based on calories
       let newcal = cal/100;
       console.log(newcal);
+      // goal output
       return `Your Goal for Today, Please Walk ${newcal} Miles, Are You Serious`;
      }
 }
