@@ -8,9 +8,10 @@ import { Secret } from '../Models/secret';
 @Injectable({
   providedIn: 'root'
 })
+
 export class MealsService {
 
-//External API
+  //External API
 
  url2:string=`https://api.spoonacular.com/recipes`
  url:string=`https://api.spoonacular.com/recipes/search?apiKey=${Secret.apiKey}&includeNutrition=true&query=`;

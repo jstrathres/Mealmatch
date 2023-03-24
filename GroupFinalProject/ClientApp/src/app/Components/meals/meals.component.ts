@@ -3,9 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { Favorite } from 'src/app/Models/favorite';
 import { MealsResult, Result } from 'src/app/Models/Meals';
 import { Recipe } from 'src/app/Models/recipe';
-import { MealsService } from 'src/app/Services/meals.service';
-import { RecipeService } from 'src/app/Services/recipe.service';
+
 import { NutritionDetail } from '../../Models/nutrition.details';
+import { MealsService } from '../../Services/meals.service';
+import { UserService } from '../../Services/user.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { NutritionDetail } from '../../Models/nutrition.details';
 export class MealsComponent implements OnInit {
 
   Recipes:Recipe[]=[];
-  constructor(private mealService:MealsService, private authService: SocialAuthService,private recipeService:RecipeService) { }
+  constructor(private mealService:MealsService, private authService: SocialAuthService,private userService:UserService) { }
 
   // result:MealsModel[] = [];
   result:MealsResult = {} as MealsResult;
@@ -89,13 +90,13 @@ export class MealsComponent implements OnInit {
       console.log(recipeid)
       console.log(this.Recipes)
       console.log(index);
-      this.recipeService.deleteFavorite(this.Recipes[index].id,this.user.id).subscribe((response:Favorite)=>{
+      this.userService.deleteFavorite(this.Recipes[index].id,this.user.id).subscribe((response:Favorite)=>{
         console.log(response);
       })
     }
 
     getFavorite():void{
-      this.recipeService.getFavorite(this.user.id).subscribe((response:Recipe[])=>{
+      this.userService.getFavorite(this.user.id).subscribe((response:Recipe[])=>{
         console.log(response);
         this.Recipes = response;
       })
@@ -103,9 +104,9 @@ export class MealsComponent implements OnInit {
 
     addRecipe(recipeId:number, recipeTitle:string, image:string, sourceUrl:string, readyInMinutes:number, servings:number):void{
 
-      this.recipeService.addRecipe(recipeId,recipeTitle, image, sourceUrl, readyInMinutes, servings).subscribe((response:Recipe)=>{
+      this.userService.addRecipe(recipeId,recipeTitle, image, sourceUrl, readyInMinutes, servings).subscribe((response:Recipe)=>{
         console.log(response);
-        this.recipeService.addFavorite(response.id, this.user.id).subscribe((response:Favorite)=>{
+        this.userService.addFavorite(response.id, this.user.id).subscribe((response:Favorite)=>{
           console.log(response);
           console.log(this.userid);
           console.log(this.user.id)

@@ -11,12 +11,10 @@ import { MealsService } from '../../Services/meals.service';
 export class NutritiondetailComponent implements OnInit {
 @Input() Nutrients: number=0;
 
-
   constructor(private route:ActivatedRoute, private nutritionService:MealsService) { }
 
   result:NutritionDetail = {} as NutritionDetail;
   display:boolean = false;
-  // cal:number = Number(this.result.calories.substring(0, this.result.calories.length - 1));
 
   ngOnInit(): void {
     
@@ -32,7 +30,8 @@ export class NutritiondetailComponent implements OnInit {
       let cal:number = Number(this.result.calories.substring(0, this.result.calories.length - 1));
       return cal;
     })
-    }
+  }
+
     toggleDisplay():void{
       this.display = !this.display;
      }
