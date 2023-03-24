@@ -46,14 +46,8 @@ export class RecipesComponent implements OnInit {
         this.Recipes = response;
       })
     }
-    getRecipe():void{
-      this.recipeService.getRecipe().subscribe((response:Recipe[])=>{
-        console.log(response);
-        this.Recipes = response;
-      })
-    }
-
-    
+   
+ 
     getDetails(id:number):void {
       this.mealService.getDetails(id).subscribe((response:NutritionDetail)=>{
         this.detail=response;
@@ -63,5 +57,4 @@ export class RecipesComponent implements OnInit {
       this.display[index]=!this.display[index];
     }
 
-  
   }

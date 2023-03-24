@@ -71,7 +71,7 @@ export class MealsComponent implements OnInit {
 
     toggleFavorite(index:number):void {
     this.isFavorited[index]=!this.isFavorited[index];
-  }
+    }
 
     getDetails(id:number):void {
       this.mealService.getDetails(id).subscribe((response:NutritionDetail)=>{

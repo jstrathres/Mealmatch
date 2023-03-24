@@ -14,58 +14,10 @@ namespace GroupFinalProject.Controllers
     {
         MealmatchContext context = new MealmatchContext();
 
-        [HttpGet]
-        public List<Recipe> getRecipes()
-        {
-            return context.Recipes.ToList();
-        }
+       
+      
 
-        [HttpGet("{userid}")]
-        public List<Favorite> getRecipeByUserId(string userid)
-        {
-            return context.Favorites.Where(r => r.UserId == userid).ToList();
-        }
-
-        [HttpPost]
-        public Recipe AddRecipe(int recipeid, string recipeTitle, string img, string sourceUrl, int readyInMinutes, int servings)
-        {
-            if (context.Recipes.Count(r => r.RecipeId == recipeid) == 0)
-            {
-                Recipe newRecipe = new Recipe()
-                {
-                    RecipeId = recipeid,
-                    RecipeTitle = recipeTitle,
-                    Image = img,
-                    SourceUrl = sourceUrl,
-                    ReadyInMinutes = readyInMinutes,
-                    Servings = servings
-                };
-                context.Recipes.Add(newRecipe);
-                context.SaveChanges();
-                return newRecipe;
-            }
-            else
-            {
-                return context.Recipes.FirstOrDefault(r => r.RecipeId == recipeid);
-            }
-        }
-
-        //[HttpDelete]
-        //public List <Favorite> DeleteRecipe(int recipeId, string userId)
-        //{
-
-        //    List <Favorite> recipes = context.Favorites.Where(r=> r.UserId == userId).ToList();
-        //    foreach (Favorite R in recipes)
-        //    {
-        //        if(R.RecipeId == recipeId)
-        //        {
-        //            context.Favorites.Remove(R);
-        //            context.SaveChanges();
-        //        }
-        //    }
-        //    return recipes;
-        //}
-
+        //User Favorite DB Calls
         [HttpPost("addFavorite")]
         public Favorite addFavorite(int recipeId,string userid)
         {
@@ -109,6 +61,33 @@ namespace GroupFinalProject.Controllers
             }
             return newRs.DistinctBy(r=>r.RecipeId).ToList();
         }
+
+        //Add Recipe to internal DB
+        [HttpPost]
+        public Recipe AddRecipe(int recipeid, string recipeTitle, string img, string sourceUrl, int readyInMinutes, int servings)
+        {
+            if (context.Recipes.Count(r => r.RecipeId == recipeid) == 0)
+            {
+                Recipe newRecipe = new Recipe()
+                {
+                    RecipeId = recipeid,
+                    RecipeTitle = recipeTitle,
+                    Image = img,
+                    SourceUrl = sourceUrl,
+                    ReadyInMinutes = readyInMinutes,
+                    Servings = servings
+                };
+                context.Recipes.Add(newRecipe);
+                context.SaveChanges();
+                return newRecipe;
+            }
+            else
+            {
+                return context.Recipes.FirstOrDefault(r => r.RecipeId == recipeid);
+            }
+        }
+
+        //Profile DB Calls
         [HttpPost("addProfile")]      
         public Profile addProfile(string userId,decimal height,decimal weight,string goal)
         {
