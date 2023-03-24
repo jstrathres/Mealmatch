@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GroupFinalProject.Controllers
 {
     [Route("api/[controller]")]
-    public class RecipeController : Controller
+    public class UserController : Controller
     {
         MealmatchContext context = new MealmatchContext();
 
