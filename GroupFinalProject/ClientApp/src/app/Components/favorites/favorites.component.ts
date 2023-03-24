@@ -9,51 +9,62 @@ import { UserService } from '../../Services/user.service';
 @Component({
   selector: 'app-recipes',
   templateUrl: './favorites.component.html',
-  styleUrls: ['./favorites.component.css']
+  styleUrls: ['./favorites.component.css'],
 })
 export class FavoritesComponent implements OnInit {
+  constructor(
+    private userService: UserService,
+    private authService: SocialAuthService,
+    private mealService: MealsService
+  ) {}
 
-  Recipes:Recipe[]=[];
-  favorite:Favorite[]=[];
-  
-  constructor(private userService:UserService,private authService: SocialAuthService, private mealService:MealsService) { }
-
-  userId:string="";
-  loggedIn:boolean = false;
+  // Object variables
+  Recipes: Recipe[] = [];
+  favorite: Favorite[] = [];
   user: SocialUser = {} as SocialUser;
-  detail:NutritionDetail = {} as NutritionDetail;
-  display: boolean[]=[];
+  detail: NutritionDetail = {} as NutritionDetail;
 
-  ngOnInit():void {
+  // toggles booleans
+  loggedIn: boolean = false;
+  display: boolean[] = [];
+
+  //On init Method
+  ngOnInit(): void {
     this.authService.authState.subscribe((user) => {
-  	  this.user = user;
-  	  this.loggedIn = (user != null);
+      this.user = user;
+      this.loggedIn = user != null;
       console.log(this.user);
-    this.getFavorite();
+      this.getFavorite();
     });
-    }
+  }
 
-    deleteFavorite(recipeId:number):void{
-      this.userService.deleteFavorite(recipeId,this.user.id).subscribe((response:Favorite)=>{
+  // favorite methods
+  deleteFavorite(recipeId: number): void {
+    this.userService
+      .deleteFavorite(recipeId, this.user.id)
+      .subscribe((response: Favorite) => {
         console.log(response);
-        this.getFavorite()
-      })
-    }
+        this.getFavorite();
+      });
+  }
 
-    getFavorite():void{
-      this.userService.getFavorite(this.user.id).subscribe((response:Recipe[])=>{
+  getFavorite(): void {
+    this.userService
+      .getFavorite(this.user.id)
+      .subscribe((response: Recipe[]) => {
         console.log(response);
         this.Recipes = response;
-      })
-    }
-   
-    getDetails(id:number):void {
-      this.mealService.getDetails(id).subscribe((response:NutritionDetail)=>{
-        this.detail=response;
-    })  
+      });
   }
-    toggleDisplay(index:number):void {
-      this.display[index]=!this.display[index];
-    }
 
+  // nutrition details method
+  getDetails(id: number): void {
+    this.mealService.getDetails(id).subscribe((response: NutritionDetail) => {
+      this.detail = response;
+    });
   }
+  // toggle methods
+  toggleDisplay(index: number): void {
+    this.display[index] = !this.display[index];
+  }
+}
