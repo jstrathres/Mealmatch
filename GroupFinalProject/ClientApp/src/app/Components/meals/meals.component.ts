@@ -137,9 +137,14 @@ export class MealsComponent implements OnInit {
     ${selectedRecipe.nutrition.caloricBreakdown.percentFat},${selectedRecipe.nutrition.caloricBreakdown.percentProtein}`;
     let ingredients="";
     let instructions="";
+    
+    selectedRecipe.dishTypes.forEach((d:string)=>console.log(d));
     selectedRecipe.dishTypes.forEach((d:string)=>dishTypes+=`${d},`);
     selectedRecipe.nutrition.ingredients.forEach((d:Ingredient)=>ingredients+=`${d.name} ${d.amount} ${d.unit},`);
-    selectedRecipe.analyzedInstructions[0].steps.forEach((d:Step)=>instructions+=`${d.step},`);
+    if(selectedRecipe.analyzedInstructions.length>0) {
+      selectedRecipe.analyzedInstructions[0].steps.forEach((d:Step)=>instructions+=`${d.step},`);
+    }
+    
     this.userService
       .addRecipe(
         selectedRecipe.id,

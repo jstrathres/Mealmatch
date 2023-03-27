@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GroupFinalProject.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -138,7 +139,14 @@ namespace GroupFinalProject.Controllers
             context.SaveChanges();
             return profile;
         }
+        [HttpGet("getMeals")]
+        public List<MealPlan> getMeals(string userid)
+        {
+         
+            return context.MealPlans.Include(m => m.Recipe).Where(f => f.UserId == userid).ToList();
+            
 
+        }
 
     }
 }

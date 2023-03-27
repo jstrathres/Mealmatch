@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Favorite } from '../Models/favorite';
 import { Recipe } from '../Models/recipe';
 import { Profile } from 'oidc-client';
+import { MealPlan } from '../Models/meal-plan';
 
 @Injectable({
   providedIn: 'root',
@@ -90,6 +91,13 @@ export class UserService {
   deleteProfile(userId: string): Observable<Profile> {
     return this.http.delete<Profile>(
       `${this.baseUrl}api/User/deleteProfile?userid=${userId}`,
+      {}
+    );
+  }
+
+  getMeals(userId: string): Observable<MealPlan> {
+    return this.http.get<MealPlan>(
+      `${this.baseUrl}api/User/getMeals?userid=${userId}`,
       {}
     );
   }

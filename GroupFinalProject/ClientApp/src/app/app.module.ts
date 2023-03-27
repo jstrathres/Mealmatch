@@ -13,6 +13,7 @@ import { MealsComponent } from './Components/meals/meals.component';
 import { NutritiondetailComponent } from './Components/nutritiondetail/nutritiondetail.component';
 import { Secret } from './Models/secret';
 import { ProfileComponent } from './Components/profile/profile.component';
+import { MealplanComponent } from './Components/mealplan/mealplan.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ProfileComponent } from './Components/profile/profile.component';
     FavoritesComponent,
     MealsComponent,
     NutritiondetailComponent,
-    ProfileComponent
+    ProfileComponent,
+    MealplanComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -36,7 +38,8 @@ import { ProfileComponent } from './Components/profile/profile.component';
       { path: 'meals', component: MealsComponent},
       { path: 'meals/:id', component: MealsComponent},
       {path: 'favorites', component:FavoritesComponent},
-      {path: 'profile', component:ProfileComponent}
+      {path: 'profile', component:ProfileComponent},
+      {path: 'mealplan', component:MealplanComponent}
     ])
   ],
   providers: [
