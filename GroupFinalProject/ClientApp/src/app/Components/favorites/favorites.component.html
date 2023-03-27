@@ -6,8 +6,8 @@
     <p>Ready in Minutes: {{r.readyInMinutes}}</p>
     <p>Servings: {{r.servings}}</p>
     <!-- toggles nutrition details -->
-    <button (click)="toggleDisplay(i)" (click)="getDetails(r.id)">Nutrition Details</button>
-        <app-nutritiondetail *ngIf="display[i]"[Nutrients]="r.id"></app-nutritiondetail>
+    <button (click)="toggleDisplayNutrients(i)" (click)="getDetails(r.id)">Nutrition Details</button>
+        <app-nutritiondetail *ngIf="displayNutrients[i]"[Nutrients]="r.id"></app-nutritiondetail>
     <!-- removes favorite -->
     <button (click)="deleteFavorite(r.id)">Remove from Favorites</button>
 </div>

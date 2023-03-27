@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { NutritionDetail } from '../../Models/nutrition.details';
 import { MealsService } from '../../Services/meals.service';
 
@@ -11,12 +10,12 @@ import { MealsService } from '../../Services/meals.service';
 export class NutritiondetailComponent implements OnInit {
 @Input() Nutrients: number=0;
 
-  constructor(private route:ActivatedRoute, private nutritionService:MealsService) { }
+  constructor(private nutritionService:MealsService) { }
 
 // Object variable
   result:NutritionDetail = {} as NutritionDetail;
 // Toggle boolean
-  display:boolean = false;
+  // display:boolean = false;
 
   ngOnInit(): void {
 
@@ -26,9 +25,9 @@ export class NutritiondetailComponent implements OnInit {
   }
 
 // toggle methods
-    toggleDisplay():void{
-      this.display = !this.display;
-     }
+    // toggleDisplay():void{
+    //   this.display = !this.display;
+    //  }
 
 //  Goal based on calorie methods
      newGoal() {

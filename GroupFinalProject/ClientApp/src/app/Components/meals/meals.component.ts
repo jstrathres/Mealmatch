@@ -1,6 +1,7 @@
 import { SocialUser, SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { Favorite } from 'src/app/Models/favorite';
+import { MealDetail } from 'src/app/Models/meal-detail';
 import { MealsResult, Result } from 'src/app/Models/Meals';
 import { Recipe } from 'src/app/Models/recipe';
 
@@ -23,14 +24,16 @@ export class MealsComponent implements OnInit {
   // Object variables
   Recipes: Recipe[] = [];
   result: MealsResult = {} as MealsResult;
+  //experimental code
+  result2: MealDetail = {} as MealDetail;
   detail: NutritionDetail = {} as NutritionDetail;
   user: SocialUser = {} as SocialUser;
 
   // boolean variables
   isFavorited: boolean[] = [];
-  display: boolean[] = [];
+  displayNutrients: boolean[] = [];
   loggedIn: boolean = false;
-  results: boolean = false;
+  showSearchResults: boolean = false;
 
   // other variables
   search: string = '';
@@ -43,18 +46,34 @@ export class MealsComponent implements OnInit {
       this.loggedIn = user != null;
       console.log(this.user);
     });
-    this.searchInput();
+    this.searchInput2();
     this.getFavorite();
   }
 
   //search bar method
-  searchInput() {
-    this.mealService.getMeals(this.search).subscribe(
-      (response: MealsResult) => {
+  // searchInput() {
+  //   this.mealService.getMeals(this.search).subscribe(
+  //     (response: MealsResult) => {
+  //       console.log(response);
+  //       console.log(this.search);
+  //       this.result = response;
+  //       this.displayNutrients = new Array(response.results.length);
+  //     },
+  //     (error) => {
+  //       console.log(error);
+  //       this.status = `${this.search} not a valid input`;
+  //     }
+  //   );
+  // }
+
+  //Experimental Code
+  searchInput2() {
+    this.mealService.getMeals2(this.search).subscribe(
+      (response: MealDetail) => {
         console.log(response);
         console.log(this.search);
-        this.result = response;
-        this.display = new Array(response.results.length);
+        this.result2 = response;
+        this.displayNutrients = new Array(response.results.length);
       },
       (error) => {
         console.log(error);
@@ -64,8 +83,8 @@ export class MealsComponent implements OnInit {
   }
 
   // toggle methods
-  toggleDisplay(index: number): void {
-    this.display[index] = !this.display[index];
+  toggleDisplayNutrients(index: number): void {
+    this.displayNutrients[index] = !this.displayNutrients[index];
   }
 
   toggleFavorite(index: number): void {
@@ -73,16 +92,16 @@ export class MealsComponent implements OnInit {
   }
 
   // favorite methods
-  addFavorite(recipeId: number, userid: string, targetRecipe: Result): void {
-    this.addRecipe(
-      targetRecipe.id,
-      targetRecipe.title,
-      targetRecipe.image,
-      targetRecipe.sourceUrl,
-      targetRecipe.readyInMinutes,
-      targetRecipe.servings
-    );
-  }
+  // addFavorite(recipeId: number, userid: string, targetRecipe: Result): void {
+  //   this.addRecipe(
+  //     targetRecipe.id,
+  //     targetRecipe.title,
+  //     targetRecipe.image,
+  //     targetRecipe.sourceUrl,
+  //     targetRecipe.readyInMinutes,
+  //     targetRecipe.servings
+  //   );
+  // }
 
   deleteFavorite(recipeid: number): void {
     this.getFavorite();
@@ -104,7 +123,7 @@ export class MealsComponent implements OnInit {
   }
 
   // nutrition details method
-  getDetails(id: number): void {
+  getNutrientDetails(id: number): void {
     this.mealService.getDetails(id).subscribe((response: NutritionDetail) => {
       this.detail = response;
     });

@@ -26,7 +26,7 @@ export class FavoritesComponent implements OnInit {
 
   // toggles booleans
   loggedIn: boolean = false;
-  display: boolean[] = [];
+  displayNutrients: boolean[] = [];
 
   //On init Method
   ngOnInit(): void {
@@ -64,7 +64,7 @@ export class FavoritesComponent implements OnInit {
     });
   }
   // toggle methods
-  toggleDisplay(index: number): void {
-    this.display[index] = !this.display[index];
+  toggleDisplayNutrients(index: number): void {
+    this.displayNutrients[index] = !this.displayNutrients[index];
   }
 }

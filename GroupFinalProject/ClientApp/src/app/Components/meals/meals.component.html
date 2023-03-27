@@ -1,19 +1,27 @@
 <!-- search meal functionality -->
-<div (keydown.enter)="searchInput()" (keydown.enter)="results=true">
+<div (keydown.enter)="searchInput2()" (keydown.enter)="showSearchResults=true">
 
     <input type="text" [(ngModel)]="search" />
-    <button (click)="searchInput()" (click)="results=true">Search Meals</button>
+    <button (click)="searchInput2()" (click)="showSearchResults=true">Search Meals</button>
 <!-- displays results -->
-    <div class="row" *ngIf="results" >
-        <div *ngFor="let p of result.results; index as i" class="col-sm-4 mb-4">
+    <div class="row" *ngIf="showSearchResults" >
+        <div *ngFor="let p of result2.results; index as i" class="col-sm-4 mb-4">
             <h4 style="color:black; font-weight:bold;">{{p.title}}</h4>
-            <img src="https://spoonacular.com/recipeImages/{{p.id}}-312x150.jpg" />
+            <img src="https://spoonacular.com/recipeImages/{{p.id}}-312x150.{{p.imageType}}" />
             <p>Minutes to cook: {{p.readyInMinutes}}</p>
-            <p>Servings: {{p.servings}}</p>  
+            <p>Servings: {{p.servings}}</p> 
+            <p>{{p.nutrition.nutrients[0].name}}: {{p.nutrition.nutrients[0].amount}}</p> 
+            <p>Dish Types:</p>    
+            <ul *ngFor="let d of p.dishTypes">
+                    <li>{{d}} </li>
+                </ul>
+
+            
+            
 <!-- shows nutrition details -->
             <div *ngIf="loggedIn">
-                <button (click)="toggleDisplay(i)" (click)="getDetails(p.id)">Nutrition Details</button>
-                <app-nutritiondetail *ngIf="display[i]"[Nutrients]="p.id"></app-nutritiondetail>
+                <button (click)="toggleDisplayNutrients(i)" (click)="getNutrientDetails(p.id)">Nutrition Details</button>
+                <app-nutritiondetail *ngIf="displayNutrients[i]"[Nutrients]="p.id"></app-nutritiondetail>
 <!-- allows user to add meal to favorite list  -->
                 <div *ngIf="user!=null && !isFavorited[i]">
                 <button class="btn btn-outline-info" (click)="addRecipe(p.id, p.title, p.image, p.sourceUrl, p.readyInMinutes, p.servings)" (click)="toggleFavorite(i)">👍Add to Favorites</button>
