@@ -15,8 +15,13 @@
 <div *ngIf="revealUpdateForm">
     <p>Enter Weight (in pounds)</p>
     <input type="number" [(ngModel)]="userProfile.weight" id="weight" name="weight">
-    <p>Enter Goal (lose weight, gain weight, maintain weight)</p>
-    <input type="text" [(ngModel)]="userProfile.goal" id="goal" name="goal">
+    <p>Enter Goal</p>
+    <select [(ngModel)]="userProfile.goal" id="goal" name="goal">    
+      <option value="lose weight">Lose weight</option>
+      <option value="gain weight">Gain weight</option>
+      <option value="maintain weight">Maintain weight</option>
+    </select>
+
     <button (click)="updateProfile()" (click)="revealUpdateForm=false">update Profile</button>
 </div>
 
@@ -26,9 +31,14 @@
     <input type="number" [(ngModel)]="userProfile.height" id="height" name="height">
     <p>Enter Weight (in pounds)</p>
     <input type="number" [(ngModel)]="userProfile.weight" id="weight" name="weight">
-    <p>Enter Goal (lose weight, gain weight, maintain weight)</p>
-    <input type="text" [(ngModel)]="userProfile.goal" id="goal" name="goal">
+    <p>Enter Goal</p>
+    <select [(ngModel)]="userProfile.goal" id="goal" name="goal">
+      <option value="lose weight">Lose weight</option>
+      <option value="gain weight">Gain weight</option>
+      <option value="maintain weight">Maintain weight</option>
+    </select>
     <button (click)="addProfile()" (click)="toggleAddedUser()">Add Profile</button>
+
 
 <!-- profile creation feedback -->
     <div *ngIf="wasProfileCreated">
