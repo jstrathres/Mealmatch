@@ -42,12 +42,19 @@ export class UserService {
     image: string,
     sourceUrl: string,
     readyInMinutes: number,
-    servings: number
+    servings: number,
+    dishTypes: string,
+    totalCalories: number,
+    caloricBreakdown: string,
+    ingredients: string,
+    instructions: string
   ): Observable<Recipe> {
     return this.http.post<Recipe>(
-      `${this.baseUrl}api/User?RecipeId=${recipeId}
-    &RecipeTitle=${recipeTitle}&Image=${image}
-    &SourceUrl=${sourceUrl}&ReadyInMinutes=${readyInMinutes}&Servings=${servings}`,
+      `${this.baseUrl}api/User?recipeId=${recipeId}
+    &recipeTitle=${recipeTitle}&img=${image}
+    &sourceUrl=${sourceUrl}&readyInMinutes=${readyInMinutes}&servings=${servings}
+    &dishTypes=${dishTypes}&totalCalories=${totalCalories}&caloricBreakdown=${caloricBreakdown}
+    &ingredients=${ingredients}&instructions=${instructions}`,
       {}
     );
   }

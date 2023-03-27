@@ -7,7 +7,7 @@
     <div class="row" *ngIf="showSearchResults" >
         <div *ngFor="let p of result2.results; index as i" class="col-sm-4 mb-4">
             <h4 style="color:black; font-weight:bold;">{{p.title}}</h4>
-            <img src="https://spoonacular.com/recipeImages/{{p.id}}-312x150.{{p.imageType}}" />
+            <img src="{{p.image}}" />
             <p>Minutes to cook: {{p.readyInMinutes}}</p>
             <p>Servings: {{p.servings}}</p> 
             <p>{{p.nutrition.nutrients[0].name}}: {{p.nutrition.nutrients[0].amount}}</p> 
@@ -24,7 +24,7 @@
                 <app-nutritiondetail *ngIf="displayNutrients[i]"[Nutrients]="p.id"></app-nutritiondetail>
 <!-- allows user to add meal to favorite list  -->
                 <div *ngIf="user!=null && !isFavorited[i]">
-                <button class="btn btn-outline-info" (click)="addRecipe(p.id, p.title, p.image, p.sourceUrl, p.readyInMinutes, p.servings)" (click)="toggleFavorite(i)">👍Add to Favorites</button>
+                <button class="btn btn-outline-info" (click)="addRecipe(p)" (click)="toggleFavorite(i)">👍Add to Favorites</button>
                 </div>
 <!-- add to favorites feedback/allows user to delete meal -->
                 <div *ngIf="isFavorited[i]">

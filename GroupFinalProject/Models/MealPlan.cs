@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace GroupFinalProject.Models;
 
-public partial class Profile
+public partial class MealPlan
 {
     public int Id { get; set; }
 
     public string? UserId { get; set; }
 
-    public decimal? Height { get; set; }
+    public int? RecipeId { get; set; }
 
-    public decimal? Weight { get; set; }
+    public DateTime? Date { get; set; }
 
-    public string? Goal { get; set; }
+    public virtual Recipe? Recipe { get; set; }
 }

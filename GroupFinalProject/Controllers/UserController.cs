@@ -64,7 +64,8 @@ namespace GroupFinalProject.Controllers
 
         //Add Recipe to internal DB
         [HttpPost]
-        public Recipe AddRecipe(int recipeid, string recipeTitle, string img, string sourceUrl, int readyInMinutes, int servings)
+        public Recipe AddRecipe(int recipeid, string recipeTitle, string img, string sourceUrl, int readyInMinutes, int servings,
+            string dishTypes, decimal totalCalories, string caloricBreakdown, string ingredients, string instructions)
         {
             if (context.Recipes.Count(r => r.RecipeId == recipeid) == 0)
             {
@@ -75,7 +76,12 @@ namespace GroupFinalProject.Controllers
                     Image = img,
                     SourceUrl = sourceUrl,
                     ReadyInMinutes = readyInMinutes,
-                    Servings = servings
+                    Servings = servings,
+                    DishTypes = dishTypes,
+                    TotalCalories = totalCalories,
+                    CaloricBreakdown = caloricBreakdown,
+                    Ingredients = ingredients,
+                    Instructions = instructions
                 };
                 context.Recipes.Add(newRecipe);
                 context.SaveChanges();

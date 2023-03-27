@@ -7,4 +7,9 @@ export interface Recipe {
     servings:number;
     sourceUrl:string;
     image:string;
+    dishTypes:string;
+    totalCalories:number;
+    caloricBreakdown:string;
+    ingredients:string;
+    instructions:string;
 }

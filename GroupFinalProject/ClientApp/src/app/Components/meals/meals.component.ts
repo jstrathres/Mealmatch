@@ -1,8 +1,8 @@
 import { SocialUser, SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { Favorite } from 'src/app/Models/favorite';
-import { MealDetail } from 'src/app/Models/meal-detail';
-import { MealsResult, Result } from 'src/app/Models/Meals';
+import { AnalyzedInstruction, Ingredient, MealDetail, Result, Step } from 'src/app/Models/meal-detail';
+// import { MealsResult, Result } from 'src/app/Models/Meals';
 import { Recipe } from 'src/app/Models/recipe';
 
 import { NutritionDetail } from '../../Models/nutrition.details';
@@ -23,7 +23,7 @@ export class MealsComponent implements OnInit {
 
   // Object variables
   Recipes: Recipe[] = [];
-  result: MealsResult = {} as MealsResult;
+  // result: MealsResult = {} as MealsResult;
   //experimental code
   result2: MealDetail = {} as MealDetail;
   detail: NutritionDetail = {} as NutritionDetail;
@@ -131,22 +131,28 @@ export class MealsComponent implements OnInit {
 
   // adds recipe to internal DB
   // TECHNICAL QUESTION!!!!!!
-  addRecipe(
-    recipeId: number,
-    recipeTitle: string,
-    image: string,
-    sourceUrl: string,
-    readyInMinutes: number,
-    servings: number
-  ): void {
+  addRecipe(selectedRecipe:Result): void {
+    let dishTypes="";
+    let caloricBreakdown=`${selectedRecipe.nutrition.caloricBreakdown.percentCarbs},
+    ${selectedRecipe.nutrition.caloricBreakdown.percentFat},${selectedRecipe.nutrition.caloricBreakdown.percentProtein}`;
+    let ingredients="";
+    let instructions="";
+    selectedRecipe.dishTypes.forEach((d:string)=>dishTypes+=`${d},`);
+    selectedRecipe.nutrition.ingredients.forEach((d:Ingredient)=>ingredients+=`${d.name} ${d.amount} ${d.unit},`);
+    selectedRecipe.analyzedInstructions[0].steps.forEach((d:Step)=>instructions+=`${d.step},`);
     this.userService
       .addRecipe(
-        recipeId,
-        recipeTitle,
-        image,
-        sourceUrl,
-        readyInMinutes,
-        servings
+        selectedRecipe.id,
+        selectedRecipe.title,
+        selectedRecipe.image,
+        selectedRecipe.sourceUrl,
+        selectedRecipe.readyInMinutes,
+        selectedRecipe.servings,
+        dishTypes,
+        selectedRecipe.nutrition.nutrients[0].amount,
+        caloricBreakdown,
+        ingredients,
+        instructions
       )
       .subscribe((response: Recipe) => {
         console.log(response);
