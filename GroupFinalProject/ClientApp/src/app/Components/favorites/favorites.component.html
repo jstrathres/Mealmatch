@@ -1,4 +1,4 @@
-
+<!--orginal list-->
 <!-- displays favorite recipe list -->
 <div class="row">
     <div *ngFor="let r of Recipes; index as i"class="col-sm-4 mb-4">
@@ -13,5 +13,28 @@
             <!-- <app-nutritiondetail *ngIf="displayNutrients[i]"[Nutrients]="r.id"></app-nutritiondetail> -->
         <!-- removes favorite -->
         <button (click)="deleteFavorite(r.id)">Remove from Favorites</button>
+    </div>
+</div>
+
+<!------------------------------------------------------------------------------------>
+
+
+<!--grid card attempt-->
+<div class="row">
+    <!-- <div *ngFor="let r of Recipes; index as i" class="row row-cols-1 row-cols-md-2 g-4"> -->
+    <div *ngFor="let r of Recipes; index as i" class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+            <div class="card">
+                <img src="https://spoonacular.com/recipeImages/{{r.recipeId}}-312x150.jpg" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{r.recipeTitle}}</h5>
+                    <p class="card-text">Ready in Minutes: {{r.readyInMinutes}}</p>
+                    <p>Servings: {{r.servings}}</p>
+                    <p>Your Goal: {{userProfile.goal}}</p>
+                    <p>Goal: {{ mealQuota(r.totalCalories) }}</p>
+                    <button (click)="deleteFavorite(r.id)">Remove from Favorites</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

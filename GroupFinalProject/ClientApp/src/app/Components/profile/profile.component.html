@@ -5,11 +5,20 @@
     <p>Height: {{ heightMath() }}</p>
     <p>Weight: {{userProfile.weight}} lbs</p>
     <p>Goal: {{userProfile.goal}}</p>
-
-<!-- update and delete profile buttons -->
-    <button (click)="toggleUpdateForm()">Update Profile</button>
-    <button (click)="deleteProfile()">Delete Profile</button>    
 </div>
+
+<!--link to favorites-->
+<div class="card text-end" style="width: 15rem;">
+    <div class="card-body">
+      <h5 class="card-title">Meals You've Liked</h5>
+      <p class="card-text">Check out the meals you've enjoyed or haven't tried yet!</p>
+      <a href="#" class="btn btn-success" routerLink="/favorites">Favorite Meals</a>
+    </div>
+</div>
+
+<!-- update profile buttons -->
+    <button (click)="toggleUpdateForm()">Update Profile</button>
+    <button (click)="deleteProfile()">Delete Profile</button>
 
 <!-- update profile form if user profile exists -->
 <div *ngIf="revealUpdateForm">

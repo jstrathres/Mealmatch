@@ -1,10 +1,8 @@
 <header>
-  <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
-  >
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
     <div class="container">
   <img src="http://dmexco-koeln-nrw.de/wp-content/uploads/2017/08/logo_mealmatch-768x576.png" height="80">
-  <a class="navbar-brand" [routerLink]="['/']">Meal Match </a>
+  <a class="navbar-brand" [routerLink]="['/']">Meal Match</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -12,14 +10,12 @@
         data-target=".navbar-collapse"
         aria-label="Toggle navigation"
         [attr.aria-expanded]="isExpanded"
-        (click)="toggle()"
-      >
+        (click)="toggle()">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div
-        class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
+      <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
         [ngClass]="{ show: isExpanded }"
-      >
+        >
         <ul class="navbar-nav flex-grow">
           <li
             class="nav-item"
@@ -29,7 +25,6 @@
             <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
           </li>
 
-          
           <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="loggedIn">
             <a class="nav-link text-dark" [routerLink]="['/mealplan']"
               >Meal Plan</a
