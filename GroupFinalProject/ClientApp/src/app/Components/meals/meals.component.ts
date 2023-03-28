@@ -46,7 +46,7 @@ export class MealsComponent implements OnInit {
 
   //search bar method
   searchInput() {
-    this.mealService.getMeals2(this.search).subscribe(
+    this.mealService.getMeals(this.search).subscribe(
       (response: MealDetail) => {
         console.log(response);
         console.log(this.search);
