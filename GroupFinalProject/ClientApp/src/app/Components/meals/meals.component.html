@@ -11,6 +11,7 @@
             <p>Minutes to cook: {{p.readyInMinutes}}</p>
             <p>Servings: {{p.servings}}</p> 
             <p>{{p.nutrition.nutrients[0].name}}: {{p.nutrition.nutrients[0].amount}}</p> 
+            <h4>{{ newGoal(p.nutrition.nutrients[0].amount) }}</h4>
             <p>Dish Types:</p>    
             <ul *ngFor="let d of p.dishTypes">
                     <li>{{d}} </li>
@@ -19,9 +20,9 @@
             
             
 <!-- shows nutrition details -->
-            <div *ngIf="loggedIn">
+            <!-- <div *ngIf="loggedIn">
                 <button (click)="toggleDisplayNutrients(i)" (click)="getNutrientDetails(p.id)">Nutrition Details</button>
-                <app-nutritiondetail *ngIf="displayNutrients[i]"[Nutrients]="p.id"></app-nutritiondetail>
+                <app-nutritiondetail *ngIf="displayNutrients[i]"[Nutrients]="p.id"></app-nutritiondetail> -->
 <!-- allows user to add meal to favorite list  -->
                 <div *ngIf="user!=null && !isFavorited[i]">
                 <button class="btn btn-outline-info" (click)="addRecipe(p)" (click)="toggleFavorite(i)">👍Add to Favorites</button>
@@ -35,4 +36,4 @@
         </div>
 
     </div>
-</div>
+<!-- </div> -->
