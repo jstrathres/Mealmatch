@@ -22,11 +22,12 @@ export class MealsService {
   //   return this.http.get<MealsResult>(`${this.url}${Input}&number=21`);
   // }
 
-  getDetails(id: number): Observable<NutritionDetail> {
-    return this.http.get<NutritionDetail>(
-      `${this.url2}/${id}/nutritionWidget.json?apiKey=${Secret.apiKey}`
-    );
-  }
+  // getDetails(id: number): Observable<NutritionDetail> {
+  //   return this.http.get<NutritionDetail>(
+  //     `${this.url2}/${id}/nutritionWidget.json?apiKey=${Secret.apiKey}`
+  //   );
+  // }
+  
 //experimental code
   getMeals2(Input: string): Observable<MealDetail> {
     return this.http.get<MealDetail>(`${this.url3}${Input}&number=21`);
