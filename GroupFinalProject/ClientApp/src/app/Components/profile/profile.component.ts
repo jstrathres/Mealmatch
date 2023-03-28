@@ -17,6 +17,8 @@ export class ProfileComponent implements OnInit {
   // Object variables
   userProfile: Profile = {} as Profile;
   user: SocialUser = {} as SocialUser;
+  weight: number=0;
+  goal: string="";
 
   // Toggle booleans
   loggedIn: boolean = false;
@@ -104,5 +106,29 @@ export class ProfileComponent implements OnInit {
     let feet: number = Number(Math.floor(this.userProfile.height / 12));
     let inches: number = Number(this.userProfile.height - feet * 12);
     return `${feet}' ${inches}"`;
+  }
+
+  mealQuota(cal:number){
+    let daily:number=(this.weight*10)+500;
+    let dailyCalGoal:number=0
+    if(this.goal="lose weight"){
+      dailyCalGoal = daily - 500;
+    }
+    else if(this.goal="gain weight"){
+      dailyCalGoal = daily + 500;
+    }
+    else{
+      dailyCalGoal = daily;
+    }
+    let calorieSurplus:number= (dailyCalGoal/3) - (cal)*2;
+    let minutesOfExercise:number=((calorieSurplus/300)*60)
+    let goal:number = Number((minutesOfExercise).toFixed(0));
+    if(goal>0){
+      return `Your Goal for Today: ${minutesOfExercise} minutes of moderate intensity exercise (e.g., brisk walk).`;
+    }
+    else{
+      return 'Great job! No exercise needed to meet your fitness goals.'
+    }
+    
   }
 }

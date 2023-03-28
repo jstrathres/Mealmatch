@@ -30,7 +30,7 @@ export class MealsService {
   
 //experimental code
   getMeals2(Input: string): Observable<MealDetail> {
-    return this.http.get<MealDetail>(`${this.url3}${Input}&number=21`);
+    return this.http.get<MealDetail>(`${this.url3}${Input}&number=6`);
   }
   
 }
