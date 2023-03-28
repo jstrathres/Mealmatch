@@ -5,5 +5,5 @@ export interface MealPlan {
     userId:string;
     recipeId:number;
     date:Date;
-    recipe:Recipe;
+    
 }

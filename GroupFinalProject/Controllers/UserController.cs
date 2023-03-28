@@ -139,13 +139,54 @@ namespace GroupFinalProject.Controllers
             context.SaveChanges();
             return profile;
         }
-        [HttpGet("getMeals")]
-        public List<MealPlan> getMeals(string userid)
-        {
-         
-            return context.MealPlans.Include(m => m.Recipe).Where(f => f.UserId == userid).ToList();
-            
+        [HttpGet("getMeals")]        
+            public List<Recipe> getMeals(string userid)
+            {
 
+                List<MealPlan> mealList = new List<MealPlan>();
+                mealList = context.MealPlans.Where(m => m.UserId == userid).ToList();
+                bool idExist = mealList.Any();
+                List<Recipe> newRs = new List<Recipe>();
+                foreach (MealPlan m in mealList)
+                {
+                    newRs.Add(context.Recipes.FirstOrDefault(r => r.Id == m.RecipeId));
+                }
+                return newRs.DistinctBy(r => r.RecipeId).ToList();
+            }
+
+        
+
+        [HttpPost("addMealPlan")]
+        public MealPlan addMealPlan(string userId,int recipeId,DateTime date)
+        {
+            MealPlan newmealplan = new MealPlan()
+            {
+                UserId = userId,
+                RecipeId = recipeId,
+                Date = date          
+
+            };
+            context.MealPlans.Add(newmealplan);
+            context.SaveChanges();
+            return newmealplan;
+        }
+
+        [HttpDelete("deleteMealplan")]
+        public List <MealPlan> deleteMealPlan(string userId,int recipeId)
+        {        
+           
+                List<MealPlan> recipes = context.MealPlans.Where(r => r.UserId == userId).ToList();
+                foreach (MealPlan R in recipes)
+                {
+                    if (R.RecipeId == recipeId)
+                    {
+                        context.MealPlans.Remove(R);
+                        context.SaveChanges();
+                    }
+                }
+                return recipes;           
+
+           
         }
 
     }

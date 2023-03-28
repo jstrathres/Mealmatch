@@ -1,18 +1,27 @@
+<<<<<<< HEAD
 <!--orginal list-->
+=======
+>>>>>>> c700257e243129783e9cd12b60c189cdd181df8d
 <!-- displays favorite recipe list -->
 <div class="row">
-    <div *ngFor="let r of Recipes; index as i"class="col-sm-4 mb-4">
+    <div *ngFor="let r of Recipes; index as i" class="col-sm-4 mb-4">
         <h2>{{r.recipeTitle}}</h2>
-        <img src="https://spoonacular.com/recipeImages/{{r.recipeId}}-312x150.jpg"/>
+        <img src="https://spoonacular.com/recipeImages/{{r.recipeId}}-312x150.jpg" />
         <p>Ready in Minutes: {{r.readyInMinutes}}</p>
         <p>Servings: {{r.servings}}</p>
         <p>Your Goal: {{userProfile.goal}}</p>
         <p>Goal: {{ mealQuota(r.totalCalories) }}</p>
         <!-- toggles nutrition details -->
         <!-- <button (click)="toggleDisplayNutrients(i)" (click)="getDetails(r.id)">Nutrition Details</button> -->
-            <!-- <app-nutritiondetail *ngIf="displayNutrients[i]"[Nutrients]="r.id"></app-nutritiondetail> -->
+        <!-- <app-nutritiondetail *ngIf="displayNutrients[i]"[Nutrients]="r.id"></app-nutritiondetail> -->
         <!-- removes favorite -->
         <button (click)="deleteFavorite(r.id)">Remove from Favorites</button>
+        <button (click)="toggleDate(i)">Add to Meal Plan</button>
+        <div *ngIf="displayDate[i]">
+            <p>select date</p>
+            <input type="date" [(ngModel)]="date">
+            <button (click)="addMealPlan(r.id)">Confirm</button>
+        </div>
     </div>
 </div>
 
