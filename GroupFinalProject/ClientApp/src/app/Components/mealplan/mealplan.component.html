@@ -1,4 +1,13 @@
 <p>select date</p>
 <input type="date" [(ngModel)]="setDate"> 
 
+<div *ngFor="let m of meals">
+    <h3>{{m.recipeTitle}}</h3>
+    <h4>{{m.dishTypes}}</h4>
+    <p>calories: {{m.totalCalories}}</p>
+    <img src= {{m.image}}/>
+    <p>{{m.ingredients}}</p>
+<button (click)="deleteMealPlan(m.id)"> Delete Meal</button>
+</div>
+
 

@@ -95,10 +95,25 @@ export class UserService {
     );
   }
 
-  getMeals(userId: string): Observable<MealPlan> {
-    return this.http.get<MealPlan>(
+  getMeals(userId: string): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(
       `${this.baseUrl}api/User/getMeals?userid=${userId}`,
       {}
     );
   }
+  addMealPlan(userId:string,recipeId:number,date:Date):Observable<MealPlan>{
+    return this.http.post<MealPlan>(
+      `${this.baseUrl}api/User/addMealPlan?userid=${userId}
+    &recipeId=${recipeId}&date=${date}`,
+      {}
+    )
+  } 
+deleteMealPlan(userId:string,recipeId:number):Observable<MealPlan>{
+  return this.http.delete<MealPlan>(
+    `${this.baseUrl}api/User/deleteMealPlan?userId=${userId}&recipeId=${recipeId}`,
+    {}
+  );
+}
+
+
 }

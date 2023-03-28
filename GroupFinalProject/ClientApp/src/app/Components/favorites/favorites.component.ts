@@ -2,6 +2,7 @@ import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { Profile } from 'oidc-client';
 import { Favorite } from 'src/app/Models/favorite';
+import { MealPlan } from 'src/app/Models/meal-plan';
 import { Recipe } from 'src/app/Models/recipe';
 import { NutritionDetail } from '../../Models/nutrition.details';
 import { MealsService } from '../../Services/meals.service';
@@ -16,7 +17,8 @@ export class FavoritesComponent implements OnInit {
   constructor(
     private userService: UserService,
     private authService: SocialAuthService,
-    private mealService: MealsService
+    private mealService: MealsService,
+   
   ) {}
 
   // Object variables
@@ -25,10 +27,13 @@ export class FavoritesComponent implements OnInit {
   user: SocialUser = {} as SocialUser;
   detail: NutritionDetail = {} as NutritionDetail;
   userProfile: Profile = {} as Profile;
+  mealPlan: MealPlan = {} as MealPlan;
+  date:Date = {} as Date;
+  
 
   // toggles booleans
   loggedIn: boolean = false;
-  displayNutrients: boolean[] = [];
+  displayDate: boolean[] = [];
 
   //On init Method
   ngOnInit(): void {
@@ -74,9 +79,9 @@ export class FavoritesComponent implements OnInit {
   //   });
   // }
   // toggle methods
-  toggleDisplayNutrients(index: number): void {
-    this.displayNutrients[index] = !this.displayNutrients[index];
-  }
+  // toggleDisplayNutrients(index: number): void {
+  //   this.displayNutrients[index] = !this.displayNutrients[index];
+  // }
 
   mealQuota(cal:number){
     console.log(cal);
@@ -109,5 +114,17 @@ export class FavoritesComponent implements OnInit {
     }
     
   }
+  addMealPlan(recipeId:number):void{
+    this.userService.addMealPlan(this.user.id,recipeId,this.date).subscribe((
+      response:MealPlan) =>{
+        this.mealPlan = response;
+        console.log(response)
+      }
+      );
+  }
+  toggleDate(index: number): void {
+    this.displayDate[index] = !this.displayDate[index];
+  }
+
 
 }
