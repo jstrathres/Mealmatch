@@ -1,11 +1,9 @@
 import { SocialUser, SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { Favorite } from 'src/app/Models/favorite';
-import { AnalyzedInstruction, Ingredient, MealDetail, Result, Step } from 'src/app/Models/meal-detail';
+import { Ingredient, MealDetail, Result, Step } from 'src/app/Models/meal-detail';
 // import { MealsResult, Result } from 'src/app/Models/Meals';
 import { Recipe } from 'src/app/Models/recipe';
-
-import { NutritionDetail } from '../../Models/nutrition.details';
 import { MealsService } from '../../Services/meals.service';
 import { UserService } from '../../Services/user.service';
 
@@ -23,10 +21,11 @@ export class MealsComponent implements OnInit {
 
   // Object variables
   Recipes: Recipe[] = [];
+  detail:Result= {} as Result;
   // result: MealsResult = {} as MealsResult;
   //experimental code
   result2: MealDetail = {} as MealDetail;
-  detail: NutritionDetail = {} as NutritionDetail;
+  // detail: NutritionDetail = {} as NutritionDetail;
   user: SocialUser = {} as SocialUser;
 
   // boolean variables
@@ -123,11 +122,11 @@ export class MealsComponent implements OnInit {
   }
 
   // nutrition details method
-  getNutrientDetails(id: number): void {
-    this.mealService.getDetails(id).subscribe((response: NutritionDetail) => {
-      this.detail = response;
-    });
-  }
+  // getNutrientDetails(id: number): void {
+  //   this.mealService.getDetails(id).subscribe((response: NutritionDetail) => {
+  //     this.detail = response;
+  //   });
+  // }
 
   // adds recipe to internal DB
   // TECHNICAL QUESTION!!!!!!
@@ -167,4 +166,11 @@ export class MealsComponent implements OnInit {
           });
       });
   }
+
+  newGoal(cal:number) {
+    let goal = (cal/100).toFixed(2);
+    // goal output
+    return `Your Goal for Today, Please Walk ${goal} Miles, Are You Serious`;
+   }
+
 }
