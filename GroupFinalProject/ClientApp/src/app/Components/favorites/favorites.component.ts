@@ -58,11 +58,11 @@ export class FavoritesComponent implements OnInit {
   }
 
   // nutrition details method
-  getDetails(id: number): void {
-    this.mealService.getDetails(id).subscribe((response: NutritionDetail) => {
-      this.detail = response;
-    });
-  }
+  // getDetails(id: number): void {
+  //   this.mealService.getDetails(id).subscribe((response: NutritionDetail) => {
+  //     this.detail = response;
+  //   });
+  // }
   // toggle methods
   toggleDisplayNutrients(index: number): void {
     this.displayNutrients[index] = !this.displayNutrients[index];

@@ -19,9 +19,9 @@ export class NutritiondetailComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.nutritionService.getDetails(this.Nutrients).subscribe((response:NutritionDetail)=>{
-      this.result=response;
-    })
+    // this.nutritionService.getDetails(this.Nutrients).subscribe((response:NutritionDetail)=>{
+    //   this.result=response;
+    // })
   }
 
 // toggle methods
