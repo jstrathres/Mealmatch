@@ -17,7 +17,8 @@ code {
 
 /* changes made */
 body {
-    background: linear-gradient(to right, rgb(34, 51, 106), rgb(242, 242, 246)); 
+    background: linear-gradient(to right, rgb(34, 106, 40), rgb(242, 242, 246)); 
+    /* text-align: center; */
 }
 
 /* .center {
@@ -47,6 +48,7 @@ button {
   gap: 0.75rem;
   transition: all .6s ease;
 }
+
 
 button:hover {
   transform: scale(1.02);

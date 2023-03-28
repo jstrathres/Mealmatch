@@ -1,13 +1,15 @@
 
 <!-- displays favorite recipe list -->
-<div *ngFor="let r of Recipes; index as i">
-    <h2>{{r.recipeTitle}}</h2>
-    <img src="https://spoonacular.com/recipeImages/{{r.recipeId}}-312x150.jpg"/>
-    <p>Ready in Minutes: {{r.readyInMinutes}}</p>
-    <p>Servings: {{r.servings}}</p>
-    <!-- toggles nutrition details -->
-    <button (click)="toggleDisplayNutrients(i)" (click)="getDetails(r.id)">Nutrition Details</button>
-        <app-nutritiondetail *ngIf="displayNutrients[i]"[Nutrients]="r.id"></app-nutritiondetail>
-    <!-- removes favorite -->
-    <button (click)="deleteFavorite(r.id)">Remove from Favorites</button>
+<div class="row">
+    <div *ngFor="let r of Recipes; index as i"class="col-sm-4 mb-4">
+        <h2>{{r.recipeTitle}}</h2>
+        <img src="https://spoonacular.com/recipeImages/{{r.recipeId}}-312x150.jpg"/>
+        <p>Ready in Minutes: {{r.readyInMinutes}}</p>
+        <p>Servings: {{r.servings}}</p>
+        <!-- toggles nutrition details -->
+        <button (click)="toggleDisplayNutrients(i)" (click)="getDetails(r.id)">Nutrition Details</button>
+            <app-nutritiondetail *ngIf="displayNutrients[i]"[Nutrients]="r.id"></app-nutritiondetail>
+        <!-- removes favorite -->
+        <button (click)="deleteFavorite(r.id)">Remove from Favorites</button>
+    </div>
 </div>

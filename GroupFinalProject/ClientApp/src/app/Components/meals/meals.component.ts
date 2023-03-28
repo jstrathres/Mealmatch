@@ -133,8 +133,7 @@ export class MealsComponent implements OnInit {
   // TECHNICAL QUESTION!!!!!!
   addRecipe(selectedRecipe:Result): void {
     let dishTypes="";
-    let caloricBreakdown=`${selectedRecipe.nutrition.caloricBreakdown.percentCarbs},
-    ${selectedRecipe.nutrition.caloricBreakdown.percentFat},${selectedRecipe.nutrition.caloricBreakdown.percentProtein}`;
+    let caloricBreakdown=`${selectedRecipe.nutrition.caloricBreakdown.percentCarbs},${selectedRecipe.nutrition.caloricBreakdown.percentFat},${selectedRecipe.nutrition.caloricBreakdown.percentProtein}`;
     let ingredients="";
     let instructions="";
     
