@@ -12,15 +12,18 @@ import { UserService } from '../../Services/user.service';
 })
 export class MealplanComponent implements OnInit {
 
-  setDate:Date={} as Date;
+  // object variables
   user: SocialUser = {} as SocialUser;
-  loggedIn: boolean = false;
-  date:Date = {} as Date;
   mealPlan:MealPlan = {} as MealPlan;
   meals: Recipe[] = [];
+
+  // boolean variables
+  loggedIn: boolean = false;
+
   constructor(private userService: UserService, private authService:SocialAuthService) { }
 
-  ngOnInit(): void {
+  // ng On init
+ngOnInit(): void {
  this.authService.authState.subscribe((user) => {
   	  this.user = user;
   	  this.loggedIn = (user != null);
@@ -29,6 +32,7 @@ export class MealplanComponent implements OnInit {
     });
   }
   
+// mealplan methods
 getMeals():void{
   this.userService.getMeals(this.user.id).subscribe((response:Recipe[])=>{
     this.meals = response
@@ -37,16 +41,7 @@ getMeals():void{
 
 }
 
-  addMealPlan(recipeId:number):void{
-    this.userService.addMealPlan(this.user.id,recipeId,this.date).subscribe((
-      response:MealPlan) =>{
-        this.mealPlan = response;
-        console.log(response)
-      }
-      );
-  }
-
-  deleteMealPlan(recipeId:number):void{
+deleteMealPlan(recipeId:number):void{
     this.userService.deleteMealPlan(this.user.id,recipeId).subscribe((response:MealPlan)=>{
       console.log(response)
       this.getMeals();
