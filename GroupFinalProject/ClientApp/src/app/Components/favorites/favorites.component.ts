@@ -34,6 +34,7 @@ export class FavoritesComponent implements OnInit {
   // toggles booleans
   loggedIn: boolean = false;
   displayDate: boolean[] = [];
+  doesProfileExist:boolean=false;
 
   //On init Method
   ngOnInit(): void {
@@ -68,8 +69,20 @@ export class FavoritesComponent implements OnInit {
   getProfile():void{
     this.userService.getProfile(this.user.id)
     .subscribe((response: Profile)=>{
-      this.userProfile=response;
-    })
+      console.log(response);
+      if (response) {
+        this.userProfile = response;
+      }
+      this.profileExists();
+    });
+  }
+
+  profileExists(): void {
+    if (!this.userProfile.goal) {
+      this.doesProfileExist = false;
+    } else {
+      this.doesProfileExist = true;
+    }
   }
 
   // nutrition details method
