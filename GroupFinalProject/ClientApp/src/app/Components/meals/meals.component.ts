@@ -57,6 +57,20 @@ export class MealsComponent implements OnInit {
     );
   }
 
+  searchCategory(Cat:string) {
+    this.mealService.getMeals(this.search).subscribe(
+      (response: MealDetail) => {
+        console.log(response);
+        console.log(this.search);
+        this.result = response;
+      },
+      (error) => {
+        console.log(error);
+        this.status = `${this.search} not a valid input`;
+      }
+    );
+  }
+
   // toggle methods
 
   toggleFavorite(index: number): void {
@@ -120,5 +134,7 @@ export class MealsComponent implements OnInit {
           });
       });
   }
+
+
 
 }

@@ -1,6 +1,11 @@
 <!-- search meal functionality -->
 <div (keydown.enter)="searchInput()">
-
+<div class="col-sm-4">
+    <button (click)="searchCategory('breakfast')">Breakfast</button>
+    <!-- <button (click)="searchCategory('lunch')">Lunch</button>
+    <button (click)="searchCategory('dinner')">Dinner</button>
+    <button (click)="searchCategory('drinks')">Drinks</button> -->
+</div>
     <input type="text" [(ngModel)]="search" />
 <button (click)="searchInput()">Search Meals</button>
 
