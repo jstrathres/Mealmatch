@@ -12,6 +12,6 @@ public partial class MealPlan
     public int? RecipeId { get; set; }
 
     public DateTime? Date { get; set; }
-
+    [System.Text.Json.Serialization.JsonIgnore]
     public virtual Recipe? Recipe { get; set; }
 }

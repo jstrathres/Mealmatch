@@ -27,7 +27,6 @@ export class MealsComponent implements OnInit {
   // boolean variables
   isFavorited: boolean[] = [];
   loggedIn: boolean = false;
-  showSearchResults: boolean = false;
 
   // other variables
   search: string = '';

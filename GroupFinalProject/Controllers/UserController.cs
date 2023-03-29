@@ -145,7 +145,6 @@ namespace GroupFinalProject.Controllers
 
                 List<MealPlan> mealList = new List<MealPlan>();
                 mealList = context.MealPlans.Where(m => m.UserId == userid).ToList();
-                bool idExist = mealList.Any();
                 List<Recipe> newRs = new List<Recipe>();
                 foreach (MealPlan m in mealList)
                 {
@@ -154,7 +153,33 @@ namespace GroupFinalProject.Controllers
                 return newRs.DistinctBy(r => r.RecipeId).ToList();
             }
 
-        
+        [HttpGet("getAllMeals")]
+
+        public List<MealPlan> getAllMeals(string userid)
+        {
+            return context.MealPlans.Include(m => m.Recipe).Where(f => f.UserId == userid).ToList();
+        }
+
+        [HttpGet("getMealPlanView")]
+        public List<MealPlanView> getMealPlanViews(string userid)
+        {
+            List<MealPlanView> mealPlanViews = new List<MealPlanView>();
+            List<MealPlan> mealList = new List<MealPlan>();
+            mealList = context.MealPlans.Where(m => m.UserId == userid).ToList();
+
+            foreach (MealPlan m in mealList)
+            {
+                MealPlanView mpv = new MealPlanView()
+                {
+                    Id = m.Id,
+                    UserId = m.UserId,
+                    Date = (DateTime)m.Date,
+                    Recipe = context.Recipes.FirstOrDefault(r => r.Id == m.RecipeId)
+                };
+                mealPlanViews.Add(mpv);
+            }
+            return mealPlanViews;
+        }
 
         [HttpPost("addMealPlan")]
         public MealPlan addMealPlan(string userId,int recipeId,DateTime date)
