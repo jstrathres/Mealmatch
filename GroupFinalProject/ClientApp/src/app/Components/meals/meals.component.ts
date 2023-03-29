@@ -58,7 +58,7 @@ export class MealsComponent implements OnInit {
   }
 
   searchCategory(Cat:string) {
-    this.mealService.getMeals(this.search).subscribe(
+    this.mealService.getMeals(Cat).subscribe(
       (response: MealDetail) => {
         console.log(response);
         console.log(this.search);
