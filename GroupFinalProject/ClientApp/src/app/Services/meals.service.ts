@@ -17,7 +17,7 @@ export class MealsService {
   constructor(private http: HttpClient) {}
 
   
-//experimental code
+//external API call
   getMeals(Input: string): Observable<MealDetail> {
     return this.http.get<MealDetail>(`${this.url}${Input}&number=6`);
   }

@@ -1,11 +1,11 @@
 <!-- search meal functionality -->
-<div (keydown.enter)="searchInput()" (keydown.enter)="showSearchResults=true">
+<div (keydown.enter)="searchInput()">
 
     <input type="text" [(ngModel)]="search" />
-    <button (click)="searchInput()" (click)="showSearchResults=true">Search Meals</button>
+    <button (click)="searchInput()">Search Meals</button>
     
 <!-- displays results -->
-    <div class="row" *ngIf="showSearchResults" >
+    <div class="row">
         <div *ngFor="let p of result.results; index as i" class="col-sm-4 mb-4">
             <h4 style="color:black; font-weight:bold;">{{p.title}}</h4>
             <img src="{{p.image}}" />
