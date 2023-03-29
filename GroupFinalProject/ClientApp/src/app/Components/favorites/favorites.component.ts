@@ -91,10 +91,10 @@ export class FavoritesComponent implements OnInit {
     console.log(this.userProfile.goal);
     console.log(this.userProfile.weight);
     console.log(this.user.id);
-    if(this.userProfile.goal=="lose weight"){
+    if(this.userProfile.goal=="Lose Weight"){
       dailyCalGoal = daily - 500;
     }
-    else if(this.userProfile.goal=="gain weight"){
+    else if(this.userProfile.goal=="Gain Weight"){
       dailyCalGoal = daily + 500;
     }
     else{
@@ -107,10 +107,10 @@ export class FavoritesComponent implements OnInit {
     console.log(minutesOfExercise);
     let goal:number = Number((minutesOfExercise).toFixed(0));
     if(goal>0){
-      return `Your Goal for Today: ${goal} minutes of moderate intensity exercise (e.g., brisk walk).`;
+      return `${goal} minutes of moderate intensity exercise (e.g., brisk walk).`;
     }
     else{
-      return 'Great job! No exercise needed to meet your fitness goals.'
+      return 'No exercise needed!'
     }
     
   }

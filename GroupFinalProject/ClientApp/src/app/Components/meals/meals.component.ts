@@ -45,7 +45,7 @@ export class MealsComponent implements OnInit {
       this.loggedIn = user != null;
       console.log(this.user);
     });
-    this.searchInput2();
+    
     this.getFavorite();
   }
 

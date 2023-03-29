@@ -1,13 +1,33 @@
 <p>select date</p>
 <input type="date" [(ngModel)]="setDate">
 
-<div *ngFor="let m of meals">
+<!-- <div *ngFor="let m of meals">
     <h3>{{m.recipeTitle}}</h3>
     <h4>{{m.dishTypes}}</h4>
     <p>calories: {{m.totalCalories}}</p>
     <img src= {{m.image}}/>
     <p>{{m.ingredients}}</p>
 <button (click)="deleteMealPlan(m.id)"> Delete Meal</button>
+</div> -->
+
+<div class="row">
+    <div *ngFor="let m of meals; index as i" class="row col-sm-4 mb-4">
+        <div class="col">
+            <div class="card">
+                <img src={{m.image}} class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{m.recipeTitle}}</h5>
+                    <h6>{{m.dishTypes}}</h6>
+                    <p class="card-text">calories: {{m.totalCalories}}</p>
+                    <!-- <p>{{m.ingredients}}</p> -->
+                    <!-- <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    <p>{{m.ingredients}}</p></button> -->
+                <button (click)="deleteMealPlan(m.id)">Remove Meal</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-
+   

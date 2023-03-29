@@ -111,10 +111,10 @@ export class ProfileComponent implements OnInit {
   mealQuota(cal:number){
     let daily:number=(this.weight*10)+500;
     let dailyCalGoal:number=0
-    if(this.goal="lose weight"){
+    if(this.goal="Lose Weight"){
       dailyCalGoal = daily - 500;
     }
-    else if(this.goal="gain weight"){
+    else if(this.goal="Gain Weight"){
       dailyCalGoal = daily + 500;
     }
     else{

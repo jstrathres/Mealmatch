@@ -22,13 +22,13 @@
 
 <!-- update profile form if user profile exists -->
 <div *ngIf="revealUpdateForm">
-    <p>Enter Weight (in pounds)</p>
+    <p>Enter Weight (lbs)</p>
     <input type="number" [(ngModel)]="userProfile.weight" id="weight" name="weight">
     <p>Enter Goal</p>
     <select [(ngModel)]="userProfile.goal" id="goal" name="goal">    
-      <option value="lose weight">Lose weight</option>
-      <option value="gain weight">Gain weight</option>
-      <option value="maintain weight">Maintain weight</option>
+      <option value="lose weight">Lose Weight</option>
+      <option value="gain weight">Gain Weight</option>
+      <option value="maintain weight">Maintain Weight</option>
     </select>
 
     <button (click)="updateProfile()" (click)="revealUpdateForm=false">update Profile</button>
@@ -42,9 +42,9 @@
     <input type="number" [(ngModel)]="userProfile.weight" id="weight" name="weight">
     <p>Enter Goal</p>
     <select [(ngModel)]="userProfile.goal" id="goal" name="goal">
-      <option value="lose weight">Lose weight</option>
-      <option value="gain weight">Gain weight</option>
-      <option value="maintain weight">Maintain weight</option>
+      <option value="lose weight">Lose Weight</option>
+      <option value="gain weight">Gain Weight</option>
+      <option value="maintain weight">Maintain Weight</option>
     </select>
     <button (click)="addProfile()" (click)="toggleAddedUser()">Add Profile</button>
 

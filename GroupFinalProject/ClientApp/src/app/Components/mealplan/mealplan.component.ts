@@ -18,6 +18,7 @@ export class MealplanComponent implements OnInit {
   date:Date = {} as Date;
   mealPlan:MealPlan = {} as MealPlan;
   meals: Recipe[] = [];
+  togAcc: boolean[] = [];
   constructor(private userService: UserService, private authService:SocialAuthService) { }
 
   ngOnInit(): void {
@@ -52,5 +53,5 @@ getMeals():void{
       this.getMeals();
     })
   }
-  
+    
 }
