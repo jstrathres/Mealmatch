@@ -5,6 +5,7 @@ import { Favorite } from '../Models/favorite';
 import { Recipe } from '../Models/recipe';
 import { Profile } from 'oidc-client';
 import { MealPlan } from '../Models/meal-plan';
+import { MealPlanView } from '../Models/meal-plan-view';
 
 @Injectable({
   providedIn: 'root',
@@ -98,6 +99,19 @@ export class UserService {
   getMeals(userId: string): Observable<Recipe[]> {
     return this.http.get<Recipe[]>(
       `${this.baseUrl}api/User/getMeals?userid=${userId}`,
+      {}
+    );}
+
+  getAllMeals(userId: string): Observable<MealPlan[]> {
+      return this.http.get<MealPlan[]>(
+        `${this.baseUrl}api/User/getAllMeals?userid=${userId}`,
+        {}
+      );
+    }
+
+  getMealPlanView(userId: string): Observable<MealPlanView[]> {
+    return this.http.get<MealPlanView[]>(
+      `${this.baseUrl}api/User/getMealPlanView?userid=${userId}`,
       {}
     );
   }

@@ -2,7 +2,6 @@ import { SocialUser, SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { Favorite } from 'src/app/Models/favorite';
 import { Ingredient, MealDetail, Result, Step } from 'src/app/Models/meal-detail';
-// import { MealsResult, Result } from 'src/app/Models/Meals';
 import { Recipe } from 'src/app/Models/recipe';
 import { MealsService } from '../../Services/meals.service';
 import { UserService } from '../../Services/user.service';
@@ -21,18 +20,13 @@ export class MealsComponent implements OnInit {
 
   // Object variables
   Recipes: Recipe[] = [];
-  detail:Result= {} as Result;
-  // result: MealsResult = {} as MealsResult;
-  //experimental code
-  result2: MealDetail = {} as MealDetail;
-  // detail: NutritionDetail = {} as NutritionDetail;
+  detail: Result= {} as Result;
+  result: MealDetail = {} as MealDetail;
   user: SocialUser = {} as SocialUser;
 
   // boolean variables
   isFavorited: boolean[] = [];
-  displayNutrients: boolean[] = [];
   loggedIn: boolean = false;
-  showSearchResults: boolean = false;
 
   // other variables
   search: string = '';
@@ -45,34 +39,20 @@ export class MealsComponent implements OnInit {
       this.loggedIn = user != null;
       console.log(this.user);
     });
+<<<<<<< HEAD
     
+=======
+>>>>>>> d07b3ebebf5521399b29c5d65c13cdbda3df494e
     this.getFavorite();
   }
 
   //search bar method
-  // searchInput() {
-  //   this.mealService.getMeals(this.search).subscribe(
-  //     (response: MealsResult) => {
-  //       console.log(response);
-  //       console.log(this.search);
-  //       this.result = response;
-  //       this.displayNutrients = new Array(response.results.length);
-  //     },
-  //     (error) => {
-  //       console.log(error);
-  //       this.status = `${this.search} not a valid input`;
-  //     }
-  //   );
-  // }
-
-  //Experimental Code
-  searchInput2() {
-    this.mealService.getMeals2(this.search).subscribe(
+  searchInput() {
+    this.mealService.getMeals(this.search).subscribe(
       (response: MealDetail) => {
         console.log(response);
         console.log(this.search);
-        this.result2 = response;
-        this.displayNutrients = new Array(response.results.length);
+        this.result = response;
       },
       (error) => {
         console.log(error);
@@ -82,25 +62,12 @@ export class MealsComponent implements OnInit {
   }
 
   // toggle methods
-  toggleDisplayNutrients(index: number): void {
-    this.displayNutrients[index] = !this.displayNutrients[index];
-  }
 
   toggleFavorite(index: number): void {
     this.isFavorited[index] = !this.isFavorited[index];
   }
 
   // favorite methods
-  // addFavorite(recipeId: number, userid: string, targetRecipe: Result): void {
-  //   this.addRecipe(
-  //     targetRecipe.id,
-  //     targetRecipe.title,
-  //     targetRecipe.image,
-  //     targetRecipe.sourceUrl,
-  //     targetRecipe.readyInMinutes,
-  //     targetRecipe.servings
-  //   );
-  // }
 
   deleteFavorite(recipeid: number): void {
     this.getFavorite();
@@ -121,15 +88,7 @@ export class MealsComponent implements OnInit {
       });
   }
 
-  // nutrition details method
-  // getNutrientDetails(id: number): void {
-  //   this.mealService.getDetails(id).subscribe((response: NutritionDetail) => {
-  //     this.detail = response;
-  //   });
-  // }
-
   // adds recipe to internal DB
-  // TECHNICAL QUESTION!!!!!!
   addRecipe(selectedRecipe:Result): void {
     let dishTypes="";
     let caloricBreakdown=`${selectedRecipe.nutrition.caloricBreakdown.percentCarbs},${selectedRecipe.nutrition.caloricBreakdown.percentFat},${selectedRecipe.nutrition.caloricBreakdown.percentProtein}`;
@@ -142,7 +101,6 @@ export class MealsComponent implements OnInit {
     if(selectedRecipe.analyzedInstructions.length>0) {
       selectedRecipe.analyzedInstructions[0].steps.forEach((d:Step)=>instructions+=`${d.step},`);
     }
-    
     this.userService
       .addRecipe(
         selectedRecipe.id,
@@ -166,11 +124,5 @@ export class MealsComponent implements OnInit {
           });
       });
   }
-
-  newGoal(cal:number) {
-    let goal = (cal/100).toFixed(2);
-    // goal output
-    return `Your Goal for Today, Please Walk ${goal} Miles, Are You Serious`;
-   }
 
 }

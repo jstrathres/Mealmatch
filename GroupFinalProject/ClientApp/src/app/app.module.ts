@@ -10,7 +10,6 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FavoritesComponent } from './Components/favorites/favorites.component';
 import { MealsComponent } from './Components/meals/meals.component';
-import { NutritiondetailComponent } from './Components/nutritiondetail/nutritiondetail.component';
 import { Secret } from './Models/secret';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { MealplanComponent } from './Components/mealplan/mealplan.component';
@@ -23,7 +22,6 @@ import { MealplanComponent } from './Components/mealplan/mealplan.component';
     CounterComponent,
     FavoritesComponent,
     MealsComponent,
-    NutritiondetailComponent,
     ProfileComponent,
     MealplanComponent
   ],

@@ -4,8 +4,6 @@ import { Profile } from 'oidc-client';
 import { Favorite } from 'src/app/Models/favorite';
 import { MealPlan } from 'src/app/Models/meal-plan';
 import { Recipe } from 'src/app/Models/recipe';
-import { NutritionDetail } from '../../Models/nutrition.details';
-import { MealsService } from '../../Services/meals.service';
 import { UserService } from '../../Services/user.service';
 
 @Component({
@@ -17,7 +15,6 @@ export class FavoritesComponent implements OnInit {
   constructor(
     private userService: UserService,
     private authService: SocialAuthService,
-    private mealService: MealsService,
    
   ) {}
 
@@ -25,7 +22,6 @@ export class FavoritesComponent implements OnInit {
   Recipes: Recipe[] = [];
   favorite: Favorite[] = [];
   user: SocialUser = {} as SocialUser;
-  detail: NutritionDetail = {} as NutritionDetail;
   userProfile: Profile = {} as Profile;
   mealPlan: MealPlan = {} as MealPlan;
   date:Date = {} as Date;
@@ -34,6 +30,7 @@ export class FavoritesComponent implements OnInit {
   // toggles booleans
   loggedIn: boolean = false;
   displayDate: boolean[] = [];
+  doesProfileExist:boolean=false;
 
   //On init Method
   ngOnInit(): void {
@@ -65,23 +62,27 @@ export class FavoritesComponent implements OnInit {
       });
   }
 
+  // profile methods
   getProfile():void{
     this.userService.getProfile(this.user.id)
     .subscribe((response: Profile)=>{
-      this.userProfile=response;
-    })
+      console.log(response);
+      if (response) {
+        this.userProfile = response;
+      }
+      this.profileExists();
+    });
   }
 
-  // nutrition details method
-  // getDetails(id: number): void {
-  //   this.mealService.getDetails(id).subscribe((response: NutritionDetail) => {
-  //     this.detail = response;
-  //   });
-  // }
-  // toggle methods
-  // toggleDisplayNutrients(index: number): void {
-  //   this.displayNutrients[index] = !this.displayNutrients[index];
-  // }
+  profileExists(): void {
+    if (!this.userProfile.goal) {
+      this.doesProfileExist = false;
+    } else {
+      this.doesProfileExist = true;
+    }
+  }
+
+  // goal methods
 
   mealQuota(cal:number){
     console.log(cal);
@@ -114,6 +115,8 @@ export class FavoritesComponent implements OnInit {
     }
     
   }
+
+  // mealplan methods
   addMealPlan(recipeId:number):void{
     this.userService.addMealPlan(this.user.id,recipeId,this.date).subscribe((
       response:MealPlan) =>{
@@ -122,9 +125,8 @@ export class FavoritesComponent implements OnInit {
       }
       );
   }
+  
   toggleDate(index: number): void {
     this.displayDate[index] = !this.displayDate[index];
   }
-
-
 }

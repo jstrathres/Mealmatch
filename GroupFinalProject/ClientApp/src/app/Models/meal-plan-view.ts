@@ -1,9 +1,8 @@
 import { Recipe } from "./recipe";
 
-export interface MealPlan {
+export interface MealPlanView {
     id:number;
     userId:string;
-    recipeId:number;
     date:Date;
     recipe:Recipe;
 }
