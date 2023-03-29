@@ -92,10 +92,10 @@ export class FavoritesComponent implements OnInit {
     console.log(this.userProfile.goal);
     console.log(this.userProfile.weight);
     console.log(this.user.id);
-    if(this.userProfile.goal=="Lose Weight"){
+    if(this.userProfile.goal=="lose weight"){
       dailyCalGoal = daily - 500;
     }
-    else if(this.userProfile.goal=="Gain Weight"){
+    else if(this.userProfile.goal=="gain weight"){
       dailyCalGoal = daily + 500;
     }
     else{

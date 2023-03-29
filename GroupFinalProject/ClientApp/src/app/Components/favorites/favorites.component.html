@@ -1,34 +1,4 @@
-<!--orginal list-->
-<!-- displays favorite recipe list -->
-<div class="row">
-    <div *ngFor="let r of Recipes; index as i" class="col-sm-4 mb-4">
-        <h2>{{r.recipeTitle}}</h2>
-        <img src="https://spoonacular.com/recipeImages/{{r.recipeId}}-312x150.jpg" />
-        <p>Ready in Minutes: {{r.readyInMinutes}}</p>
-        <p>Servings: {{r.servings}}</p>
-        Goal displays only if profile exists
-        <div *ngIf="userProfile.goal">
-            <p>Your Goal: {{userProfile.goal}}</p>
-            <p>Goal: {{ mealQuota(r.totalCalories) }}</p>
-        </div>
-        <!-- removes favorite -->
-        <button (click)="deleteFavorite(r.id)">Remove from Favorites</button>
-        <!-- Add to mealplan exists only if profile exists -->
-        <div *ngIf="userProfile.goal">
-            <button (click)="toggleDate(i)">Add to Meal Plan</button>
-            <div *ngIf="displayDate[i]">
-                <p>select date</p>
-                <input type="date" [(ngModel)]="date">
-                <button (click)="addMealPlan(r.id)" (click)="displayDate[i]=false">Confirm</button>
-            </div>
-        </div>
-    </div>               
-</div>
 
-<!------------------------------------------------------------------------------------>
-
-
-<!--grid card attempt-->
 <div class="row">
     <!-- <div *ngFor="let r of Recipes; index as i" class="row row-cols-1 row-cols-md-2 g-4"> -->
     <div *ngFor="let r of Recipes; index as i" class="row col-sm-4 mb-4">
@@ -41,6 +11,13 @@
                     <p><b>Servings:</b> {{r.servings}}</p>
                     <p><b>Goal:</b> {{userProfile.goal}}</p>
                     <p><b>Plan:</b> {{ mealQuota(r.totalCalories) }}</p>
+                    <div *ngIf="userProfile.goal">
+                        <button (click)="toggleDate(i)">Add to Meal Plan</button>
+                        <div *ngIf="displayDate[i]">
+                            <p>select date</p>
+                            <input type="date" [(ngModel)]="date">
+                            <button (click)="addMealPlan(r.id)" (click)="displayDate[i]=false">Confirm</button>
+                        </div>
                     <button (click)="deleteFavorite(r.id)">Remove Favorite</button>
                 </div>
             </div>

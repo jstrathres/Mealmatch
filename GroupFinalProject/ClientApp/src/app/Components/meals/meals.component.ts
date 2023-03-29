@@ -39,10 +39,6 @@ export class MealsComponent implements OnInit {
       this.loggedIn = user != null;
       console.log(this.user);
     });
-<<<<<<< HEAD
-    
-=======
->>>>>>> d07b3ebebf5521399b29c5d65c13cdbda3df494e
     this.getFavorite();
   }
 
