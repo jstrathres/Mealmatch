@@ -27,6 +27,7 @@ export class MealsComponent implements OnInit {
   // boolean variables
   isFavorited: boolean[] = [];
   loggedIn: boolean = false;
+  seeMore: boolean = false;
 
   // other variables
   search: string = '';
@@ -97,6 +98,10 @@ export class MealsComponent implements OnInit {
 
   toggleFavorite(index: number): void {
     this.isFavorited[index] = !this.isFavorited[index];
+  }
+
+  toggleSeeMore():void{
+    this.seeMore = !this.seeMore;
   }
 
   // favorite methods
