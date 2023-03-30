@@ -4,7 +4,7 @@
   <div *ngIf="!loggedIn" style="display: flex; justify-content: center;"></div>
   <!-- <button class="btn btn-outline-dark" *ngIf="loggedIn"  (click)="signOut()">Sign Out
   </button> -->
-      <div style="display: flex; justify-content: center;">
+      <div style="display: flex; justify-content: center;" *ngIf="!loggedIn">
         <asl-google-signin-button>Sign In</asl-google-signin-button>
       </div>      
   <img src="http://dmexco-koeln-nrw.de/wp-content/uploads/2017/08/logo_mealmatch-768x576.png" style="width: 400px;
