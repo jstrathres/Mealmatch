@@ -14,9 +14,10 @@
               <img src={{m.recipe.image}} class="card-img-top">
               <div class="card-body">
                   <h1 class="card-title" class="text-center">{{m.recipe.recipeTitle}}</h1>
-                  <h4 class="card-text" class="text-center">Calories: {{m.recipe.totalCalories}}</h4>
+                  <h4 class="card-text" class="text-center">Calories: {{m.recipe.totalCalories}}</h4><p class="text-center">per serving ({{m.recipe.servings}})</p>
                   <p><b>Goal:</b> {{userProfile.goal}}</p>
                   <p><b>Plan:</b> {{ mealQuota(m.recipe.totalCalories) }}</p>
+                  <br>
                   <p *ngIf="m.recipe.ingredients!=null">{{stringConverterIngredients(m.recipe.ingredients)}}</p>
             <strong class="btn btn-outline-success" *ngIf="m.recipe.ingredients!=null" (click)="toggleIngredients(i)">See Ingredients</strong>
             <!-- <button *ngIf="m.ingredients!=null" (click)="toggleIngredients(i)">see ingredients</button> -->
