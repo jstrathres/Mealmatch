@@ -32,6 +32,7 @@
                                 <li>{{d}}</li>
                             </ul>
                         </div>
+                        <br><br>
                         <!-- allows user to add meal to favorite list  -->
                         <div *ngIf="user!=null && !isFavorited[i]">
                             <strong class="btn btn-secondary" (click)="addRecipe(p)" (click)="toggleFavorite(i)">Like
