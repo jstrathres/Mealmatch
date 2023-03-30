@@ -80,11 +80,9 @@ stringConverterInstructions(instrString:string):void{
 
 }
 
-deleteMealPlan(recipeId:number):void{
-    this.userService.deleteMealPlan(this.user.id,recipeId).subscribe((response:MealPlan)=>{
+deleteMealPlan(id:number):void{
+    this.userService.deleteMealPlan(this.user.id,id).subscribe((response:MealPlan)=>{
       console.log(response);
-      // this.getMeals();
-      // this.getAllMeals();
       this.getMealPlanView();
     })
   }
