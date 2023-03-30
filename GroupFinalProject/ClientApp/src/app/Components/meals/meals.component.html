@@ -1,17 +1,18 @@
 <!-- search meal functionality -->
 <div (keydown.enter)="searchInput()">
-<!-- <div class="col-sm-4">
-    <button (click)="searchCategory('breakfast')">Breakfast</button>
-    <button (click)="searchCategory('lunch')">Lunch</button>
-    <button (click)="searchCategory('dinner')">Dinner</button>
-    <button (click)="searchCategory('drinks')">Drinks</button>
-</div> -->
-    <input type="text" [(ngModel)]="search" />
+<input type="text" [(ngModel)]="search" />
+<!-- Category options -->
+<select [(ngModel)]="category" id="category" name="category">
+    <option value="">Select Category</option>     
+  <option value="main course">Main Course</option>
+  <option value="side dish">Side</option>
+  <option value="dessert">Dessert</option>
+  <option value="drink">Drink</option>
+</select>
+<!-- Submit button to query results -->
 <button (click)="searchInput()">Search Meals</button>
-
 <!-- displays results -->
 <div class="row">
-    <!-- <div *ngIf="showSearchResults"></div> -->
         <div *ngFor="let p of result.results; index as i" class="row col-sm-4 mb-4">
             <div class="col">
                 <div class="card">
@@ -21,7 +22,6 @@
                         <p class="card-text">Minutes to cook: {{p.readyInMinutes}}</p>
                         <p>Servings: {{p.servings}}</p>
                         <p>{{p.nutrition.nutrients[0].name}}: {{p.nutrition.nutrients[0].amount}}</p>
-                        <!-- <p>{{p.nutrition.nutrients[0].name}}: {{p.nutrition.nutrients[0].amount}}</p> -->
                         <ul *ngFor="let d of p.dishTypes">
                             <li>{{d}}</li>
                         </ul>

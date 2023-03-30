@@ -16,7 +16,7 @@
                         <div *ngIf="displayDate[i]">
                             <p>select date</p>
                             <input type="date" [(ngModel)]="date">
-                            <button (click)="addMealPlan(r.id)" (click)="displayDate[i]=false">Confirm</button>
+                            <button (click)="addMealPlan(r.id)" (click)="toggleDate(i)">Confirm</button>
                         </div>
                     <button (click)="deleteFavorite(r.id)">Remove Favorite</button>
                 </div>

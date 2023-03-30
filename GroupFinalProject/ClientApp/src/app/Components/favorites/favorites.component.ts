@@ -26,7 +26,6 @@ export class FavoritesComponent implements OnInit {
   mealPlan: MealPlan = {} as MealPlan;
   date:Date = {} as Date;
   
-
   // toggles booleans
   loggedIn: boolean = false;
   displayDate: boolean[] = [];
@@ -85,13 +84,13 @@ export class FavoritesComponent implements OnInit {
   // goal methods
 
   mealQuota(cal:number){
-    console.log(cal);
+    // console.log(cal);
     let daily:number=(this.userProfile.weight*10)+500;
-    console.log(daily);
+    // console.log(daily);
     let dailyCalGoal:number=0
-    console.log(this.userProfile.goal);
-    console.log(this.userProfile.weight);
-    console.log(this.user.id);
+    // console.log(this.userProfile.goal);
+    // console.log(this.userProfile.weight);
+    // console.log(this.user.id);
     if(this.userProfile.goal=="lose weight"){
       dailyCalGoal = daily - 500;
     }
@@ -101,11 +100,11 @@ export class FavoritesComponent implements OnInit {
     else{
       dailyCalGoal = daily;
     }
-    console.log(dailyCalGoal);
+    // console.log(dailyCalGoal);
     let calorieSurplus:number= (cal)*2 - (dailyCalGoal/3);
-    console.log(calorieSurplus);
+    // console.log(calorieSurplus);
     let minutesOfExercise:number=((calorieSurplus/300)*60);
-    console.log(minutesOfExercise);
+    // console.log(minutesOfExercise);
     let goal:number = Number((minutesOfExercise).toFixed(0));
     if(goal>0){
       return `${goal} minutes of moderate intensity exercise (e.g., brisk walk).`;
@@ -118,10 +117,17 @@ export class FavoritesComponent implements OnInit {
 
   // mealplan methods
   addMealPlan(recipeId:number):void{
+    if(Object.keys(this.date).length===0){
+      console.log('left');
+      return;
+    }
+    console.log('right');
     this.userService.addMealPlan(this.user.id,recipeId,this.date).subscribe((
       response:MealPlan) =>{
         this.mealPlan = response;
-        console.log(response)
+        console.log(response);
+        console.log(this.date);
+        this.date = {} as Date;
       }
       );
   }
