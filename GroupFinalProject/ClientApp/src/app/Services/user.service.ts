@@ -96,18 +96,18 @@ export class UserService {
     );
   }
 
-  getMeals(userId: string): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(
-      `${this.baseUrl}api/User/getMeals?userid=${userId}`,
-      {}
-    );}
+  // getMeals(userId: string): Observable<Recipe[]> {
+  //   return this.http.get<Recipe[]>(
+  //     `${this.baseUrl}api/User/getMeals?userid=${userId}`,
+  //     {}
+  //   );}
 
-  getAllMeals(userId: string): Observable<MealPlan[]> {
-      return this.http.get<MealPlan[]>(
-        `${this.baseUrl}api/User/getAllMeals?userid=${userId}`,
-        {}
-      );
-    }
+  // getAllMeals(userId: string): Observable<MealPlan[]> {
+  //     return this.http.get<MealPlan[]>(
+  //       `${this.baseUrl}api/User/getAllMeals?userid=${userId}`,
+  //       {}
+  //     );
+  //   }
 
   getMealPlanView(userId: string): Observable<MealPlanView[]> {
     return this.http.get<MealPlanView[]>(

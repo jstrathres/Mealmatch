@@ -106,8 +106,9 @@ export class FavoritesComponent implements OnInit {
     let minutesOfExercise:number=((calorieSurplus/300)*60);
     // console.log(minutesOfExercise);
     let goal:number = Number((minutesOfExercise).toFixed(0));
+    let hiGoal:number = Number(((minutesOfExercise)/3).toFixed(0))
     if(goal>0){
-      return `${goal} minutes of moderate intensity exercise (e.g., brisk walk).`;
+      return `${goal} minutes of moderate intensity exercise (e.g., brisk walk) or ${hiGoal} minutes of high intensity exercise (e.g., run or weightlifting).`;
     }
     else{
       return 'No exercise needed!'
