@@ -1,6 +1,6 @@
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
-import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Profile } from 'oidc-client';
 import { MealPlan } from 'src/app/Models/meal-plan';
 import { MealPlanView } from 'src/app/Models/meal-plan-view';
 import { Recipe } from 'src/app/Models/recipe';
@@ -20,11 +20,13 @@ export class MealplanComponent implements OnInit {
   meals: Recipe[] = [];
   mealplans: MealPlan[]=[];
   mealplanviews: MealPlanView[]=[];
+  userProfile:Profile = {} as Profile;
 
   // boolean variables
   loggedIn: boolean = false;
   displaysIngredients:boolean[]=[];
   displaysInstructions:boolean[]=[];
+  doesProfileExist:boolean=false;
 
   //other variables
   ingredientsArray:Array<string>=[];
@@ -41,23 +43,31 @@ ngOnInit(): void {
       console.log(this.user);
       // this.getMeals();
       this.getMealPlanView();
+      this.getProfile();
     });
   }
-  
-// mealplan methods
-// getMeals():void{
-//   this.userService.getMeals(this.user.id).subscribe((response:Recipe[])=>{
-//     this.meals = response
-//     console.log(response)
-//   });  
-// }
 
-// getAllMeals():void{
-//   this.userService.getAllMeals(this.user.id).subscribe((response:MealPlan[])=>{
-//     this.mealplans = response
-//     console.log(response)
-//   });  
-// }
+    // profile methods
+    getProfile():void{
+      this.userService.getProfile(this.user.id)
+      .subscribe((response: Profile)=>{
+        console.log(response);
+        if (response) {
+          this.userProfile = response;
+        }
+        this.profileExists();
+      });
+    }
+  
+    profileExists(): void {
+      if (!this.userProfile.goal) {
+        this.doesProfileExist = false;
+      } else {
+        this.doesProfileExist = true;
+      }
+    }
+
+// meal methods
 
 getMealPlanView():void{
   this.userService.getMealPlanView(this.user.id).subscribe((response:MealPlanView[])=>{
@@ -93,6 +103,32 @@ deleteMealPlan(id:number):void{
 
   toggleInstructions(index: number): void {
     this.displaysInstructions[index] = !this.displaysInstructions[index];
+  }
+
+  // goal methods
+
+  mealQuota(cal:number){
+    let daily:number=(this.userProfile.weight*10)+500;
+    let dailyCalGoal:number=0
+    if(this.userProfile.goal=="lose weight"){
+      dailyCalGoal = daily - 500;
+    }
+    else if(this.userProfile.goal=="gain weight"){
+      dailyCalGoal = daily + 500;
+    }
+    else{
+      dailyCalGoal = daily;
+    }
+    let calorieSurplus:number= (cal)*2 - (dailyCalGoal/3);
+    let minutesOfExercise:number=((calorieSurplus/300)*60);
+    let goal:number = Number((minutesOfExercise).toFixed(0));
+    let hiGoal:number = Number(((minutesOfExercise)/3).toFixed(0))
+    if(goal>0){
+      return `${goal} minutes of moderate intensity exercise (e.g., brisk walk) or ${hiGoal} minutes of high intensity exercise (e.g., run or weightlifting).`;
+    }
+    else{
+      return 'No exercise needed!'
+    } 
   }
 
 }
