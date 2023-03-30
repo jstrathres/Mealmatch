@@ -26,12 +26,13 @@
                         </div>
                         <br><br>
                         <div *ngIf="mealPlanConfirm[i]">
-                            <h4>You added {{r.recipeTitle}} to your meal plan. Check out your <a [routerLink]="['/mealplan']">mealplan page.</a></h4>
+                            <h4><b><i>{{r.recipeTitle}}</i></b> has been added to your meal plan! Visit: <a [routerLink]="['/mealplan']">Meal Plan</a></h4>
                         </div>
                         <div *ngIf="invalidDate[i]">
                             <h4>Invalid date.  Please try again</h4>
+                        </div>
                         <strong class="btn btn-outline-danger" (click)="deleteFavorite(r.id)">Remove Favorite</strong>
-                </div>
+                
             </div>
         </div>
     </div>
