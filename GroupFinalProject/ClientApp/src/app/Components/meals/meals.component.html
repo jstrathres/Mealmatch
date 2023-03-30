@@ -1,9 +1,11 @@
 <!-- search meal functionality -->
+<h1 class="text-center">Meal Search</h1>
+<p style="text-align: c;" *ngIf="loggedIn">{{ user.name }} Please search meals by type and/or category</p>
 <div (keydown.enter)="searchInput()">
 <input type="text" [(ngModel)]="search" />
 <!-- Category options -->
 <select [(ngModel)]="category" id="category" name="category">
-    <option value="">Select Category</option>     
+<option value="">Select Category</option>     
   <option value="main course">Main Course</option>
   <option value="side dish">Side</option>
   <option value="dessert">Dessert</option>
@@ -18,16 +20,18 @@
                 <div class="card">
                     <img src="{{p.image}}" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title">{{p.title}}</h5>
-                        <p class="card-text">Minutes to cook: {{p.readyInMinutes}}</p>
-                        <p>Servings: {{p.servings}}</p>
-                        <p>{{p.nutrition.nutrients[0].name}}: {{p.nutrition.nutrients[0].amount}}</p>
+                        <h4 class="card-title"><b>{{p.title}}</b></h4>
+                        <br>
+                        <h5 class="card-text"><b>Minutes to cook:</b> {{p.readyInMinutes}}</h5>
+                        <p><b>{{p.nutrition.nutrients[0].name}}:</b> {{p.nutrition.nutrients[0].amount}}</p>
+                        <p><b>Servings:</b> {{p.servings}}</p>
+                        <!-- <p>{{p.nutrition.nutrients[0].name}}: {{p.nutrition.nutrients[0].amount}}</p> -->
                         <ul *ngFor="let d of p.dishTypes">
                             <li>{{d}}</li>
                         </ul>
     <!-- allows user to add meal to favorite list  -->
                     <div *ngIf="user!=null && !isFavorited[i]">
-                    <button class="btn btn-outline-info" (click)="addRecipe(p)" (click)="toggleFavorite(i)">👍Add Favorite</button>
+                    <strong class="btn btn-secondary" (click)="addRecipe(p)" (click)="toggleFavorite(i)">Like Meal 👍</strong>
                     <!-- add to favorites feedback/allows user to delete meal -->
                 <div *ngIf="isFavorited[i]">
                     <h3 >{{user.firstName}} added {{p.title}} to Favorites! 👍</h3>

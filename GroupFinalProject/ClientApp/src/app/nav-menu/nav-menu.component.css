@@ -24,3 +24,7 @@ a.nav-link {
   color: green;
 }
 
+button.btn.btn-outline-dark {
+  font-size: 12px;
+  padding: 5px 10px;
+}
