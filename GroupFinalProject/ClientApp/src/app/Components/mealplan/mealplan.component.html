@@ -1,4 +1,5 @@
-<p>select date</p>
+<h1>{{user.name}}'s Meal Plan</h1>
+<p>Select Date</p>
 <input type="date" [(ngModel)]="selectedDate">
 <h1 *ngIf="matchingMeals().length==0">No meals on this day.</h1>
 <!-- <div *ngFor="let m of matchingMeals(); index as i">

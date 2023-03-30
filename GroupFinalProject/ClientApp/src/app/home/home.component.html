@@ -10,6 +10,7 @@
       <p></p>
       <li>With MealMatch, you can browse through our curated meal options, filter by dietary requirements, and even save your favorite meals for future reference. We also provide nutritional information for each meal, so you can make an informed decision about what you're putting into your body.</li>
       <p>*Please Log In with Google to create your profile*</p>
+      <h3 *ngIf="loggedIn">Hello {{ user.name }}!</h3>
       <div style="display: flex; justify-content: center;">
         <asl-google-signin-button>Sign In</asl-google-signin-button>
       </div>      
