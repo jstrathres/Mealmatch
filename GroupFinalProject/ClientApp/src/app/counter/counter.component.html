@@ -1,11 +1,26 @@
 <div style="text-align: center;">
-    <img src="http://dmexco-koeln-nrw.de/wp-content/uploads/2017/08/logo_mealmatch-768x576.png" style="width: 400px;
-    border-radius: 75%;">
 <h1>Donations Are Welcomed</h1>
-<p>Hello {{ user.name }}! Keep our site running, with your small token of appreciation below- We can continue changing lives!</p>
-<p aria-live="polite">Funds Raised: $ <strong>{{ currentCount }}</strong></p>
+<br>
+<h5>Hello <b><i>{{ user.name }}!</i></b> Keep our site running, with your small token of appreciation. We can continue changing lives!</h5>
+<br>
+<h4>Contribute:</h4> 
+    <!-- <br> -->
+<div style="display: flex; justify-content: center;">
+    <!-- <h4>Contribute:</h4> 
+    <br> -->
+    <button (click)="incrementCounter()">$</button>
+ </div>
+ <br>
+<h2 aria-live="polite">Funds Raised: $ <strong>{{ currentCount }}</strong></h2>
 </div>
 
+<!-- <br>
 <div style="display: flex; justify-content: center;">
-    <button (click)="incrementCounter()">$</button>
+   <h5>Contribute:  </h5> <button (click)="incrementCounter()">$</button>
+</div> -->
+<br>
+
+<div style="text-align: center;">
+<img src="http://dmexco-koeln-nrw.de/wp-content/uploads/2017/08/logo_mealmatch-768x576.png" style="width: 400px;
+    border-radius: 75%;">
 </div>
