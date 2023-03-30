@@ -10,9 +10,10 @@
                     <h4 class="card-title" class="text-center"><b>{{r.recipeTitle}}</b></h4>
                     <br>
                     <p class="card-text"><b>Cook Time:</b> {{r.readyInMinutes}} Minutes</p>
+                    <p><b>Calories:</b> {{r.totalCalories}}</p>
                     <p><b>Servings:</b> {{r.servings}}</p>
                     <p><b>Goal:</b> {{userProfile.goal}}</p>
-                    <p><b>Plan:</b> {{ mealQuota(r.totalCalories) }} per serving:</p>
+                    <p><b>Plan:</b> {{ mealQuota(r.totalCalories) }}</p>
                     <br>
                     <div *ngIf="userProfile.goal">
                     <strong (click)="toggleDate(i)" class="btn btn-secondary">Add to Meal Plan</strong>
@@ -32,7 +33,8 @@
                             <h4>Invalid date.  Please try again</h4>
                         </div>
                         <strong class="btn btn-outline-danger" (click)="deleteFavorite(r.id)">Remove Favorite</strong>
-                
+                        
+                </div>
             </div>
         </div>
     </div>

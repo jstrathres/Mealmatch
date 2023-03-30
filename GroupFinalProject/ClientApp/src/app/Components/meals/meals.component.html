@@ -1,6 +1,6 @@
 <!-- search meal functionality -->
 <h1 class="text-center">Meal Search</h1>
-<p style="text-align: c;" *ngIf="loggedIn"><b><i>{{ user.name }}</i></b>, please search meals by type and/or ategory</p>
+<p style="text-align: c;" *ngIf="loggedIn"><b><i>{{ user.name }}</i></b>, please search meals by type and/or category</p>
 <div (keydown.enter)="searchInput()">
     <input type="text" [(ngModel)]="search" />
     <!-- Category options -->
@@ -32,7 +32,6 @@
                             <li><b>Health Score:</b> {{p.healthScore}}</li>
                             <li><b>Popular:</b> {{p.veryPopular}}</li>
                             <li><b>Vegan:</b> {{p.vegan}}</li>
-                            <li><b>Price Per Serving:</b> {{p.pricePerServing}}</li>
                         </ul>
                         <br><br>
                         <!-- allows user to add meal to favorite list  -->
