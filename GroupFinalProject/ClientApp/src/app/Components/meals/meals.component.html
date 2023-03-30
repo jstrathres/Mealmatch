@@ -1,6 +1,6 @@
 <!-- search meal functionality -->
 <h1 class="text-center">Meal Search</h1>
-<p style="text-align: c;" *ngIf="loggedIn"><b><i>{{ user.name }}</i></b>, please search meals by type and/or ategory</p>
+<p style="text-align: c;" *ngIf="loggedIn"><b><i>{{ user.name }}</i></b>, please search meals by type and/or category</p>
 <div (keydown.enter)="searchInput()">
     <input type="text" [(ngModel)]="search" />
     <!-- Category options -->
