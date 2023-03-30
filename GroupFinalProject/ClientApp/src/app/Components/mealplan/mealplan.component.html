@@ -26,8 +26,9 @@
 </div> -->
 
 <!--grid cards-->
+
 <div class="row">
-    <div *ngFor="let m of matchingMeals(); index as i" class="row col-sm-4 mb-4">
+  <div *ngFor="let m of matchingMeals(); index as i" class="row col-sm-4 mb-4">
         <div class="col">
             <div class="card">
                 <img src={{m.recipe.image}} class="card-img-top">
@@ -38,9 +39,9 @@
                     <p *ngIf="m.recipe.ingredients!=null">{{stringConverterIngredients(m.recipe.ingredients)}}</p>
                     <button *ngIf="m.recipe.ingredients!=null" (click)="toggleIngredients(i)">see ingredients</button>
                     <div *ngIf="displaysIngredients[i]">
-                        <div *ngFor="let ing of ingredientsArray">
-                            <p>{{ing}}</p>
-                        </div>
+                        <ul *ngFor="let ing of ingredientsArray">
+                            <li>{{ing}}</li>
+                        </ul>
                     </div>
                     <p *ngIf="m.recipe.instructions!=null">{{stringConverterInstructions(m.recipe.instructions)}}</p>
                     <p *ngIf="m.recipe.instructions==null">No instructions available.  See {{m.recipe.sourceUrl}}</p>
@@ -60,7 +61,6 @@
         </div>
     </div>
 </div>
-
 <!--accordian from bootstrap-->
 
 <!-- <div class="accordion accordion-flush" id="accordionFlushExample">

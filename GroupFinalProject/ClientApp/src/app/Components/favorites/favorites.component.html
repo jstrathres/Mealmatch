@@ -13,10 +13,16 @@
                     <p><b>Plan:</b> {{ mealQuota(r.totalCalories) }}</p>
                     <div *ngIf="userProfile.goal">
                         <button (click)="toggleDate(i)">Add to Meal Plan</button>
-                        <div *ngIf="displayDate[i]">
+                        <div *ngIf="displayDate[i]" >
                             <p>select date</p>
                             <input type="date" [(ngModel)]="date">
-                            <button (click)="addMealPlan(r.id)" (click)="toggleDate(i)">Confirm</button>
+                            <button (click)="addMealPlan(r.id)" (click)="toggleConfirm(i)">Confirm</button>
+                        </div>
+                        <div *ngIf="mealPlanConfirm[i]">
+                            <h4>You added {{r.recipeTitle}} to your meal plan. Check out your <a [routerLink]="['/mealplan']">mealplan page.</a></h4>
+                        </div>
+                        <div *ngIf="invalidDate[i]">
+                            <h4>Invalid date.  Please try again</h4>
                         </div>
                     <button (click)="deleteFavorite(r.id)">Remove Favorite</button>
                 </div>

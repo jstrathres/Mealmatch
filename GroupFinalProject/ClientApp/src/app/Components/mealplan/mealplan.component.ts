@@ -72,7 +72,7 @@ matchingMeals():MealPlanView[]{
 }
 
 stringConverterIngredients(ingString:string):void{
-  this.ingredientsArray=ingString.split(",");
+  this.ingredientsArray=ingString.substring(0,ingString.length-1).split(",");
 }
 
 stringConverterInstructions(instrString:string):void{

@@ -30,6 +30,8 @@ export class FavoritesComponent implements OnInit {
   loggedIn: boolean = false;
   displayDate: boolean[] = [];
   doesProfileExist:boolean=false;
+  mealPlanConfirm:boolean[]=[];
+  invalidDate:boolean[]=[];
 
   //On init Method
   ngOnInit(): void {
@@ -135,5 +137,22 @@ export class FavoritesComponent implements OnInit {
   
   toggleDate(index: number): void {
     this.displayDate[index] = !this.displayDate[index];
+    this.invalidDate[index]=false;
+    this.mealPlanConfirm[index] = false;
   }
+
+  toggleConfirm(index: number): void {
+    if(Object.keys(this.date).length===0){
+      this.invalidDate[index] = !this.invalidDate[index];
+      this.mealPlanConfirm[index] = false;
+      return;
+    }
+    else{
+      this.mealPlanConfirm[index] = !this.mealPlanConfirm[index];
+      this.invalidDate[index]=false;
+      this.displayDate[index]=false;
+    }
+
+  }
+
 }
