@@ -1,7 +1,45 @@
-<p>select date</p>
-<input type="date" [(ngModel)]="selectedDate">
-<h1 *ngIf="matchingMeals().length==0">No meals on this day.</h1>
-<div *ngFor="let m of matchingMeals(); index as i">
+<!--daily meals-->
+<h4 class="text-center">Select Date: <input type="date" [(ngModel)]="selectedDate"></h4>
+<br>
+<!-- <input type="date" [(ngModel)]="selectedDate"> -->
+<!-- <h1 *ngIf="matchingMeals().length==0">No meals on this day.</h1> -->
+
+<!--grid cards-->
+<div class="row">
+  <div *ngFor="let m of meals; index as i" class="row col-sm-6 mb-4">
+      <div class="col">
+          <div class="card">
+              <img src={{m.image}} class="card-img-top">
+              <div class="card-body">
+                  <h1 class="card-title" class="text-center">{{m.recipeTitle}}</h1>
+                  <h4 class="card-text" class="text-center">Calories: {{m.totalCalories}}</h4>
+                  <!-- <h6>{{m.dishTypes}}</h6> -->
+                  <p *ngIf="m.ingredients!=null">{{stringConverterIngredients(m.ingredients)}}</p>
+            <strong class="btn btn-outline-success" *ngIf="m.ingredients!=null" (click)="toggleIngredients(i)">See Ingredients</strong>
+            <!-- <button *ngIf="m.ingredients!=null" (click)="toggleIngredients(i)">see ingredients</button> -->
+            <div *ngIf="displaysIngredients[i]" class="text-center">
+                <div *ngFor="let ing of ingredientsArray">
+                    <p>{{ing}}</p>
+                </div>
+            </div>
+            <p *ngIf="m.instructions!=null">{{stringConverterInstructions(m.instructions)}}</p>
+            <p *ngIf="m.instructions==null">No instructions available.  See {{m.sourceUrl}}</p>
+            <strong *ngIf="m.instructions!=null" class="btn btn-outline-dark" (click)="toggleInstructions(i)">See Instructions</strong>
+            <div *ngIf="displaysInstructions[i]">
+                <div *ngFor="let inst of instructionsArray; index as p">
+                    <p>{{p+1}}. {{inst}}</p>
+                </div>
+            </div>
+            <br><br>
+              <strong class="btn btn-outline-danger" (click)="deleteMealPlan(m.id)">Remove Meal</strong>
+              </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+<!-- <div *ngFor="let m of matchingMeals(); index as i">
     <h3>{{m.recipe.recipeTitle}}</h3>
     <h4>{{m.recipe.dishTypes}}</h4>
     <p>calories: {{m.recipe.totalCalories}}</p>
@@ -20,65 +58,38 @@
         <div *ngFor="let inst of instructionsArray; index as p">
             <p>{{p+1}}. {{inst}}</p>
         </div>
-    </div>
+    </div> -->
     <!--not working-->
-<button (click)="deleteMealPlan(m.id)"> Delete Meal</button>
-</div>
+<!-- <button (click)="deleteMealPlan(m.id)"> Delete Meal</button>
+</div> -->
 
-<!--grid cards-->
-<div class="row">
-    <div *ngFor="let m of meals; index as i" class="row col-sm-4 mb-4">
-        <div class="col">
-            <div class="card">
-                <img src={{m.image}} class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">{{m.recipeTitle}}</h5>
-                    <h6>{{m.dishTypes}}</h6>
-                    <p class="card-text">calories: {{m.totalCalories}}</p>
-                    <!-- <p>{{m.ingredients}}</p> -->
-                    <!-- <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                    <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                    <p>{{m.ingredients}}</p></button> -->
-                <button (click)="deleteMealPlan(m.id)">Remove Meal</button>
+
+<!-- <div class="row">
+  <div *ngFor="let m of meals; index as i" class="row col-sm-4 mb-4">
+      <div class="col">
+          <div class="card">
+            <h3>{{m.recipeTitle}}</h3>
+            <h4>{{m.dishTypes}}</h4>
+            <p>calories: {{m.totalCalories}}</p>
+            <img src= {{m.image}}/>
+            <p *ngIf="m.ingredients!=null">{{stringConverterIngredients(m.ingredients)}}</p>
+            <button *ngIf="m.ingredients!=null" (click)="toggleIngredients(i)">see ingredients</button>
+            <div *ngIf="displaysIngredients[i]">
+                <div *ngFor="let ing of ingredientsArray">
+                    <p>{{ing}}</p>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<!--accordian from bootstrap-->
-
-<!-- <div class="accordion accordion-flush" id="accordionFlushExample">
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-          Accordion Item #1
-        </button>
-      </h2>
-      <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+            <p *ngIf="m.instructions!=null">{{stringConverterInstructions(m.instructions)}}</p>
+            <p *ngIf="m.instructions==null">No instructions available.  See {{m.sourceUrl}}</p>
+            <button *ngIf="m.instructions!=null" (click)="toggleInstructions(i)">see instructions</button>
+            <div *ngIf="displaysInstructions[i]">
+                <div *ngFor="let inst of instructionsArray; index as p">
+                    <p>{{p+1}}. {{inst}}</p>
+                </div>
+            </div>
+          </div>
       </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-          Accordion Item #2
-        </button>
-      </h2>
-      <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-          Accordion Item #3
-        </button>
-      </h2>
-      <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
-      </div>
-    </div>
-  </div> -->
+  </div>
+</div> -->
 
    

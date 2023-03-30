@@ -1,3 +1,5 @@
+<h1 class="text-center">You're Liked Meals!</h1>
+<br>
 
 <div class="row">
     <!-- <div *ngFor="let r of Recipes; index as i" class="row row-cols-1 row-cols-md-2 g-4"> -->
@@ -6,19 +8,25 @@
             <div class="card">
                 <img src="https://spoonacular.com/recipeImages/{{r.recipeId}}-312x150.jpg" class="card-img-top">
                 <div class="card-body">
-                    <h4 class="card-title">{{r.recipeTitle}}</h4>
+                    <h4 class="card-title"><b>{{r.recipeTitle}}</b></h4>
+                    <br>
                     <p class="card-text"><b>Cook Time:</b> {{r.readyInMinutes}} Minutes</p>
                     <p><b>Servings:</b> {{r.servings}}</p>
                     <p><b>Goal:</b> {{userProfile.goal}}</p>
                     <p><b>Plan:</b> {{ mealQuota(r.totalCalories) }}</p>
+                    <br>
                     <div *ngIf="userProfile.goal">
-                        <button (click)="toggleDate(i)">Add to Meal Plan</button>
+                        <strong (click)="toggleDate(i)" class="btn btn-secondary">Add to Meal Plan</strong>
                         <div *ngIf="displayDate[i]">
-                            <p>select date</p>
-                            <input type="date" [(ngModel)]="date">
-                            <button (click)="addMealPlan(r.id)" (click)="displayDate[i]=false">Confirm</button>
+                            <br>
+                            <!-- <p>select date</p> -->
+                            <input type="date" [(ngModel)]="date">Select Date<input>
+                            <br><br>
+                            <strong (click)="addMealPlan(r.id)" (click)="displayDate[i]=false" class="btn btn-dark">Confirm</strong>
+                            <br>
                         </div>
-                    <button (click)="deleteFavorite(r.id)">Remove Favorite</button>
+                        <br><br>
+                        <strong class="btn btn-outline-danger" (click)="deleteFavorite(r.id)">Remove Favorite</strong>
                 </div>
             </div>
         </div>
