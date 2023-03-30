@@ -27,7 +27,7 @@ export class MealsComponent implements OnInit {
   // boolean variables
   isFavorited: boolean[] = [];
   loggedIn: boolean = false;
-  seeMore: boolean = false;
+  seeMore: boolean[] = [];
 
   // other variables
   search: string = '';
@@ -100,8 +100,8 @@ export class MealsComponent implements OnInit {
     this.isFavorited[index] = !this.isFavorited[index];
   }
 
-  toggleSeeMore():void{
-    this.seeMore = !this.seeMore;
+  toggleSeeMore(index:number):void{
+    this.seeMore[index] = !this.seeMore[index];
   }
 
   // favorite methods

@@ -26,8 +26,8 @@
                         <p><b>{{p.nutrition.nutrients[0].name}}:</b> {{p.nutrition.nutrients[0].amount}}</p>
                         <p><b>Servings:</b> {{p.servings}}</p>
                         <!-- <p>{{p.nutrition.nutrients[0].name}}: {{p.nutrition.nutrients[0].amount}}</p> -->
-                        <strong class="btn btn-outline-success" (click)="toggleSeeMore()">More</strong>
-                        <div *ngIf="seeMore">
+                        <strong class="btn btn-outline-success" (click)="toggleSeeMore(i)">More</strong>
+                        <div *ngIf="seeMore[i]">
                             <ul *ngFor="let d of p.dishTypes">
                                 <li>{{d}}</li>
                             </ul>
