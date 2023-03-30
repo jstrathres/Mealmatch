@@ -43,6 +43,7 @@
               >Meals</a
             >
           </li>
+          
           <!-- Favorites link -->
           <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="loggedIn">
             <a class="nav-link text-dark" [routerLink]="['/favorites']"
@@ -58,11 +59,11 @@
           <!-- Google sign out -->
               <li class="nav-item">
                 <asl-google-signin-button *ngIf="!loggedIn" type='icon' size='medium'></asl-google-signin-button>
-                <p *ngIf="loggedIn">{{ user.name }}</p>
-                
-                <strong class="btn btn-outline-dark" style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" *ngIf="loggedIn"  (click)="signOut()">Sign Out
-                </strong>
-            </li> 
+                <button class="btn btn-outline-dark" *ngIf="loggedIn"  (click)="signOut()">Sign Out
+                </button>
+          </li> 
+          <!-- <li *ngIf="loggedIn">{{ user.name }}</li> -->
+
         </ul>
       </div>
     </div>

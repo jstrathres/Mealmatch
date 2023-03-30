@@ -197,21 +197,14 @@ namespace GroupFinalProject.Controllers
         }
 
         [HttpDelete("deleteMealplan")]
-        public List <MealPlan> deleteMealPlan(string userId,int recipeId)
-        {        
-           
-                List<MealPlan> recipes = context.MealPlans.Where(r => r.UserId == userId).ToList();
-                foreach (MealPlan R in recipes)
-                {
-                    if (R.RecipeId == recipeId)
-                    {
-                        context.MealPlans.Remove(R);
-                        context.SaveChanges();
-                    }
-                }
-                return recipes;           
+        public MealPlan deleteMealPlan(string userId,int id)
+        {
 
-           
+            MealPlan mealplan = context.MealPlans.FirstOrDefault(m => m.UserId == userId && m.Id==id);
+
+            context.MealPlans.Remove(mealplan);
+            context.SaveChanges();
+            return mealplan;     
         }
 
     }

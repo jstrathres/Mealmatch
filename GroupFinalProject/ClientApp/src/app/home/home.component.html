@@ -1,14 +1,25 @@
 <div style="text-align: center;">
+  <h1>Welcome to Meal Match!</h1>
+  <h3 *ngIf="loggedIn">Hello {{ user.name }}!</h3>
+  <!-- <button class="btn btn-outline-dark" *ngIf="loggedIn"  (click)="signOut()">Sign Out
+  </button> -->
+      <div style="display: flex; justify-content: center;">
+        <asl-google-signin-button>Sign In</asl-google-signin-button>
+      </div>      
   <img src="http://dmexco-koeln-nrw.de/wp-content/uploads/2017/08/logo_mealmatch-768x576.png" style="width: 400px;
   border-radius: 75%;">
   <p></p>
-  <h1>Welcome to Meal Match!</h1>
     <ul>
       <li>Your ultimate meal-planning companion! We understand that choosing the right meal can be a daunting task, especially when you're short on time or trying to stick to a specific diet. That's why we've created a platform that matches the perfect meal to your day, taking into account your dietary needs and personal preferences.</li>
       <p></p>
       <li>Whether you're looking for a quick breakfast on the go, a satisfying lunch at work, or a delicious dinner to end your day, MealMatch has got you covered. Our platform offers a wide range of meal options, from vegetarian and vegan to low-carb and gluten-free, ensuring that you find a meal that fits your lifestyle.</li>
       <p></p>
       <li>With MealMatch, you can browse through our curated meal options, filter by dietary requirements, and even save your favorite meals for future reference. We also provide nutritional information for each meal, so you can make an informed decision about what you're putting into your body.</li>
+      <p>*Please Log In with Google to create your profile*</p>
+      <!-- <h3 *ngIf="loggedIn">Hello {{ user.name }}!</h3>
+      <div style="display: flex; justify-content: center;">
+        <asl-google-signin-button>Sign In</asl-google-signin-button>
+      </div>       -->
     </ul>
 </div>
 
