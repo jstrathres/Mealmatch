@@ -122,9 +122,9 @@ export class UserService {
       {}
     )
   } 
-deleteMealPlan(userId:string,recipeId:number):Observable<MealPlan>{
+deleteMealPlan(userId:string,id:number):Observable<MealPlan>{
   return this.http.delete<MealPlan>(
-    `${this.baseUrl}api/User/deleteMealPlan?userId=${userId}&recipeId=${recipeId}`,
+    `${this.baseUrl}api/User/deleteMealPlan?userId=${userId}&id=${id}`,
     {}
   );
 }
