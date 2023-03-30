@@ -1,8 +1,8 @@
 <!-- search meal functionality -->
 <h1 class="text-center">Meal Search</h1>
-<p style="text-align: c;" *ngIf="loggedIn"><b><i>{{ user.name }}</i></b>, please search meals by type and/or category</p>
+<p style="text-align: c;" *ngIf="loggedIn"><b><i>{{ user.name }}</i></b>, please search meals by type and/or ategory</p>
 <div (keydown.enter)="searchInput()">
-    <input type="text" class="text-center" [(ngModel)]="search" />
+    <input type="text" [(ngModel)]="search" />
     <!-- Category options -->
     <select [(ngModel)]="category" id="category" name="category">
         <option value="">Select Category</option>
@@ -23,15 +23,18 @@
                         <h4 class="card-title"><b>{{p.title}}</b></h4>
                         <br>
                         <h5 class="card-text"><b>Minutes to cook:</b> {{p.readyInMinutes}}</h5>
-                        <p><b>{{p.nutrition.nutrients[0].name}}:</b> {{p.nutrition.nutrients[0].amount}}</p>
+                        <p><b>{{p.nutrition.nutrients[0].name}} per serving:</b> {{p.nutrition.nutrients[0].amount}}</p>
                         <p><b>Servings:</b> {{p.servings}}</p>
                         <!-- <p>{{p.nutrition.nutrients[0].name}}: {{p.nutrition.nutrients[0].amount}}</p> -->
-                        <strong class="btn btn-outline-success" (click)="toggleSeeMore()">More</strong>
-                        <div *ngIf="seeMore">
-                            <ul *ngFor="let d of p.dishTypes">
-                                <li>{{d}}</li>
-                            </ul>
-                        </div>
+                        <strong class="btn btn-outline-success" (click)="toggleSeeMore(i)">More</strong>
+                        <ul *ngIf="seeMore[i]">
+                            <li><b>Weight Watchers Points:</b> {{p.weightWatcherSmartPoints}}</li>
+                            <li><b>Health Score:</b> {{p.healthScore}}</li>
+                            <li><b>Popular:</b> {{p.veryPopular}}</li>
+                            <li><b>Vegan:</b> {{p.vegan}}</li>
+                            <li><b>Price Per Serving:</b> {{p.pricePerServing}}</li>
+                        </ul>
+                        <br><br>
                         <!-- allows user to add meal to favorite list  -->
                         <div *ngIf="user!=null && !isFavorited[i]">
                             <strong class="btn btn-secondary" (click)="addRecipe(p)" (click)="toggleFavorite(i)">Like

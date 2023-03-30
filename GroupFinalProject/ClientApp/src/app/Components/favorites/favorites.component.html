@@ -12,7 +12,7 @@
                     <p class="card-text"><b>Cook Time:</b> {{r.readyInMinutes}} Minutes</p>
                     <p><b>Servings:</b> {{r.servings}}</p>
                     <p><b>Goal:</b> {{userProfile.goal}}</p>
-                    <p><b>Plan:</b> {{ mealQuota(r.totalCalories) }}</p>
+                    <p><b>Plan:</b> {{ mealQuota(r.totalCalories) }} per serving:</p>
                     <br>
                     <div *ngIf="userProfile.goal">
                     <strong (click)="toggleDate(i)" class="btn btn-secondary">Add to Meal Plan</strong>

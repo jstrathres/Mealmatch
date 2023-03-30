@@ -114,8 +114,7 @@ export class FavoritesComponent implements OnInit {
     }
     else{
       return 'No exercise needed!'
-    }
-    
+    } 
   }
 
   // mealplan methods
