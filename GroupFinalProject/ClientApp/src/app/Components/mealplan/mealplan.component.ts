@@ -39,25 +39,25 @@ ngOnInit(): void {
   	  this.user = user;
   	  this.loggedIn = (user != null);
       console.log(this.user);
-      this.getMeals();
+      // this.getMeals();
       this.getMealPlanView();
     });
   }
   
 // mealplan methods
-getMeals():void{
-  this.userService.getMeals(this.user.id).subscribe((response:Recipe[])=>{
-    this.meals = response
-    console.log(response)
-  });  
-}
+// getMeals():void{
+//   this.userService.getMeals(this.user.id).subscribe((response:Recipe[])=>{
+//     this.meals = response
+//     console.log(response)
+//   });  
+// }
 
-getAllMeals():void{
-  this.userService.getAllMeals(this.user.id).subscribe((response:MealPlan[])=>{
-    this.mealplans = response
-    console.log(response)
-  });  
-}
+// getAllMeals():void{
+//   this.userService.getAllMeals(this.user.id).subscribe((response:MealPlan[])=>{
+//     this.mealplans = response
+//     console.log(response)
+//   });  
+// }
 
 getMealPlanView():void{
   this.userService.getMealPlanView(this.user.id).subscribe((response:MealPlanView[])=>{
@@ -83,8 +83,9 @@ stringConverterInstructions(instrString:string):void{
 deleteMealPlan(recipeId:number):void{
     this.userService.deleteMealPlan(this.user.id,recipeId).subscribe((response:MealPlan)=>{
       console.log(response);
-      this.getMeals();
-      this.getAllMeals();
+      // this.getMeals();
+      // this.getAllMeals();
+      this.getMealPlanView();
     })
   }
 

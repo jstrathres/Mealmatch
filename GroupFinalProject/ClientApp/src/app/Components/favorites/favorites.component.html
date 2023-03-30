@@ -8,7 +8,7 @@
             <div class="card">
                 <img src="https://spoonacular.com/recipeImages/{{r.recipeId}}-312x150.jpg" class="card-img-top">
                 <div class="card-body">
-                    <h4 class="card-title"><b>{{r.recipeTitle}}</b></h4>
+                    <h4 class="card-title" class="text-center"><b>{{r.recipeTitle}}</b></h4>
                     <br>
                     <p class="card-text"><b>Cook Time:</b> {{r.readyInMinutes}} Minutes</p>
                     <p><b>Servings:</b> {{r.servings}}</p>
@@ -19,8 +19,9 @@
                         <strong (click)="toggleDate(i)" class="btn btn-secondary">Add to Meal Plan</strong>
                         <div *ngIf="displayDate[i]">
                             <br>
-                            <!-- <p>select date</p> -->
-                            <input type="date" [(ngModel)]="date">Select Date<input>
+                            <!--Carissa's update-->
+                            <p><b>Select Date:</b></p>
+                            <input type="date" [(ngModel)]="date">
                             <br><br>
                             <strong (click)="addMealPlan(r.id)" (click)="displayDate[i]=false" class="btn btn-dark">Confirm</strong>
                             <br>

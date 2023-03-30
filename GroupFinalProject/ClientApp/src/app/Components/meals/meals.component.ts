@@ -31,6 +31,7 @@ export class MealsComponent implements OnInit {
   // other variables
   search: string = '';
   status: string = '';
+  category: string ='';
 
   // on init method
   ngOnInit() {
@@ -44,31 +45,52 @@ export class MealsComponent implements OnInit {
 
   //search bar method
   searchInput() {
-    this.mealService.getMeals(this.search).subscribe(
-      (response: MealDetail) => {
-        console.log(response);
-        console.log(this.search);
-        this.result = response;
-      },
-      (error) => {
-        console.log(error);
-        this.status = `${this.search} not a valid input`;
-      }
-    );
-  }
-
-  searchCategory(Cat:string) {
-    this.mealService.getMeals(Cat).subscribe(
-      (response: MealDetail) => {
-        console.log(response);
-        console.log(this.search);
-        this.result = response;
-      },
-      (error) => {
-        console.log(error);
-        this.status = `${this.search} not a valid input`;
-      }
-    );
+    if(this.category!=''&&this.search!=''){
+      this.mealService.getMealsCatQuery(this.category, this.search).subscribe(
+        (response: MealDetail) => {
+          console.log(response);
+          this.result = response;
+          console.log(this.category);
+          console.log(this.search);
+          this.search='';
+          this.category='';
+        },
+        (error) => {
+          console.log(error);
+          this.status = `${this.search} not a valid input`;
+        }
+      );
+    }
+    else if(this.category!=''&&this.search==''){
+      this.mealService.getMealsCat(this.category).subscribe(
+        (response: MealDetail) => {
+          console.log(response);
+          this.result = response;
+          console.log(this.search);
+          console.log(this.category);
+          this.category='';
+        },
+        (error) => {
+          console.log(error);
+          this.status = `${this.search} not a valid input`;
+        }
+      );
+    }
+    else{
+      this.mealService.getMeals(this.search).subscribe(
+        (response: MealDetail) => {
+          console.log(response);
+          console.log(this.search);
+          console.log(this.category);
+          this.result = response;
+          this.search='';
+        },
+        (error) => {
+          console.log(error);
+          this.status = `${this.search} not a valid input`;
+        }
+      );
+    }
   }
 
   // toggle methods
